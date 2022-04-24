@@ -5,9 +5,31 @@ interface ButtonProps {
 }
 function BreshComponent(props: ButtonProps) {
     const [tabindex, settTab] = useState(1);
+    const [hour, setHour] = useState(0);
+    const [minutes, setMinutes] = useState(0);
+
     function setTabIndex(val: number) {
         settTab(val);
     }
+    function getCurrentDate() {
+        var weekday = ["日", "月", "火", "水", "木", "金", "土"];
+
+        let newDate = new Date();
+        let date = newDate.getDate();
+        let month = newDate.getMonth() + 1;
+        let day = newDate.getDay();
+
+        return `${month}月${date}日(${weekday[day]})`;
+    }
+    function getCurrentTime() {
+        console.log("asdf");
+        let newDate = new Date();
+        setHour(newDate.getHours());
+        setMinutes(newDate.getMinutes());
+    }
+    window.setInterval(function () {
+        getCurrentTime();
+    }, 1000);
     return (
         <div className="rounded-xl mt-4  border-y  border-teal-700 h-20 bg-white">
             <ul className=" h-full flex flex-row  text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
