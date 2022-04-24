@@ -3,6 +3,7 @@ import Button from "../../components/button";
 import {Route,Routes,NavLink } from 'react-router-dom';
 import { BsLayoutTextWindow, BsPencil, BsEnvelope } from "react-icons/bs";
 import Bresh from "./sub/bresh";
+import Meal from "./sub/meal";
 const Home = () => {
     const [selectindex, setSelect]=useState(1);
     function SetIndex(val:number){
@@ -16,7 +17,7 @@ const Home = () => {
         <div>
             <p className="text-base text-teal-700 pt-8 font-semibold text-center pb-2">松田 聖子 さん</p>
             <div className="bg-teal-700 h-0.5 mx-2" ></div>
-            <div className="px-4 ">
+            <div className="px-4 pb-20">
                 <p className="text-4xl text-teal-700 py-8 font-black text-center pb-2">記録をする</p>
                 <p className="text-base text-teal-700 pt-2 pb-4 font-light text-center pb-2">歯磨きや食事の内容を記録しましょう</p>
                 <div className="mt-4 border-y border-teal-700">
@@ -41,12 +42,12 @@ const Home = () => {
                 <div>
                 <Routes >
                     <Route  path="/bresh" element={ <Bresh />}/>
-                    <Route  path="/meal" element={ <BsLayoutTextWindow />}/>
+                    <Route  path="/meal" element={ <Meal />}/>
                     <Route  path="/sleep" element={ <BsLayoutTextWindow />}/>
                 </Routes>
                 </div>
             </div>
-            <footer className="p-4 bg-white absolute bottom-0 h-16 w-full rounded-t-xl">
+            <footer className="p-4 bg-white fixed bottom-0 h-16 w-full rounded-t-xl">
                 <div className="flex flew-row" >
                     <button type="button" onClick={() => { SetIndex(1) }} className={"basis-1/3 " + (selectindex==1?"text-teal-700":"text-gray-400" )} >
                         <BsPencil className=" text-xl flex flex-col mx-auto" />
