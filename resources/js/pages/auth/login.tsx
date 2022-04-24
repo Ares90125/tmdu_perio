@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { Box, ButtonBase, InputBase } from "@mui/material";
 import DefaultButton from "../../components/button";
 const Login = () => {
@@ -7,9 +8,11 @@ const Login = () => {
     const handleChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
         setUserId(e.target.value);
     }
+    const OnLogin=()=>{
+    }
     return (
         <div className="">
-            <p className="text-6xl text-teal-700 pt-40 font-semibold text-center pb-20">PERIO</p>
+            <p className="text-6xl text-teal-700 pt-44 font-semibold text-center pb-32">PERIO</p>
             <div className="px-12 ">
                 <p className="text-sm font-bold text-teal-700 pb-2">PERIO ID</p>
                 <Box className="rounded-xl  border bg-white px-2 py-1 border-cyan-700">
@@ -19,7 +22,9 @@ const Login = () => {
                 <Box className="rounded-xl  border bg-white px-2 py-1 border-cyan-700">
                     <InputBase placeholder="a018982"/>
                 </Box> 
-                <DefaultButton buttonClick={()=>{window.alert("Login")}} text="ログイン"/>            
+                <div className="my-20">
+                <Link to="/home" className="btn btn-primary"><DefaultButton buttonClick={()=>{}} text="ログイン"/></Link>
+                </div>
                 <p className="text-center text-base font-bold pb-2 text-black">パスワードがわからない場合は、<br></br>お問い合わせをお願いします</p>
             </div>
         </div>        

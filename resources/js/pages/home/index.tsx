@@ -9,7 +9,7 @@ const Home = () => {
     function SetIndex(val:number){
         setSelect(val);
     }
-    const [tabindex, settTab]=useState(0);
+    const [tabindex, settTab]=useState(1);
     function setTabIndex(val:number){
         settTab(val);
     }
