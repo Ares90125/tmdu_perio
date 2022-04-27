@@ -26,7 +26,6 @@ function MealComponent(props: ButtonProps) {
         return `${month}月${date}日(${weekday[day]})`;
     }
     function getCurrentTime() {
-        console.log("asdf");
         let newDate = new Date();
         setHour(newDate.getHours());
         setMinutes(newDate.getMinutes());
@@ -39,13 +38,13 @@ function MealComponent(props: ButtonProps) {
             <Card className="ml-10 mr-10" style={{ borderRadius: 10, border: '2px solid #88BFBF' }}>
                 <CardContent style={{ paddingBottom: 0 }}>
                     <ul className="font-bold">
-                        <Typography component="li" variant="h6" align="center" className="text-teal-800" style={{ fontWeight: 600 }}>
+                        <Typography component="li" variant="h6" align="center" className="text-mainColor" style={{ fontWeight: 600 }}>
                             食事の画像を
                         </Typography>
-                        <Typography component="li" variant="h6" align="center" className="text-teal-800" style={{ fontWeight: 600 }}>
+                        <Typography component="li" variant="h6" align="center" className="text-mainColor" style={{ fontWeight: 600 }}>
                             撮影／アップロード
                         </Typography>
-                        <Typography component="li" variant="h6" align="center" className="text-teal-800" style={{ fontWeight: 600 }}>
+                        <Typography component="li" variant="h6" align="center" className="text-mainColor" style={{ fontWeight: 600 }}>
                             してください
                         </Typography>
                     </ul>
@@ -55,16 +54,16 @@ function MealComponent(props: ButtonProps) {
                 </CardActions>
             </Card>
             <Container maxWidth="sm" className="mt-10">
-                <Typography component="h6" variant="h6" align="left" className="text-teal-800" style={{ fontWeight: 600 }}>
+                <Typography component="h6" variant="h6" align="left" className="text-mainColor" style={{ fontWeight: 600 }}>
                     食事のメモ
                 </Typography>
                 <TextareaAutosize aria-label="minimum height" minRows={4} placeholder="" style={{ width: '100%', borderRadius: 8, border: '2px solid #88BFBF', padding: 5 }} />
             </Container>
             <Container maxWidth="sm" className="mt-5 text-center">
-                <Typography variant="h5" display="inline" className="text-teal-800">
+                <Typography variant="h5" display="inline" className="text-dayColor">
                     {getCurrentDate()}&nbsp;
                 </Typography>
-                <Typography variant="h3" display="inline" className="text-teal-800 text-2xl">
+                <Typography variant="h3" display="inline" className="text-mainColor text-2xl">
                     {hour}:{minutes}
                 </Typography>
             </Container>
