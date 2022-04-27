@@ -16,7 +16,7 @@ const Login = () => {
             <div className="px-12 ">
                 <p className="text-sm font-bold text-teal-700 pb-2">PERIO ID</p>
                 <Box className="rounded-xl  border bg-white px-2 py-1 border-cyan-700">
-                    <InputBase placeholder="a018982" value={userid}/>
+                    <InputBase placeholder="a018982" value={userid} onChange={(value)=>{}}/>
                 </Box>
                 <p className="pt-5 text-sm font-bold text-teal-700 pb-2">パスワード</p>    
                 <Box className="rounded-xl  border bg-white px-2 py-1 border-cyan-700">
