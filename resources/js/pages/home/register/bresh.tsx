@@ -30,9 +30,9 @@ const Bresh = () => {
             <BreshComponent/>
             </div>
             <div className="flex  flex-row items-cneter justify-between mt-8">
-                <ToolButton buttonClick={()=>{ setIndex(1)}} text="歯間ブラシ" className={index==1?"bg-btnbgColor text-white":"bg-white text-mainColor"} path={index==1?"bresh.png":"bresh-none.png"}/>
-                <ToolButton buttonClick={()=>{ setIndex(2)}} text="歯間ブラシ" className={index==2?"bg-btnbgColor text-white":"bg-white text-mainColor"} path={index==2?"material.png":"material-none.png"}/>
-                <ToolButton buttonClick={()=>{ setIndex(3)}} text="歯間ブラシ" className={index==3?"bg-btnbgColor text-white":"bg-white text-mainColor"} path={index==3?"flox.png":"flox-none.png"}/>
+                <ToolButton size="w-28 h-36" buttonClick={()=>{ setIndex(1)}} text="歯間ブラシ" className={index==1?"bg-btnbgColor text-white":"bg-white text-mainColor"} path={index==1?"bresh.png":"bresh-none.png"}/>
+                <ToolButton size="w-28 h-36" buttonClick={()=>{ setIndex(2)}} text="歯間ブラシ" className={index==2?"bg-btnbgColor text-white":"bg-white text-mainColor"} path={index==2?"material.png":"material-none.png"}/>
+                <ToolButton size="w-28 h-36" buttonClick={()=>{ setIndex(3)}} text="歯間ブラシ" className={index==3?"bg-btnbgColor text-white":"bg-white text-mainColor"} path={index==3?"flox.png":"flox-none.png"}/>
             </div>
             <Container maxWidth="sm" className="mt-5 text-center">
                 <Typography variant="h5" display="inline" className="text-dayColor">

@@ -1,18 +1,12 @@
 import React, { useState } from "react";
-import Button from "../../../components/button";
 import {Route,Routes,NavLink } from 'react-router-dom';
-import { BsLayoutTextWindow, BsPencil, BsEnvelope } from "react-icons/bs";
+import Main from "./main";
 const Editer = () => {
-    const [selectindex, setSelect]=useState(1);
-    function SetIndex(val:number){
-        setSelect(val);
-    }
-    const [tabindex, settTab]=useState(1);
-    function setTabIndex(val:number){
-        settTab(val);
-    }
     return (
         <div>
+            <Routes >
+                <Route  path="/" element={ <Main />}/>
+            </Routes>
         </div>
     );
 };
