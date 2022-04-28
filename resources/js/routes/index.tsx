@@ -15,7 +15,6 @@ const Router = () => {
             <Route path='/alignment' element={<Alignemnt/>} />
             <Route path='/home' element={<Navigate to="/home/register/bresh"/>} />
             <Route path='/home/register' element={<Navigate to="/home/register/bresh"/>} />
-            <Route path='/home/editer' element={<Editer/>} />
             <Route path='/home/*' element={<Home/>} />
         </Routes>
     ) 

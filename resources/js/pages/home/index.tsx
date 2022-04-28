@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import {Route,Routes, NavLink } from 'react-router-dom';
-import { BiLayout, BiPencil, BiEnvelope, BiArrowBack, BiCalendar } from "react-icons/bi";
+import { BiLayout, BiPencil, BiEnvelope } from "react-icons/bi";
 import Register from "../home/register";
 import Editer from "../home/edit";
 const Home = () => {
-    let path=window.location.pathname.split("/");
-    let flag=false;
     const [selectindex, setSelect]=useState(1);
     function SetIndex(val:number){
         setSelect(val);
     }
     return (
         <div>
-            <div className="flex justify-between pt-8 pb-2 mx-2">
-            <p className="text-base text-mainColor  font-semibold text-center ">松田 聖子 さん</p>
+            <div className="flex justify-between pt-8 pb-2">
+                <p className="text-base text-mainColor  font-semibold text-center ">松田 聖子 さん</p>
             </div>
             <div className="bg-btnbgColor h-0.5 mx-2"></div>
             <div className="px-4 pb-20">
