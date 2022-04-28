@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../../components/button";
-import {Route,Routes,NavLink } from 'react-router-dom';
-import { BsLayoutTextWindow, BsPencil, BsEnvelope } from "react-icons/bs";
+import {Route,Routes,NavLink,Link } from 'react-router-dom';
+
 import ToolButton from "../../../components/toolcomponent";
 import DefaultButton from "../../../components/button";
 const Main = () => {
@@ -44,9 +44,9 @@ const Main = () => {
     }
     return (
         <div>
-            <p className="text-4xl text-mainColor py-8 font-black text-center pb-2">{tabindex<3? "歯みがき記録":"記録を追加する"}</p>
-            <p className="text-base text-mainColor pt-2 pb-4 font-light text-center pb-2">{tabindex<3?"自分の記録をみてみましょう":"歯磨きや食事の内容を記録しましょう"}</p>
-            <div className="flex justify-evenly items-end">
+            <p className="text-4xl text-mainColor py-8 font-black text-center pb-2">{"歯みがき記録"}</p>
+            <p className="text-base text-mainColor pt-2 pb-4 font-light text-center pb-2">{"自分の記録をみてみましょう"}</p>
+            <div className="flex justify-evenly items-end ">
                 <div>
                     <button type="button" onClick={() => { changeDay(true) }}>
                         <p className="text-2xl  text-center underline text-btnbgColor text-2xl">前日</p>
@@ -65,8 +65,8 @@ const Main = () => {
                 </button>
                 </div>
             </div>
-            <div className="bg-btnbgColor h-0.5 mx-2"></div>
-            <div className="bg-white rounded-2xl p-4 flex flex-row mt-12">
+            <div className="bg-btnbgColor h-0.5 mx-2 "></div>
+            <div className="bg-white rounded-2xl p-4 flex flex-row mt-12 shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
                 <p className="basis-1/6 text-center text-btnbgColor text-xl">{uptime.hour}:{uptime.minute}</p>
                 <p className="basis-1/6 text-center text-mainColor text-xl font-extrabold">起床</p>
                 <p className="basis-1/2"></p>
@@ -74,7 +74,7 @@ const Main = () => {
                  <p className=" text-center text-btnbgColor text-xl underline font-bold">編集</p>
                 </NavLink>
             </div>
-            <div className="bg-white rounded-2xl p-4 mt-12">
+            <div className="bg-white rounded-2xl p-4 mt-12 shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
                 <div className="flex flex-row ">
                     <p className="basis-1/6 text-center text-btnbgColor text-xl">{uptime.hour}:{uptime.minute}</p>
                     <p className="basis-1/2 text-center text-mainColor text-xl font-extrabold">朝のお口の状態</p>
@@ -85,23 +85,23 @@ const Main = () => {
                 </div>
                 <p className="basis-1/6 text-mainColor text-sm  font-bold px-8 py-2">スッキリしている</p>
             </div>
-            <div className="bg-white rounded-2xl p-4 mt-12">
+            <div className="bg-white rounded-2xl p-4 mt-12 shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
                 <div className="flex flex-row ">
                     <p className="basis-1/6 text-center text-btnbgColor text-xl">{uptime.hour}:{uptime.minute}</p>
                     <p className="basis-1/2 text-center text-mainColor text-xl font-extrabold">歯みがき記録</p>
                     <p className="basis-1/6"></p>
-                    <NavLink to="breshtool" className="basis-1/6">
+                    <Link to="breshtool" className="basis-1/6">
                         <p className=" text-center text-btnbgColor text-xl underline font-bold">編集</p>
-                    </NavLink>
+                    </Link>
                 </div>
-                <div className="flex  flex-row items-cneter justify-around mt-8 ">
-                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="10分以上" className={"bg-btnbgColor text-white"} path={"bresh.png "}/>
-                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==1?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-2xl"} path={index==1?"bresh.png":"bresh-none.png"}/>
-                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==2?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-2xl"} path={index==2?"material.png":"material-none.png"}/>
-                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==3?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-2xl"} path={index==3?"flox.png":"flox-none.png"}/>
+                <div className="flex  flex-row items-cneter justify-around mt-8">
+                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="10分以上" className={"bg-btnbgColor text-white"} path={"comb.png"}/>
+                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==1?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={index==1?"bresh.png":"bresh-none.png"}/>
+                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==2?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={index==2?"material.png":"material-none.png"}/>
+                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==3?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={index==3?"flox.png":"flox-none.png"}/>
                 </div>
             </div>
-            <div className="bg-white rounded-2xl p-4 mt-12">
+            <div className="bg-white rounded-2xl p-4 mt-12 shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
                 <div className="flex flex-row ">
                     <p className="basis-1/6 text-center text-btnbgColor text-xl">{uptime.hour}:{uptime.minute}</p>
                     <p className="basis-1/2 text-center text-mainColor text-xl font-extrabold">食事の記録</p>
@@ -115,7 +115,7 @@ const Main = () => {
                 </div>
                 <p className="basis-1/6 text-mainColor text-sm  font-bold px-8 py-2">家系ラーメン</p>
             </div>
-            <div className="bg-white rounded-2xl p-4 mt-12">
+            <div className="bg-white rounded-2xl p-4 mt-12 shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
                 <div className="flex flex-row ">
                     <p className="basis-1/6 text-center text-btnbgColor text-xl">{uptime.hour}:{uptime.minute}</p>
                     <p className="basis-1/2 text-center text-mainColor text-xl font-extrabold">歯みがき記録</p>
@@ -125,13 +125,13 @@ const Main = () => {
                     </NavLink>
                 </div>
                 <div className="flex  flex-row items-cneter justify-around mt-8 ">
-                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="10分以上" className={"bg-btnbgColor text-white"} path={"bresh.png "}/>
-                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==1?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-2xl"} path={tindex==1?"bresh.png":"bresh-none.png"}/>
-                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==2?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-2xl"} path={tindex==2?"material.png":"material-none.png"}/>
-                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==3?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-2xl"} path={tindex==3?"flox.png":"flox-none.png"}/>
+                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="10分以上" className={"bg-btnbgColor text-white"} path={"comb.png"}/>
+                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==1?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={tindex==1?"bresh.png":"bresh-none.png"}/>
+                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==2?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={tindex==2?"material.png":"material-none.png"}/>
+                    <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==3?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={tindex==3?"flox.png":"flox-none.png"}/>
                 </div>
             </div>
-            <div className="bg-white rounded-2xl p-4 flex flex-row mt-12">
+            <div className="bg-white rounded-2xl p-4 flex flex-row mt-12 shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
                 <p className="basis-1/6 text-center text-btnbgColor text-xl">{uptime.hour}:{uptime.minute}</p>
                 <p className="basis-1/6 text-center text-mainColor text-xl font-extrabold">就寝</p>
                 <p className="basis-1/2"></p>

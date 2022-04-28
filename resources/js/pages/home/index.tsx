@@ -10,10 +10,6 @@ const Home = () => {
     }
     return (
         <div>
-            <div className="flex justify-between pt-8 pb-2">
-                <p className="text-base text-mainColor  font-semibold text-center ">松田 聖子 さん</p>
-            </div>
-            <div className="bg-btnbgColor h-0.5 mx-2"></div>
             <div className="px-4 pb-20">
                 <Routes >
                     <Route  path="/register/*" element={ <Register />}/>

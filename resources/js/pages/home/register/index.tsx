@@ -10,6 +10,8 @@ const Register = () => {
     }
     return (
         <div>
+            <p className="text-base text-mainColor  font-semibold text-center  pt-8 pb-2">松田 聖子 さん</p>
+            <div className="bg-btnbgColor h-0.5 mx-2"></div>
             <p className="text-4xl text-mainColor py-8 font-black text-center pb-2">{tabindex!=3? "記録をする":"就寝／起床の入力"}</p>
             <p className="text-base text-mainColor pt-2 pb-4 font-light text-center pb-2">{tabindex!=3?"歯磨きや食事の内容を記録しましょう":"睡眠時間を記録しましょう"}</p>
             <div className="mt-4 border-y border-mainColor">
