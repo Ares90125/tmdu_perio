@@ -13,6 +13,8 @@ module.exports = {
       "dayColor":"#228A98",
       "gradientoneColor":"#2BE0E0",
       "gradienttwoColor":"#0D75D6",
+      "adminmainColor":"#8FA4CD",
+      "adminbuttonColor":"#7898EC" 
     }
   },
   plugins: [],

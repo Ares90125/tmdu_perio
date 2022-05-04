@@ -6,9 +6,9 @@ interface TimepickerButton {
   }
 function Timepicker(props:TimepickerButton){
     return (
-        <div className="flex items-stretch rounded-lg border-2 border-mainColor">
+        <div className="flex justify-center rounded-lg border-2 border-mainColor text-3xl text-mainColor font-bold my-8 py-2">
             <p className="">{props.time}</p>
-            <p>:</p>
+            <p className="px-2">:</p>
             <p className="">{props.min}</p>
         </div>
     );

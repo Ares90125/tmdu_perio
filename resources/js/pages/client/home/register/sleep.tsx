@@ -20,7 +20,7 @@ const Sleep = () => {
         <div >
             <div className="mt-16 mx-8">
                 <p className="text-sm text-mainColor font-light text-left pb-2">昨夜の就寝時間</p>
-                <div > 
+                <div >
                     <ul className="flex flex-row text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                         <li className="basis-1/2 " role="presentation">
                             <button onClick={() => { setTabIndex(1) }} className={"rounded-l-2xl py-4  text-sm w-full inline-block px-4 py-1  font-black "+(tabindex==1?"bg-btnbgColor text-white":"text-mainColor bg-white")} id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">{getDate(true)}</button>
@@ -29,12 +29,12 @@ const Sleep = () => {
                             <button onClick={() => { setTabIndex(2) }} className={"rounded-r-2xl py-4  text-sm w-full inline-block px-4 py-1  font-black "+(tabindex==2?"bg-btnbgColor text-white":"text-mainColor bg-white")} id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">{getDate(false)}</button>
                         </li>
                     </ul>
-                </div> 
+                </div>
                 <div>
                     <Timepicker time={20} min={20} change={(index)=>{}} />
                 </div>
                 <div className="mt-8,mb-4">
-                    <p className="text-sm text-mainColor font-light text-left pb-2">起床時間</p>
+                    <p className="text-sm text-mainColor font-light text-left">起床時間</p>
                     <Timepicker time={20} min={20} change={(index)=>{}} />
                 </div>
                 <div className="my-4">

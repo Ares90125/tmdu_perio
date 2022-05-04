@@ -34,7 +34,7 @@ function BreshComponent(props: ButtonProps) {
             <ul className=" h-full flex flex-row  text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                 <li className=" basis-2/6 h-full " role="presentation">
                     <button onClick={() => { }} className={"flex justify-center items-center rounded-xl h-full text-xs w-full  font-black border-transparent bg-btnbgColor text-white"} id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
-                        <img src="../../images/comb.png" alt="Icon" />
+                        <img src="../../../images/comb.png" alt="Icon" />
                         歯みがき
                     </button>
                 </li>

@@ -10,7 +10,7 @@ function ToolButton(props:ButtonProps){
     return (
         <div className={props.size}>
             <button onClick={props.buttonClick} className={"flex flex-col justify-center items-center rounded-xl h-full text-xs w-full  font-black border-transparent "+props.className} id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
-                <img src={"../../images/"+props.path} alt="Icon" />
+                <img src={"../../../images/"+props.path} alt="Icon" />
                 {props.text}
             </button>
         </div>

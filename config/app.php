@@ -16,7 +16,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'DB' => Illuminate\Support\Facades\DB::class,
     /*
     |--------------------------------------------------------------------------
     | Application Environment

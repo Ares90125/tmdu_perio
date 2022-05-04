@@ -19,7 +19,7 @@ const Main = () => {
     });
     const [index,setIndex]=useState(0);
     const [tindex,setTindex]=useState(0);
-    const [image, setImage]=useState("../../images/image.png");
+    const [image, setImage]=useState("../../../images/image.png");
     const [uptime,setUptime]=useState({
         hour:day.getHours(),
         minute:day.getMinutes()
@@ -129,7 +129,7 @@ const Main = () => {
                     <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==1?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={tindex==1?"bresh.png":"bresh-none.png"}/>
                     <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==2?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={tindex==2?"material.png":"material-none.png"}/>
                     <ToolButton size="w-20 h-28" buttonClick={()=>{}} text="" className={index==3?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={tindex==3?"flox.png":"flox-none.png"}/>
-                </div> 
+                </div>
             </div>
             <div className="bg-white rounded-2xl p-4 flex flex-row mt-12 shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
                 <p className="basis-1/6 text-center text-btnbgColor text-xl">{uptime.hour}:{uptime.minute}</p>
