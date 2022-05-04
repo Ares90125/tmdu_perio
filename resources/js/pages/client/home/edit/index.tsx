@@ -13,7 +13,7 @@ const Editer = () => {
     const location = useLocation();
     const path=location.pathname.split("/");
     useEffect(() => {
-        if(path.length>=4&&path[3]!=""){
+        if(path.length>4&&path[4]!=""){
             setFlag(true);
         }else{
             setFlag(false);
