@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Button, Card, CardContent, CardActions, Container, TextareaAutosize, Typography } from '@mui/material';
+import axios, { AxiosResponse } from 'axios';
 import BreshComponent from "../../../../components/breshcomponent";
 import DefaultButton from "../../../../components/button";
 import ToolButton from "../../../../components/toolcomponent";
 const Bresh = () => {
-    const [index,setIndex]=useState(1);
+    const [index, setIndex] = useState(1);
+    const [tabindex, setTabIndex] = useState(1);
     const [hour, setHour] = useState(0);
     const [minutes, setMinutes] = useState(0);
     function getCurrentDate() {
@@ -13,7 +15,6 @@ const Bresh = () => {
         let date = newDate.getDate();
         let month = newDate.getMonth() + 1;
         let day = newDate.getDay();
-
         return `${month}月${date}日(${weekday[day]})`;
     }
     function getCurrentTime() {
@@ -24,15 +25,36 @@ const Bresh = () => {
     window.setInterval(function () {
         getCurrentTime();
     }, 1000);
+    const create = () => {
+        let date = new Date();
+        ; const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        const body = JSON.stringify({ "time": date.toTimeString().split(' ')[0], "date": date.getFullYear() + ":" + (date.getMonth() + 1) + ":" + date.getDate(), "type": 1, "value": `${index}|${tabindex}` });
+        try {
+            axios.post('/api/client/create', body, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
+                    window.alert("success");
+                } else {
+
+                }
+            });
+        }
+        catch (err) {
+
+        }
+    }
     return (
         <div >
             <div className="mt-16">
-            <BreshComponent/>
-            </div>   
+                <BreshComponent tabindex={tabindex} buttonClick={setTabIndex} />
+            </div>
             <div className="flex  flex-row items-cneter justify-between mt-8">
-                <ToolButton size="w-28 h-36" buttonClick={()=>{ setIndex(1)}} text="歯間ブラシ" className={index==1?"bg-btnbgColor text-white":"bg-white text-mainColor"} path={index==1?"bresh.png":"bresh-none.png"}/>
-                <ToolButton size="w-28 h-36" buttonClick={()=>{ setIndex(2)}} text="歯間ブラシ" className={index==2?"bg-btnbgColor text-white":"bg-white text-mainColor"} path={index==2?"material.png":"material-none.png"}/>
-                <ToolButton size="w-28 h-36" buttonClick={()=>{ setIndex(3)}} text="歯間ブラシ" className={index==3?"bg-btnbgColor text-white":"bg-white text-mainColor"} path={index==3?"flox.png":"flox-none.png"}/>
+                <ToolButton size="w-28 h-36" buttonClick={() => { setIndex(1) }} text="歯間ブラシ" className={index == 1 ? "bg-btnbgColor text-white" : "bg-white text-mainColor"} path={index == 1 ? "bresh.png" : "bresh-none.png"} />
+                <ToolButton size="w-28 h-36" buttonClick={() => { setIndex(2) }} text="歯間ブラシ" className={index == 2 ? "bg-btnbgColor text-white" : "bg-white text-mainColor"} path={index == 2 ? "material.png" : "material-none.png"} />
+                <ToolButton size="w-28 h-36" buttonClick={() => { setIndex(3) }} text="歯間ブラシ" className={index == 3 ? "bg-btnbgColor text-white" : "bg-white text-mainColor"} path={index == 3 ? "flox.png" : "flox-none.png"} />
             </div>
             <Container maxWidth="sm" className="mt-5 text-center">
                 <Typography variant="h5" display="inline" className="text-dayColor">
@@ -42,8 +64,10 @@ const Bresh = () => {
                     {hour}:{minutes}
                 </Typography>
             </Container>
-            <DefaultButton text="記録をする" buttonClick={() => {}}></DefaultButton>
-        </div>        
+            <DefaultButton text="記録をする" buttonClick={() => {
+                create();
+            }}></DefaultButton>
+        </div>
     );
 };
 

@@ -51,7 +51,7 @@ class ClientAuthController extends Controller
             'success'   =>  true,
             'data'      =>  [
                 'token' =>  $user->createToken('access_token')->plainTextToken,
-                'user'  =>  $res
+                'user'  =>  $user
             ]
         ]);
     }

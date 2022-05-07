@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientAuthController;
+use App\Http\Controllers\DataController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,4 +26,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route ::group(['prefix'=>'client'],function (){
     Route::post('/register', [ClientAuthController::class,'register']);
     Route::post('/login', [ClientAuthController::class,'login']);
+    Route::group(["middleware"=>'auth:sanctum'],function(){
+        Route::post('/create',[DataController::class,"create"]);
+        Route::post('/createfile',[DataController::class,"createfile"]);
+        Route::post('/createsleep',[DataController::class,"createsleep"]);
+        Route::post('/update',[DataController::class,"update"]);
+    });
 });

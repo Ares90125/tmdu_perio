@@ -24,11 +24,27 @@ const Login = () => {
             axios.post('/api/client/login',body,config).then((response:AxiosResponse)=>{
                 if(response.data["success"]==true){
                     localStorage.setItem("token",response.data["data"]["token"]);
+                    localStorage.setItem("user",response.data["data"]["user"]);
                     dispatch(setclient(true));
                     navigate('/client');
                 }else{
 
                 }
+            });
+        }
+        catch(err){
+
+        }
+    }
+    const signUp=(id:string,pass:string)=>{
+        const config={
+            headers:{
+                'Content-Type':'application/json'
+            }
+        };
+        const body=JSON.stringify({"userid":id,"password":pass});
+        try{
+            axios.post('/api/client/register',body,config).then((response:AxiosResponse)=>{
             });
         }
         catch(err){
