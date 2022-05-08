@@ -4,8 +4,14 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { ja } from "date-fns/locale";
+import {  useAppDispatch,useAppSelector } from '../../../.././redux/hooks'
+import {  changedata,changedate } from '../../../.././redux/reducers/dataslice'
+import { DatePicker } from "@mui/x-date-pickers";
 
 const Calender = () => {
+    const dispatch = useAppDispatch();
+    const date = useAppSelector((state) => state.data.date);
+
     const [value, setValue] = React.useState<Date | null>(new Date());
     return (
         <div >
@@ -15,11 +21,11 @@ const Calender = () => {
                 <StaticDatePicker
                     className="text-mainColor"
                     displayStaticWrapperAs="desktop"
-                    value={value}
+                    value={date}
                     views={["year","day"]}
                     onChange={(newValue) => {
-                        setValue(newValue);
-                        console.log(newValue);
+                        dispatch(changedate(newValue!));
+                        // console.log(newValue);
                     }}
                     renderInput={(params) => <TextField  {...params} />}
                 />

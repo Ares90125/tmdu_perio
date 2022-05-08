@@ -1,12 +1,21 @@
-import React, { useState } from "react";
-import {Route,Routes,NavLink, Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import {Route,Routes,NavLink, useLocation } from 'react-router-dom';
 import Bresh from "./bresh";
 import Meal from "./meal";
 import Sleep from "./sleep";
 const Register = () => {
-    const [tabindex, settTab]=useState(1);
+    const [tabindex, setTab]=useState(1);
+    const location = useLocation();
+    const path=location.pathname.split("/");
+    useEffect(() => {
+        if(path[4]=='meal'){
+            setTab(2);
+        }else if(path[4]=='sleep'){
+            setTab(3);
+        }
+    }, [location])
     function setTabIndex(val:number){
-        settTab(val);
+        setTab(val);
     }
     return (
         <div>

@@ -68,7 +68,7 @@ function Meal(props: ButtonProps) {
         <div>
             <div className="mt-4 pb-4 mx-auto rounded-lg font-bold text-center text-lg text-mainColor w-4/5 border-solid border border-mainColor bg-white" >
                 {
-                    (imageurl!="")?<img src={imageurl} alt="" className="w-full"/>:
+                    (imageurl!="")?<img src={imageurl} alt="" className="w-full p-2"/>:
                     <div className={(imageurl!="")?"opacity-0":""}>
                         <p className="my-2">食事の画像を</p>
                         <p className="my-2">撮影／アップロード</p>
@@ -82,7 +82,7 @@ function Meal(props: ButtonProps) {
             </div>
             <div className="mt-10 w-4/5 mx-auto">
                 <p className="text-lg text-mainColor font-bold"> 食事のメモ</p>
-            <TextareaAutosize aria-label="minimum height" minRows={4} placeholder={statetext} onChange={(value)=>{setText(value.target.value)}} style={{ width: '100%', borderRadius: 8, border: '2px solid #88BFBF', padding: 5 }} />
+            <TextareaAutosize aria-label="minimum height" minRows={4} placeholder={"家系ラーメン"} onChange={(value)=>{setText(value.target.value)}} style={{ width: '100%', borderRadius: 8, border: '2px solid #88BFBF', padding: 5 }} />
             </div>
             <Container maxWidth="sm" className="mt-5 text-center">
                 <Typography variant="h5" display="inline" className="text-dayColor">

@@ -1,17 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DefaultButton from "../../../../components/button";
 import Timepicker from "../../../../components/timepicker";
 import TypeHeader from "../../../../components/type";
+import axios, { AxiosResponse } from 'axios';
+import {useAppSelector } from '../../../.././redux/hooks'
 const BedTime = () => {
     const [tabindex, setTabIndex] = useState(1);
-    function getDate(last:boolean) {
-        let newDate = new Date();
-        let date = newDate.getDate();
+    const index=useAppSelector((state) => state.index.value);
+    const date = useAppSelector((state) => state.data.date);
+    const data=useAppSelector((state) => state.data.value[index]);
+    const [time1,settime1]=useState({"time":Number(data.time.split(':')[0]),"min":Number(data.time.split(':')[1])});
+    const update = () => {
+        ; const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        const body = JSON.stringify({"update":{"id":data.id,"time":time1.time+":"+time1.min+":00","date": date.getFullYear() + ":" + (date.getMonth() + 1) + ":" + (date.getDate()+tabindex-2),}});
+        try {
+            axios.post('/api/client/update', body, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
+                    window.alert("success");
+                } else {
+
+                }
+            });
+        }
+        catch (err) {
+
+        }
+    }
+    useEffect(() => {
+    },[])
+    function getDate(next:boolean) {
+        let newDate = date;
         let month = newDate.getMonth() + 1;
         let day = newDate.getDay();
-        return last?`${month}月${date-1}日`:`${month}月${date}日`;
+        return next?`${month}月${newDate.getDate()-1}日`:`${month}月${newDate.getDate()}日`;
     }
-    const [time1,settime1]=useState({"time":13,"min":10});
     function settime_1(isup:boolean){
         if(isup){
             if(time1.min==59){
@@ -52,7 +78,7 @@ const BedTime = () => {
             </div><div className="mt-4 bg-white">
                 <Timepicker time={time1.time} min={time1.min} onClickUp={settime_1} />
             </div>
-            <DefaultButton text="記録をする" buttonClick={()=>{}}  />
+            <DefaultButton text="記録をする" buttonClick={update}  />
         </div>
     );
 };

@@ -466,9 +466,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bottom-0 {
   bottom: 0px;
 }
-.m-12 {
-  margin: 3rem;
-}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -485,6 +482,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 5rem;
   margin-bottom: 5rem;
 }
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
@@ -492,18 +493,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-.mx-12 {
-  margin-left: 3rem;
-  margin-right: 3rem;
-}
-.my-2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-.mx-56 {
-  margin-left: 14rem;
-  margin-right: 14rem;
 }
 .mt-4 {
   margin-top: 1rem;
@@ -550,9 +539,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-2 {
   margin-bottom: 0.5rem;
 }
-.ml-4 {
-  margin-left: 1rem;
-}
 .inline-block {
   display: inline-block;
 }
@@ -586,15 +572,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-28 {
   height: 7rem;
 }
-.h-40 {
-  height: 10rem;
-}
-.h-52 {
-  height: 13rem;
-}
-.h-44 {
-  height: 11rem;
-}
 .w-full {
   width: 100%;
 }
@@ -610,14 +587,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-11\/12 {
   width: 91.666667%;
 }
-.w-0 {
-  width: 0px;
-}
-.w-5\/6 {
-  width: 83.333333%;
-}
 .w-4\/5 {
   width: 80%;
+}
+.w-0 {
+  width: 0px;
 }
 .basis-2\/6 {
   flex-basis: 33.333333%;
@@ -690,9 +664,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .border-2 {
   border-width: 2px;
-}
-.border-0 {
-  border-width: 0px;
 }
 .border-y {
   border-top-width: 1px;

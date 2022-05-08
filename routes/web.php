@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin/{path?}', function () {
     return view('admin');
 })->where('path','.*');
+
 Route::get('/{path?}', function () {
     return view('client');
 })->where('path','.*');
+

@@ -1,12 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from './reducers/counterslice'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import selectReducer from './reducers/indexslice'
 import authenticationReducer from './reducers/authentication'
+import dataReducer from './reducers/dataslice'
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    index: selectReducer,
     authenticater:authenticationReducer,
+    data:dataReducer
   },
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

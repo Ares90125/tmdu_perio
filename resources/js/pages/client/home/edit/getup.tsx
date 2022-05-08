@@ -2,9 +2,36 @@ import React, { useState } from "react";
 import TypeHeader from "../../../../components/type";
 import DefaultButton from "../../../../components/button";
 import Timepicker from "../../../../components/timepicker";
+import axios, { AxiosResponse } from 'axios';
+import {  useAppDispatch,useAppSelector } from '../../../.././redux/hooks'
+//import {  changedataindex } from '../../../.././redux/reducers/dataslice'
 
 const GetUp = () => {
-    const [time1,settime1]=useState({"time":13,"min":10});
+    const dispatch = useAppDispatch();
+    const index=useAppSelector((state) => state.index.value);
+    const data=useAppSelector((state) => state.data.value[index]);
+    const [time1,settime1]=useState({"time":Number(data.time.split(':')[0]),"min":Number(data.time.split(':')[1])});
+    const update = () => {
+        let date = new Date();
+        ; const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        const body = JSON.stringify({"update":{"id":data.id,"time":time1.time+":"+time1.min+":00"}});
+        try {
+            axios.post('/api/client/update', body, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
+                    window.alert("success");
+                } else {
+
+                }
+            });
+        }
+        catch (err) {
+
+        }
+    }
     function settime_1(isup:boolean){
         if(isup){
             if(time1.min==59){
@@ -34,7 +61,7 @@ const GetUp = () => {
             <div className="mt-4 bg-white">
                 <Timepicker time={time1.time} min={time1.min} onClickUp={settime_1} />
             </div>
-            <DefaultButton text="記録をする" buttonClick={()=>{}}  />
+            <DefaultButton text="記録をする" buttonClick={update}  />
         </div>
     );
 };

@@ -14,7 +14,7 @@ const initialState: CounterState = {
 }
 
 export const authenticationSlide = createSlice({
-  name: 'counter',
+  name: 'auth',
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
@@ -28,8 +28,5 @@ export const authenticationSlide = createSlice({
 })
 
 export const { setadmin, setclient} = authenticationSlide.actions
-
-// Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.counter.value
 
 export default authenticationSlide.reducer
