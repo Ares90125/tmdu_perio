@@ -32,6 +32,6 @@ Route ::group(['prefix'=>'client'],function (){
         Route::post('/createsleep',[DataController::class,"createsleep"]);
         Route::get('/loaddata',[DataController::class,"loaddata"]);
         Route::post('/update',[DataController::class,"update"]);
-        Route::(post'/updatemeal',[DataController::class,"updatemeal"]);
+        Route::post('/updatemeal',[DataController::class,"updatemeal"]);
     });
 });
