@@ -19,7 +19,17 @@ function Meal(props: ButtonProps) {
             setImage(event.target.files![0]);
             setImageurl(URL.createObjectURL(event.target.files![0]));
         }
+        window.removeEventListener('focus', handleFocusBack);
     };
+    function handleFocusBack(){
+        console.log("adsfadsfa");
+        setImageurl("");
+        setImage(null);
+        window.removeEventListener('focus', handleFocusBack);
+    }
+    function clickedFileInput(){
+        window.addEventListener('focus', handleFocusBack);
+    }
     const create = () => {
         let date = new Date();
         ; const config = {
@@ -30,11 +40,10 @@ function Meal(props: ButtonProps) {
 
         const formData = new FormData();
         formData.append("image", image);
-        formData.append("time",date.toTimeString().split(' ')[0]);
+        formData.append("time", date.toTimeString().split(' ')[0].substring(0,6)+"00");
         formData.append("date", date.getFullYear() + ":" + (date.getMonth() + 1) + ":" + date.getDate());
         formData.append('value',`${statetext}`);
         try {
-            console.log(formData);
             axios.post('/api/client/createfile', formData, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
                     window.alert("success");
@@ -53,8 +62,7 @@ function Meal(props: ButtonProps) {
         let date = newDate.getDate();
         let month = newDate.getMonth() + 1;
         let day = newDate.getDay();
-
-        return `${month}月${date}日(${weekday[day]})`;
+        return `${month}月${date<10?date+"0":date}日(${weekday[day]})`;
     }
     function getCurrentTime() {
         let newDate = new Date();
@@ -77,18 +85,18 @@ function Meal(props: ButtonProps) {
                 }
                 <div >
                     <label htmlFor="image_upload" className="bg-white px-1 border-solid border border-mainColor text-xl rounded-full my-2">撮影／アップロード</label>
-                    <input type="file" className="opacity-0 w-0" id="image_upload" accept=".gif,.jpg,.jpeg,.png" onChange={(e) => {handleSetImage(e);}}/>
+                    <input type="file" className="opacity-0 w-0" id="image_upload" accept=".gif,.jpg,.jpeg,.png" onChange={(e) => {handleSetImage(e);}} onClick={clickedFileInput} />
                 </div>
             </div>
             <div className="mt-10 w-4/5 mx-auto">
                 <p className="text-lg text-mainColor font-bold"> 食事のメモ</p>
-            <TextareaAutosize aria-label="minimum height" minRows={4} placeholder={"家系ラーメン"} onChange={(value)=>{setText(value.target.value)}} style={{ width: '100%', borderRadius: 8, border: '2px solid #88BFBF', padding: 5 }} />
+            <TextareaAutosize aria-label="minimum height" className="text-mainColor" minLength={3} maxLength={40} minRows={4} placeholder={"家系ラーメン"} onChange={(value)=>{setText(value.target.value)}} style={{ width: '100%', borderRadius: 8, border: '2px solid #88BFBF', padding: 5 }} />
             </div>
             <Container maxWidth="sm" className="mt-5 text-center">
                 <Typography variant="h5" display="inline" className="text-dayColor">
                     {getCurrentDate()}&nbsp;
                 </Typography>
-                <Typography variant="h3" display="inline" className="text-mainColor text-2xl">
+                <Typography variant="h3" display="inline" className="text-timeColor text-2xl">
                     {hour}:{minutes}
                 </Typography>
             </Container>

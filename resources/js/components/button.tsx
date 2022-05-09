@@ -5,7 +5,7 @@ interface ButtonProps {
   }
 function DefaultButton(props:ButtonProps){
     return (
-        <button onClick={props.buttonClick} className=" flex flex-col mx-auto my-5 text-center px-5 py-3 bg-gradient-to-r from-gradientoneColor to-gradienttwoColor rounded-full text-white text-xs">{props.text}</button>                     
+        <button onClick={props.buttonClick} className="font-semibold flex flex-col mx-auto my-4 text-center px-5 py-2 bg-gradient-to-r from-gradientoneColor to-gradienttwoColor rounded-full text-white text-[15px]">{props.text}</button>
     );
 };
 export default DefaultButton;

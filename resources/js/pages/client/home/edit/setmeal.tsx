@@ -14,6 +14,7 @@ interface ButtonProps {
 function SetMeal(props: ButtonProps) {
     const index=useAppSelector((state) => state.index.value);
     const data=useAppSelector((state) => state.data.value[index]);
+    const [time1, settime1] = useState(data.time);
     const [image, setImage] = useState<any | null>(null);
     const [statetext,setText]=useState(data.value?.split("|")[0]);
     const [imageurl,setImageurl]=useState(data.value?.split("|")[1]);
@@ -34,7 +35,7 @@ function SetMeal(props: ButtonProps) {
         const formData = new FormData();
         formData.append("id", data.id.toString());
         formData.append("image", image);
-        formData.append("time",(time1.time+":"+time1.min+":00"));
+        formData.append("time",(time1+":00"));
         formData.append('value',`${statetext}|${imageurl}`);
         try {
             axios.post('/api/client/updatemeal', formData, config).then((response: AxiosResponse) => {
@@ -47,27 +48,6 @@ function SetMeal(props: ButtonProps) {
         }
         catch (err) {
 
-        }
-    }
-    const [time1,settime1]=useState({"time":Number(data.time.split(':')[0]),"min":Number(data.time.split(':')[1])});
-    function settime_1(isup:boolean){
-        if(isup){
-            if(time1.min==59){
-                if(time1.time==23){
-                    settime1({"time":0,"min":0})
-                }
-                settime1({"time":time1.time+1,"min":0})
-            }else{
-                settime1({"time":time1.time,"min":time1.min+1})
-            }
-        }else{
-            if(time1.min==0){
-                if(time1.time==0)
-                    settime1({"time":23,"min":59})
-                settime1({"time":time1.time-1,"min":59})
-            }else{
-                settime1({"time":time1.time,"min":time1.min-1})
-            }
         }
     }
     return (
@@ -93,8 +73,8 @@ function SetMeal(props: ButtonProps) {
                 <p className="text-lg text-mainColor font-bold"> 食事のメモ</p>
             <TextareaAutosize aria-label="minimum height" minRows={4} placeholder={"家系ラーメン"} value={statetext} onChange={(value)=>{setText(value.target.value)}} style={{ width: '100%', borderRadius: 8, border: '2px solid #88BFBF', padding: 5 }} />
             </div>
-            <div className="mt-4 bg-white">
-                <Timepicker time={time1.time} min={time1.min} onClickUp={settime_1} />
+            <div className="px-8 pt-4">
+                <input className="focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time1} onChange={(ev) => {settime1(ev.target.value);}} />
             </div>
             <DefaultButton text="記録をする" buttonClick={updatemeal}></DefaultButton>
         </div>

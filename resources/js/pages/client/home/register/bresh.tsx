@@ -5,8 +5,10 @@ import BreshComponent from "../../../../components/breshcomponent";
 import DefaultButton from "../../../../components/button";
 import ToolButton from "../../../../components/toolcomponent";
 const Bresh = () => {
-    const [index, setIndex] = useState(1);
-    const [tabindex, setTabIndex] = useState(1);
+    const [index_1, setIndex_1] = useState(false);
+    const [index_2, setIndex_2] = useState(false);
+    const [index_3, setIndex_3] = useState(false);
+    const [tabindex, setTabIndex] = useState(0);
     const [hour, setHour] = useState(0);
     const [minutes, setMinutes] = useState(0);
     function getCurrentDate() {
@@ -15,7 +17,15 @@ const Bresh = () => {
         let date = newDate.getDate();
         let month = newDate.getMonth() + 1;
         let day = newDate.getDay();
-        return `${month}月${date}日(${weekday[day]})`;
+        return `${month}月${date<10?date+"0":date}日(${weekday[day]})`;
+    }
+    function setTime(val:number){
+        if(tabindex==val){
+            setTabIndex(0);
+        }
+        else{
+            setTabIndex(val);
+        }
     }
     function getCurrentTime() {
         let newDate = new Date();
@@ -32,7 +42,7 @@ const Bresh = () => {
                 'Content-Type': 'application/json',
             }
         };
-        const body = JSON.stringify({ "time": date.toTimeString().split(' ')[0], "date": date.getFullYear() + ":" + (date.getMonth() + 1) + ":" + date.getDate(), "type": 1, "value": `${index}|${tabindex}` });
+        const body = JSON.stringify({ "time": date.toTimeString().split(' ')[0].substring(0,6)+"00", "date": date.getFullYear() + ":" + (date.getMonth() + 1) + ":" + date.getDate(), "type": 1, "value": `${Number(index_1)+","+Number(index_2)+","+Number(index_3)}|${tabindex}` });
         try {
             axios.post('/api/client/create', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
@@ -48,19 +58,24 @@ const Bresh = () => {
     }
     return (
         <div >
-            <div className="mt-16">
-                <BreshComponent tabindex={tabindex} buttonClick={setTabIndex} />
+            <div className="mt-8">
+                <BreshComponent tabindex={tabindex} buttonClick={setTime} />
             </div>
             <div className="flex  flex-row items-cneter justify-between mt-8">
-                <ToolButton size="w-28 h-36" buttonClick={() => { setIndex(1) }} text="歯間ブラシ" className={index == 1 ? "bg-btnbgColor text-white" : "bg-white text-mainColor"} path={index == 1 ? "bresh.png" : "bresh-none.png"} />
-                <ToolButton size="w-28 h-36" buttonClick={() => { setIndex(2) }} text="歯間ブラシ" className={index == 2 ? "bg-btnbgColor text-white" : "bg-white text-mainColor"} path={index == 2 ? "material.png" : "material-none.png"} />
-                <ToolButton size="w-28 h-36" buttonClick={() => { setIndex(3) }} text="歯間ブラシ" className={index == 3 ? "bg-btnbgColor text-white" : "bg-white text-mainColor"} path={index == 3 ? "flox.png" : "flox-none.png"} />
+                <ToolButton size="w-28 h-36" buttonClick={() => { setIndex_1(!index_1) }} text="歯間ブラシ" className={index_1 == true ? "bg-btnbgColor text-white" : "bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={index_1 == true ? "bresh.svg" : "bresh-none.svg"} />
+                <ToolButton size="w-28 h-36" buttonClick={() => { setIndex_2(!index_2) }} text="洗口剤" className={index_2 == true ? "bg-btnbgColor text-white" : "bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={index_2 == true ? "material.svg" : "material-none.svg"} />
+                <div className="w-28 h-36">
+                    <button onClick={()=>{setIndex_3(!index_3);}} className={"flex flex-col justify-center items-center rounded-xl h-full text-xs w-full  font-black border-transparent "+(index_3 == true ? "bg-btnbgColor text-white" : "bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]")} id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                        <img src={"../../../images/"+(index_3 == true ? "flox.svg" : "flox-none.svg")} alt="Icon" />
+                        フロス・<br/>糸ようじ
+                    </button>
+                </div>
             </div>
             <Container maxWidth="sm" className="mt-5 text-center">
                 <Typography variant="h5" display="inline" className="text-dayColor">
                     {getCurrentDate()}&nbsp;
                 </Typography>
-                <Typography variant="h3" display="inline" className="text-mainColor text-2xl">
+                <Typography variant="h3" display="inline" className="text-timeColor text-2xl">
                     {hour}:{minutes}
                 </Typography>
             </Container>

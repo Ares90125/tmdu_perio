@@ -53,18 +53,14 @@ const Login = () => {
     }
     return (
         <div className="">
-            <p className="text-6xl text-teal-700 pt-44 font-semibold text-center pb-32">PERIO</p>
-            <div className="px-12 ">
-                <p className="text-sm font-bold text-teal-700 pb-2">PERIO ID</p>
-                <Box className="rounded-xl  border bg-white px-2 py-1 border-cyan-700">
-                    <InputBase placeholder="a018982" value={userid} onChange={(value:React.ChangeEvent<HTMLInputElement>)=>{handleChange(value);}}/>
-                </Box>
-                <p className="pt-5 text-sm font-bold text-teal-700 pb-2">パスワード</p>
-                <Box className="rounded-xl  border bg-white px-2 py-1 border-cyan-700">
-                    <InputBase placeholder="a018982" value={password} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setPassword(e.target.value);}} />
-                </Box>
-                <div className="my-20">
-                <div  className="btn btn-primary"><DefaultButton buttonClick={()=>{logIn(userid,password)}} text="ログイン"/></div>
+            <p className="text-6xl  text-mainColor pt-48 font-semibold text-center pb-28 tracking-[.05em]">PERIO</p>
+            <div className="px-10" style={{ fontFamily: '"ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", "Meiryo", "verdana", sans-serif'}}>
+                <p className="text-sm font-bold  pb-2 text-mainColor">PERIO ID</p>
+                <input   className="tracking-[.3em] rounded-xl text-base  border border-borderColor focus:outline-none focus:border-focusColor bg-white px-4 py-3 border-cyan-400 font-semibold w-full" placeholder="ID" value={userid} onChange={(value:React.ChangeEvent<HTMLInputElement>)=>{handleChange(value);}}/>
+                <p className="pt-5 text-sm font-bold  pb-2 text-mainColor">パスワード</p>
+                <input   className="tracking-[.3em] rounded-xl text-base  border border-borderColor focus:outline-none focus:border-focusColor bg-white px-4 py-3 border-cyan-400 font-semibold w-full" placeholder="PASSWORD" type="password" value={password} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setPassword(e.target.value);}}/>
+                <div className="my-10">
+                <div  className=" btn btn-primary"><DefaultButton buttonClick={()=>{logIn(userid,password)}} text="ログイン"/></div>
                 </div>
                 <p className="text-center text-base font-bold pb-2 text-black">パスワードがわからない場合は、<br></br>お問い合わせをお願いします</p>
             </div>

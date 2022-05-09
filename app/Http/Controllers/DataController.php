@@ -87,6 +87,7 @@ class DataController extends Controller
             $destinationPath = public_path('/images/');
             $image->move($destinationPath, $imageName);
             $image->imagePath = $destinationPath . $imageName;
+            $imageName="/images/".$imageName;
         }
         else{
             $destinationPath="";
@@ -97,7 +98,7 @@ class DataController extends Controller
         $data->date=$request['date'];
         $data->time=$request['time'];
         $data->type=3;
-        $data->value=$request['value']."|/images/".$imageName;
+        $data->value=$request['value']."|".$imageName;
         $data->save();
         return response()->json([
             'success'   =>  true,

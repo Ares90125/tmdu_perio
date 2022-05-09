@@ -9,11 +9,12 @@ const Client = () => {
     const isauth = useAppSelector((state) => state.authenticater.client);
     const pathname = window.location.pathname.split('/')[2];
     const navigate = useNavigate();
-    // if(!isauth&&pathname!="login"){
-    //     navigate('/client/login');
-    // }
+    if(isauth==undefined||(!isauth&&(pathname!="login"))){
+        console.log(pathname);
+        navigate('/client/login');
+    }
     return (
-        <Routes>
+        <Routes >
             <Route path='/' element={<Navigate to="/client/home"/>} />
             <Route path='/login' element={<Login/> }/>
             <Route path='/resetpass' element={<ResetPass/>} />

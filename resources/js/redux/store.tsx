@@ -2,12 +2,14 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import selectReducer from './reducers/indexslice'
 import authenticationReducer from './reducers/authentication'
 import dataReducer from './reducers/dataslice'
+import addReducer from './reducers/addslice'
 
 const store = configureStore({
   reducer: {
     index: selectReducer,
     authenticater:authenticationReducer,
-    data:dataReducer
+    data:dataReducer,
+    adddate:addReducer
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

@@ -1,3 +1,81 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+#_p-calender__yearAndMonth {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  color: #106464;
+}
+
+._p-calender__header {
+  max-width: 500px;
+  margin: 0 auto 12px auto;
+}
+._p-calender__wrapper {
+  background: #FEFFFE;
+  box-shadow: 0px 0px 20px rgba(23, 82, 116, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: clamp(10px, 2.667vw, 14px);
+  padding: 16px 20px 32px 20px;
+}
+._p-calender__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0px 0px;
+}
+._p-calender__table td {
+  padding: 15px 0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  color: #000;
+}
+._p-calender__table td.today {
+  background-color: #106464;
+  border-radius: 50%;
+  color: #fff;
+}
+._p-calender__table td.disabled {
+  color: #C4C4C4;
+}
+._p-calender__th {
+  padding: 15px 0;
+}
+._p-calender__dayOfWeek {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  color: #106464;
+}
+#_p-calender__button #prev {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin: 0 10px;
+  border-top: 3px solid #106464;
+  border-right: 3px solid #106464;
+  transform: rotate(-135deg);
+}
+#_p-calender__button #next {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin: 0 10px;
+  border-top: 3px solid #106464;
+  border-right: 3px solid #106464;
+  transform: rotate(45deg);
+}
+#calendar {
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.c-flex-row-centerbetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
