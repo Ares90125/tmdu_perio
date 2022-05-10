@@ -8,6 +8,13 @@ use App\Models\Data;
 
 class DataController extends Controller
 {
+    public function me(Request $request){
+        return response()->json([
+            'success'   =>  true,
+            'data'      =>  [
+            ]
+        ]);
+    }
     public function loaddata(Request $request){
         $user = auth()->user();
         $time = strtotime($request["date"]);

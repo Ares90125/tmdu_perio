@@ -27,6 +27,7 @@ Route ::group(['prefix'=>'client'],function (){
     Route::post('/register', [ClientAuthController::class,'register']);
     Route::post('/login', [ClientAuthController::class,'login']);
     Route::group(["middleware"=>'auth:sanctum'],function(){
+        Route::get('/me',[DataController::class,"me"]);
         Route::post('/create',[DataController::class,"create"]);
         Route::post('/createfile',[DataController::class,"createfile"]);
         Route::post('/createsleep',[DataController::class,"createsleep"]);

@@ -24,9 +24,8 @@ const Login = () => {
             axios.post('/api/client/login',body,config).then((response:AxiosResponse)=>{
                 if(response.data["success"]==true){
                     localStorage.setItem("token",response.data["data"]["token"]);
-                    localStorage.setItem("user",response.data["data"]["user"]);
                     dispatch(setclient(true));
-                    navigate('/client');
+                    navigate('/');
                 }else{
 
                 }
