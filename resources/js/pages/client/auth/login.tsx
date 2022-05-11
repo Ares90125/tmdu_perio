@@ -15,6 +15,7 @@ const Login = () => {
         setUserId(e.target.value);
     };
     const logIn=(id:string,pass:string)=>{
+
         const config={
             headers:{
                 'Content-Type':'application/json'
@@ -27,6 +28,7 @@ const Login = () => {
                     localStorage.setItem("token",response.data["data"]["token"]);
                     setAuthToken(response.data["data"]["token"]);
                     dispatch(setclient(true));
+                    console.log(response);
                     navigate('/');
                 }else{
 
