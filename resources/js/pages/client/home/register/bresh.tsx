@@ -76,7 +76,7 @@ const Bresh = () => {
                     {getCurrentDate()}&nbsp;
                 </Typography>
                 <Typography variant="h3" display="inline" className="text-timeColor text-2xl">
-                    {hour}:{minutes}
+                    {hour}:{minutes>9?minutes:"0"+minutes}
                 </Typography>
             </Container>
             <DefaultButton text="記録をする" buttonClick={() => {

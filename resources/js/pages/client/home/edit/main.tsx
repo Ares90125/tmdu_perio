@@ -8,6 +8,7 @@ import {  useAppDispatch,useAppSelector } from '../../../.././redux/hooks'
 import {  changedata,changedate } from '../../../.././redux/reducers/dataslice'
 import {  changeByAmount } from '../../../.././redux/reducers/indexslice'
 import {BRESH_TIME, BRESH_TOOL, MO_STATUS} from "../../../../redux/type";
+import { changeDate } from "../../../../redux/reducers/addslice";
 
 const Main = () => {
     const dispatch = useAppDispatch();
@@ -83,7 +84,7 @@ const Main = () => {
                         switch(v.type){
                             case 1: return <div key={index}>
                                         <div className="bg-white rounded-2xl p-4 flex flex-row mt-[22PX] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
-                                            <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
+                                            <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0].substring(0,1)=="0"?v.time.split(":")[0].substring(1,1):v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
                                             <p className="basis-1/6 text-center text-mainColor text-xl font-extrabold">起床</p>
                                             <p className="basis-1/2"></p>
                                             <NavLink to="getup" className="basis-1/6">
@@ -94,7 +95,7 @@ const Main = () => {
                                         </div>
                                         <div className="bg-white rounded-2xl p-4 mt-[22PX] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
                                             <div className="flex flex-row ">
-                                                <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
+                                                <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0].substring(0,1)=="0"?v.time.split(":")[0].substring(1,1):v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
                                                 <p className="basis-1/2 text-center text-mainColor text-xl font-extrabold">朝のお口の状態</p>
                                                 <p className="basis-1/6"></p>
                                                 <NavLink to="status" className="basis-1/6">
@@ -109,7 +110,7 @@ const Main = () => {
                             case 2:return <div key={index}>
                                         <div className="bg-white rounded-2xl p-4 mt-[22PX] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
                                             <div className="flex flex-row ">
-                                                <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
+                                                <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0].substring(0,1)=="0"?v.time.split(":")[0].substring(1,1):v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
                                                 <p className="basis-1/2 text-center text-mainColor text-xl font-extrabold">歯みがき記録</p>
                                                 <p className="basis-1/6"></p>
                                                 <NavLink to="diary" className="basis-1/6">
@@ -129,7 +130,7 @@ const Main = () => {
                             case 3:return <div key={index}>
                                         <div className="bg-white rounded-2xl p-4 mt-[22PX] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
                                             <div className="flex flex-row ">
-                                                <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
+                                                <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0].substring(0,1)=="0"?v.time.split(":")[0].substring(1,1):v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
                                                 <p className="basis-1/2 text-center text-mainColor text-xl font-extrabold">食事の記録</p>
                                                 <p className="basis-1/6"></p>
                                                 <NavLink to="meal" className="basis-1/6">
@@ -146,7 +147,7 @@ const Main = () => {
                                     </div>;
                             case 4:return <div key={index}>
                                         <div className="bg-white rounded-2xl p-4 flex flex-row mt-[22PX] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
-                                            <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
+                                            <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0].substring(0,1)=="0"?v.time.split(":")[0].substring(1,1):v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
                                             <p className="basis-1/6 text-center text-mainColor text-xl font-extrabold">就寝</p>
                                             <p className="basis-1/2"></p>
                                             <NavLink to="bedtime" className="basis-1/6">
@@ -161,7 +162,7 @@ const Main = () => {
                 )
             }
             </div>
-          {  data.length!=0 && <DefaultButton text="記録をする" buttonClick={() => {}}></DefaultButton>}
+          {  data.length!=0 && <NavLink to="add/bresh" className="basis-1/6"><DefaultButton text="記録をする" buttonClick={() => { dispatch(changeDate(new Date()));}}></DefaultButton> </NavLink>}
         </div>
     );
 };

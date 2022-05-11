@@ -24,7 +24,8 @@ const Editer = () => {
     return (
         <div>
             <div className="flex justify-between pt-4 pb-2 px-4">
-                <NavLink to={path[4]=="add"?"calender":""} className={flag?"":"invisible"}>
+                {/* <NavLink to={path[4]=="add"?"calender":""} className={flag?"":"invisible"}> */}
+                <NavLink to={""} className={flag?"":"invisible"}>
                     <div className="bg-mainColor text-white rounded-md w-[1.875rem] h-[1.875rem] p-[3px]">
                         <img src={'/images/back.png'} className="w-full h-full"/>
                     </div>

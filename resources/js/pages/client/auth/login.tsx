@@ -5,6 +5,7 @@ import axios, { AxiosResponse } from 'axios';
 import {useNavigate } from 'react-router-dom';
 import {  setclient } from '../../.././redux/reducers/authentication'
 import {  useAppDispatch } from '../../.././redux/hooks'
+import  setAuthToken from '../../.././redux/utils/setauthtoken'
 const Login = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -24,6 +25,7 @@ const Login = () => {
             axios.post('/api/client/login',body,config).then((response:AxiosResponse)=>{
                 if(response.data["success"]==true){
                     localStorage.setItem("token",response.data["data"]["token"]);
+                    setAuthToken(response.data["data"]["token"]);
                     dispatch(setclient(true));
                     navigate('/');
                 }else{

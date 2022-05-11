@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Route,Routes, Navigate, useNavigate } from 'react-router-dom';
 import {  useAppSelector } from '../../redux/hooks';
 import Alignemnt from './auth/alignment';
@@ -8,10 +8,12 @@ import Home from './home';
 import axios, { AxiosResponse } from 'axios';
 import {  setclient } from '../.././redux/reducers/authentication'
 import {  useAppDispatch } from '../.././redux/hooks'
+import { tr } from 'date-fns/locale';
 const Client = () => {
     const dispatch = useAppDispatch();
     const isauth = useAppSelector((state) => state.authenticater.client);
     const pathname = window.location.pathname.split('/')[2];
+    const [flag,setFlag]=useState(false);
     const navigate = useNavigate();
     const Me=()=>{
         const config={
@@ -34,23 +36,33 @@ const Client = () => {
             return false;
         }
     }
-    useEffect(() => {
-        if(!localStorage.getItem("token") &&(pathname!="login")){
-            // console.log("dfd");
-            // if(!Me()){
-                window.location.href="/client/login";
-            // }
+    const [mounted, setMounted] = useState(false)
+    if(pathname!="login"&&!flag){
+        if( localStorage.getItem('token')){
+            setFlag(true);
         }
-    },[]);
+    }
+    useEffect(() =>{
+        setMounted(true)
+    },[])
     return (
         <Routes >
             <Route path='/' element={<Navigate to="/client/home"/>} />
             <Route path='/login' element={<Login/> }/>
-            <Route path='/resetpass' element={<ResetPass/>} />
-            <Route path='/alignment' element={<Alignemnt/>} />
-            <Route path='/home' element={<Navigate to="/client/home/register/bresh"/>} />
-            <Route path='/home/register' element={<Navigate to="/client/home/register/bresh"/>} />
-            <Route path='/home/*' element={<Home/>} />
+            {flag &&
+                <>
+                    <Route path='/resetpass' element={<ResetPass/>} />
+                    <Route path='/alignment' element={<Alignemnt/>} />
+                    <Route path='/home' element={<Navigate to="/client/home/register/bresh"/>} />
+                    <Route path='/home/register' element={<Navigate to="/client/home/register/bresh"/>} />
+                    <Route path='/home/*' element={<Home/>} />
+                </>
+            }
+             {!flag &&
+                <>
+                    <Route path='/*' element={<Navigate to="/client/login"/>} />
+                </>
+            }
         </Routes>
     )
   }
