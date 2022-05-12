@@ -21,17 +21,16 @@ function Meal(props: ButtonProps) {
             setImage(event.target.files![0]);
             setImageurl(URL.createObjectURL(event.target.files![0]));
         }
-        window.removeEventListener('focus', handleFocusBack);
     };
-    function handleFocusBack(){
-        console.log("adsfadsfa");
-        setImageurl("");
-        setImage(null);
-        window.removeEventListener('focus', handleFocusBack);
-    }
-    function clickedFileInput(){
-        window.addEventListener('focus', handleFocusBack);
-    }
+    // function handleFocusBack(){
+    //     console.log("adsfadsfa");
+    //     setImageurl("");
+    //     setImage(null);
+    //     window.removeEventListener('focus', handleFocusBack);
+    // }
+    // function clickedFileInput(){
+    //     window.addEventListener('focus', handleFocusBack);
+    // }
     const create = () => {
         ; const config = {
             headers: {
@@ -70,7 +69,7 @@ function Meal(props: ButtonProps) {
                 }
                 <div >
                     <label htmlFor="image_upload" className="bg-white px-1 border-solid border border-mainColor text-xl rounded-full my-2">撮影／アップロード</label>
-                    <input type="file" className="opacity-0 w-0" id="image_upload" accept=".gif,.jpg,.jpeg,.png" onChange={(e) => {handleSetImage(e);}} onClick={clickedFileInput} />
+                    <input type="file" className="opacity-0 w-0" id="image_upload" accept=".gif,.jpg,.jpeg,.png" onChange={(e) => {handleSetImage(e);}} />
                 </div>
             </div>
             <div className="mt-10 w-4/5 mx-auto">
