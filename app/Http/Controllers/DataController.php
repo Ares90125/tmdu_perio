@@ -91,10 +91,10 @@ class DataController extends Controller
         $image =$request->file('image');
         if($image!=null){
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/images/');
+            $destinationPath = public_path('/images/upload/');
             $image->move($destinationPath, $imageName);
             $image->imagePath = $destinationPath . $imageName;
-            $imageName="/images/".$imageName;
+            $imageName="/images/upload/".$imageName;
         }
         else{
             $destinationPath="";
@@ -117,10 +117,10 @@ class DataController extends Controller
         $image =$request->file('image');
         if($image!=null){
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/images/');
+            $destinationPath = public_path('/images/upload/');
             $image->move($destinationPath, $imageName);
             $image->imagePath = $destinationPath . $imageName;
-            $imageName="/images/".$imageName;
+            $imageName="/images/upload/".$imageName;
         }
         else{
             $imageName=explode("|", $request['value'])[1];
