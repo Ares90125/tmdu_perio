@@ -35,7 +35,7 @@ function SetMeal(props: ButtonProps) {
         const formData = new FormData();
         formData.append("id", data.id.toString());
         formData.append("image", image);
-        formData.append("time",(time1+":00"));
+        formData.append("time",time1);
         formData.append('value',`${statetext}|${imageurl}`);
         try {
             axios.post('/api/client/updatemeal', formData, config).then((response: AxiosResponse) => {

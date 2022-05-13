@@ -18,7 +18,7 @@ const GetUp = () => {
                 'Content-Type': 'application/json',
             }
         };
-        const body = JSON.stringify({"update":{"id":data.id,"time":time1+":00"}});
+        const body = JSON.stringify({"update":{"id":data.id,"time":time1}});
         try {
             axios.post('/api/client/update', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {

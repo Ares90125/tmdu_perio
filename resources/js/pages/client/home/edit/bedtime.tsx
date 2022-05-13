@@ -16,7 +16,7 @@ const BedTime = () => {
                 'Content-Type': 'application/json',
             }
         };
-        const body = JSON.stringify({"update":{"id":data.id,"time":time1+":00","date": date.getFullYear() + ":" + (date.getMonth() + 1) + ":" + (date.getDate()+tabindex-2),}});
+        const body = JSON.stringify({"update":{"id":data.id,"time":time1,"date": date.getFullYear() + ":" + (date.getMonth() + 1) + ":" + (date.getDate()+tabindex-2),}});
         try {
             axios.post('/api/client/update', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {

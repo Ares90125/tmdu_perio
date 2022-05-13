@@ -13,6 +13,7 @@ import Timepicker from "../../../../components/timepicker";
 const Status = () => {
     const index=useAppSelector((state) => state.index.value);
     const data=useAppSelector((state) => state.data.value[index]);
+    const [time1, settime1] = useState(data.time);
     const update = () => {
         let date = new Date();
         ; const config = {
@@ -20,7 +21,7 @@ const Status = () => {
                 'Content-Type': 'application/json',
             }
         };
-        const body = JSON.stringify({"update":{"id":data.id,"value":selectindex,"time":time1.time+":"+time1.min+":00"}});
+        const body = JSON.stringify({"update":{"id":data.id,"value":selectindex,"time":time1}});
         try {
             axios.post('/api/client/update', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
@@ -35,27 +36,6 @@ const Status = () => {
         }
     }
     const [selectindex,setSelect]=useState(data.value);
-    const [time1,settime1]=useState({"time":Number(data.time.split(':')[0]),"min":Number(data.time.split(':')[1])});
-    function settime_1(isup:boolean){
-        if(isup){
-            if(time1.min==59){
-                if(time1.time==23){
-                    settime1({"time":0,"min":0})
-                }
-                settime1({"time":time1.time+1,"min":0})
-            }else{
-                settime1({"time":time1.time,"min":time1.min+1})
-            }
-        }else{
-            if(time1.min==0){
-                if(time1.time==0)
-                    settime1({"time":23,"min":59})
-                settime1({"time":time1.time-1,"min":59})
-            }else{
-                settime1({"time":time1.time,"min":time1.min-1})
-            }
-        }
-    }
     return (
         <div >
             <p className="text-4xl text-mainColor py-8 font-black text-center pb-2">{"記録を編集する"}</p>
