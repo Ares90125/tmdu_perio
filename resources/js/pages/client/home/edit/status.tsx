@@ -27,7 +27,6 @@ const Status = () => {
                 if (response.data["success"] == true) {
                     window.alert("success");
                 } else {
-
                 }
             });
         }
