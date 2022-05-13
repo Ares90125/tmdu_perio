@@ -43,7 +43,7 @@ const Sleep = () => {
         return last ? `${month}月${date - 1}日` : `${month}月${date}日`;
     }
     return (
-        <div >
+        <div className="w-full">
             <div className="mt-16 mx-8 font-bold bg-bgColor">
                 <p className="text-sm text-mainColor font-bold text-left pb-2">昨夜の就寝時間</p>
                 <div className="mx-4">
@@ -56,14 +56,14 @@ const Sleep = () => {
                         </li>
                     </ul>
                 </div>
-                  <input className="focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time1} onChange={(ev) => {settime1(ev.target.value);}} />
+                  <input className="flex items-center justify-center  focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time1} onChange={(ev) => {settime1(ev.target.value);}} />
                 <div className="mt-8,mb-4">
                     <p className="text-sm text-mainColor text-left mt-6 mb-2">起床時間</p>
                 </div>
-                <input className="focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time2} onChange={(ev) => {settime2(ev.target.value);}} />
+                <input className="flex items-center justify-center  focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time2} onChange={(ev) => {settime2(ev.target.value);}} />
                 <div className="my-4">
                     <p className="text-sm text-mainColor text-left pb-2">今朝のお口の状態はいかがでしたか？</p>
-                    <select id="fruits" value={selectindex} className="bg-white text-mainColor  my-2 text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center object-center" style={{appearance: "none"}}
+                    <select id="fruits" value={selectindex} className="flex items-center justify-center  bg-white text-mainColor  my-2 text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center object-center" style={{appearance: "none"}}
                         onChange={(e) => setSelect(e.target.value)}>
                         <option value={1}>すっきりしている</option>
                         <option value={2}>特に問題なし</option>
