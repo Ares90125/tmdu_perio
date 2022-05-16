@@ -40,9 +40,9 @@ const Status = () => {
             <p className="text-4xl text-mainColor py-8 font-black text-center pb-2">{"記録を編集する"}</p>
             <p className="text-base text-mainColor pt-2 pb-4 font-light text-center pb-2">{"朝のお口の状態を編集しましょう"}</p>
             <TypeHeader text="朝のお口の状態"/>
-            <div className="px-8 pt-4">
+            <div className="px-8 pt-4" style={{textAlign:"center"}}>
                 <p className="text-sm text-mainColor text-left pb-2">今朝のお口の状態はいかがでしたか？</p>
-                <select style={{WebkitAppearance: "none", appearance: "none",textAlign:"center"}} value={selectindex!} className="px-auto flex items-center justify-center bg-white text-mainColor  my-2 text-[26px] font-bold w-full rounded-lg border border-mainColor outline-0 text-center"
+                <select style={{WebkitAppearance: "none", appearance: "none",textAlignLast: "center",WebkitAlignContent:"center", textAlign:"justify"}} value={selectindex!} className="flex items-center justify-center bg-white text-mainColor  my-2 text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center"
                     onChange={(e) => setSelect(e.target.value)}>
                     <option value={1}>すっきりしている</option>
                     <option value={2}>特に問題なし</option>
