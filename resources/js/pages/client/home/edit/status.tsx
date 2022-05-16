@@ -42,7 +42,7 @@ const Status = () => {
             <TypeHeader text="朝のお口の状態"/>
             <div className="px-8 pt-4">
                 <p className="text-sm text-mainColor text-left pb-2">今朝のお口の状態はいかがでしたか？</p>
-                <select style={{WebkitAppearance: "none", appearance: "none",textAlignLast: "center",WebkitAlignContent:"center", textAlign:"center"}} value={selectindex!} className="flex items-center justify-center bg-white text-mainColor  my-2 text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center"
+                <select style={{WebkitAppearance: "none", appearance: "none",textAlign:"center"}} value={selectindex!} className="px-auto flex items-center justify-center bg-white text-mainColor  my-2 text-[26px] font-bold w-full rounded-lg border border-mainColor outline-0 text-center"
                     onChange={(e) => setSelect(e.target.value)}>
                     <option value={1}>すっきりしている</option>
                     <option value={2}>特に問題なし</option>
