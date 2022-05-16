@@ -86,6 +86,11 @@ class DataController extends Controller
             ]
         ]);
     }
+    public function logout(Request $request){
+        $user = auth()->user();
+        $user->tokens()->delete();
+        return response()->json('Successfully logged out');
+    }
     public function createfile(Request $request){
         $user = auth()->user();
         $image =$request->file('image');

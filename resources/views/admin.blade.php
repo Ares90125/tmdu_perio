@@ -9,7 +9,7 @@
         <!-- Fonts -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="bg-white">
+    <body>
         <div id="app"></div>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>

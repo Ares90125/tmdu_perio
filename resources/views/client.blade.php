@@ -28,15 +28,24 @@
             function yourFunction() {
                 // your function for too long inactivity goes here
                 // e.g. window.location.href = 'logout.php';
+                $.ajax({
+                    url:"/api/client/logout",
+                    method:'get',
+                    headers:{
+                        "Authorization":"Bearer "+localStorage.getItem('token')
+                    }
+                });
                 localStorage.removeItem('token');
                 window.location.href = '/client';
             }
 
             function resetTimer() {
                 clearTimeout(t);
-                t = setTimeout(yourFunction, 1000*60*60);  // time is in milliseconds
+                t = setTimeout(yourFunction, 1000*60*20);  // time is in milliseconds
             }
         }
     idleLogout();
     </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 </html>

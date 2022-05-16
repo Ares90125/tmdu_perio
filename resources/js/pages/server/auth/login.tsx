@@ -11,22 +11,22 @@ const Login = () => {
     const OnLogin=()=>{
     }
     return (
-        <div className="bg-white">
+        <div className="bg-white min-h-full  w-full">
             <p className="text-9xl text-teal-700 pt-44 font-semibold text-center pb-32">PERIO</p>
             <div className="w-1/2 mx-auto">
                 <p className="text-sm font-bold text-teal-700 pb-2">クリニックID</p>
                 <Box className="rounded-xl  border bg-white px-2 py-1 border-cyan-700">
                     <InputBase placeholder="a018982" value={userid} onChange={(value)=>{}}/>
                 </Box>
-                <p className="pt-5 text-sm font-bold text-teal-700 pb-2">パスワード</p>    
+                <p className="pt-5 text-sm font-bold text-teal-700 pb-2">パスワード</p>
                 <Box className="rounded-xl  border bg-white px-2 py-1 border-cyan-700">
                     <InputBase placeholder="a018982"/>
-                </Box> 
+                </Box>
                 <div className="my-20">
-                <Link to="/admin/main" className="btn btn-primary"><AdminDefaultButton buttonClick={()=>{}} text="ログイン"/></Link>
+                    <Link to="/admin/main" className=""><AdminDefaultButton buttonClick={()=>{}} text="ログイン"/></Link>
                 </div>
             </div>
-        </div>        
+        </div>
     );
 };
 
