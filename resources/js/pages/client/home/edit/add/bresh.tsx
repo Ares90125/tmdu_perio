@@ -57,7 +57,7 @@ const Bresh = () => {
                 </div>
             </div>
             <div className="w-full px-8 pt-12">
-                <input className="focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time1} onChange={(ev) => {settime1(ev.target.value);}} />
+                <input style={{WebkitAppearance: "none"}} className="focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time1} onChange={(ev) => {settime1(ev.target.value);}} />
             </div>
             <DefaultButton text="記録をする" buttonClick={() => {
                 create();

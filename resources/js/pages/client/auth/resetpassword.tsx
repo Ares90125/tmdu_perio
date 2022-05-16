@@ -16,13 +16,13 @@ const ResetPass = () => {
             <p className="text-6xl text-teal-700 pt-40 font-semibold text-center pb-40">PERIO</p>
             <div className="px-12">
                 <p className="mb-15 text-xl font-bold text-teal-700 pb-2 text-center">パスワードを変更してください</p>
-                <p className="pt-5 text-sm font-bold text-teal-700 pb-2">パスワード</p>    
+                <p className="pt-5 text-sm font-bold text-teal-700 pb-2">パスワード</p>
                 <Box className="rounded-xl  border bg-white px-2 py-1 border-cyan-700 mb-32">
                     <InputBase placeholder=""/>
-                </Box> 
-                <DefaultButton buttonClick={()=>{window.alert("Reset")}} text="パスワードを変更する"/>            
+                </Box>
+                <DefaultButton buttonClick={()=>{window.alert("Reset")}} text="パスワードを変更する"/>
             </div>
-        </div>        
+        </div>
     );
 };
 
