@@ -20,6 +20,9 @@ class Users extends Authenticatable
     protected $fillable = [
         'userid',
         "clinic_id",
+        "ticketid",
+        "midpassword",
+        "name",
         'password',
     ];
 

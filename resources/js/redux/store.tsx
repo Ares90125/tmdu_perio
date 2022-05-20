@@ -2,6 +2,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import selectReducer from './reducers/indexslice'
 import authenticationReducer from './reducers/authentication'
 import dataReducer from './reducers/dataslice'
+import userReducer from './reducers/userslice'
 import addReducer from './reducers/addslice'
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     index: selectReducer,
     authenticater:authenticationReducer,
     data:dataReducer,
+    user:userReducer,
     adddate:addReducer
   },
   middleware: getDefaultMiddleware({

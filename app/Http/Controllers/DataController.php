@@ -8,6 +8,15 @@ use App\Models\Data;
 
 class DataController extends Controller
 {
+    public function __construct()
+    {
+        $user = auth()->user();
+        if($user["name"]==null){
+            return response()->json([
+                'success'   =>  false
+            ]);
+        }
+    }
     public function me(Request $request){
         return response()->json([
             'success'   =>  true,

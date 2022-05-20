@@ -7,24 +7,66 @@ use App\Http\Requests\ChildRequest;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class ClientAuthController extends Controller
 {
-    public function register(ChildRequest $request)
+    public function loadusers(Request $request){
+        $user = auth()->user();
+        if($user["name"]!=null){
+            return response()->json([
+                'success'   =>  false
+            ]);
+        }
+        $data=Users::select('id',"ticketid","name","midpassword","info","firstcheck","type","userid")->orderBy('id')->get();
+        return response()->json([
+            'success'   =>  true,
+            'data'      =>  [
+                $data
+            ]
+        ]);
+    }
+    public function register(Request $request)
     {
-        $data=$request->validated();
-        if (empty($data['password'])) {
-            return response()->json(['message' => 'Password is required'], 422);
+        $user = auth()->user();
+        if($user["name"]!=null){
+            return response()->json([
+                'success'   =>  false
+            ]);
         }
-        if (empty($data['userid'])) {
-            return response()->json(['message' => 'userid is required'], 422);
+        if (empty($request['name'])) {
+            return response()->json(['success'   =>  false,'message' => '名前が必要です'], 200);
         }
-        $data['password'] = Hash::make($data['password']);
+        if (empty($request['ticketid'])) {
+            return response()->json(['success'   =>  false,'message' => 'チケットIDが必要です'], 200);
+        }
+        $user=Users::Where([
+            'ticketid'  =>  $request['ticketid']
+        ])->first();
+        if ($user) {
+            return response()->json(['success'   =>  false,'message' => 'チケットIDは一意である必要があります'], 200);
+        }
+        $permitted_chars = 'abcdefghijklmnopqrstuvwxyz';
+        $userid=substr(str_shuffle($permitted_chars), 0, 1);
+        for(;;){
+            $userid = $userid.(string)rand(100000,999999);
+            $user=Users::Where([
+                'userid'  =>  $userid
+            ])->first();
+            if (!$user) {
+                break;
+            }
+        }
+        $password=(string)rand(10000000,99999999);
+        $data['password'] = Hash::make($password);
+        $data['midpassword']=$password;
+        $data['userid']=$userid;
+        $data["name"]=$request["name"];
+        $data["ticketid"]=$request["ticketid"];
         $data["clinic_id"]=1;
         $user = new Users($data);
         $user->save();
-        return response()->json(['messsage' => 'register is successed'], 200);
-
+        return response()->json(['success' => true,"id"=>$userid,"password"=>$password], 200);
     }
     public function login(ChildRequest $request){
         $data=$request->validated();

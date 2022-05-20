@@ -16,8 +16,14 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('userid')->unique();
+            $table->string('ticketid')->unique();
+            $table->string('name')->nullable();;
+            $table->string('midpassword');
             $table->string('password', 255);
-            $table->string('clinic_id');
+            $table->string('clinic_id')->nullable();;
+            $table->text("info")->nullable();
+            $table->date("firstcheck")->nullable();
+            $table->integer("type")->nullable();
             $table->timestamps();
         });
     }
