@@ -63,7 +63,7 @@ const Sleep = () => {
                 <input style={{WebkitAppearance: "none"}} className="flex items-center justify-center  focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time2} onChange={(ev) => {settime2(ev.target.value);}} />
                 <div className="my-4">
                     <p className="text-sm text-mainColor text-left pb-2">今朝のお口の状態はいかがでしたか？</p>
-                    <label style={{display:"-webkit-box",WebkitBoxPack:"center",boxPack:"center",}}>
+                    <label className="c-mouthStatus-label">
                         <select style={{WebkitAppearance: "none", appearance: "none",textAlignLast: "center",WebkitAlignContent:"center", textAlign:"center"}} id="fruits" value={selectindex} className="flex items-center justify-center  bg-white text-mainColor  my-2 text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center object-center"
                             onChange={(e) => setSelect(e.target.value)}>
                             <option value={1}>すっきりしている</option>

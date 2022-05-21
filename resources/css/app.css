@@ -79,3 +79,9 @@
   justify-content: space-between;
   align-items: center;
 }
+.c-mouthStatus-label{
+    display: -webkit-box;
+    display: box;
+    box-pack:center;
+    -webkit-box-pack:center;
+}
