@@ -42,13 +42,15 @@ const Status = () => {
             <TypeHeader text="朝のお口の状態"/>
             <div className="px-8 pt-4" style={{textAlign:"center"}}>
                 <p className="text-sm text-mainColor text-left pb-2">今朝のお口の状態はいかがでしたか？</p>
-                <select style={{WebkitAppearance: "none", appearance: "none",textAlignLast: "center",WebkitAlignContent:"center", textAlign:"justify"}} value={selectindex!} className="flex items-center justify-center bg-white text-mainColor  my-2 text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center"
-                    onChange={(e) => setSelect(e.target.value)}>
-                    <option value={1}>すっきりしている</option>
-                    <option value={2}>特に問題なし</option>
-                    <option value={3}>軽い違和感</option>
-                    <option value={4}> 痛みあり</option>
-                </select>
+                <label style={{display:"-webkit-box",WebkitBoxPack:"center",boxPack:"center",}}>
+                    <select style={{WebkitAppearance: "none", appearance: "none",textAlignLast: "center",WebkitAlignContent:"center", textAlign:"justify"}} value={selectindex!} className="flex items-center justify-center bg-white text-mainColor  my-2 text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center"
+                        onChange={(e) => setSelect(e.target.value)}>
+                        <option value={1}>すっきりしている</option>
+                        <option value={2}>特に問題なし</option>
+                        <option value={3}>軽い違和感</option>
+                        <option value={4}> 痛みあり</option>
+                    </select>
+                </label>
             </div>
             <DefaultButton text="記録をする" buttonClick={update}  />
         </div>

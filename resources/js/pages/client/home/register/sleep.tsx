@@ -44,9 +44,9 @@ const Sleep = () => {
     }
     return (
         <div className="w-full">
-            <div className="mt-16 mx-8 font-bold bg-bgColor">
+            <div className="mt-8 mx-8 font-bold bg-bgColor">
                 <p className="text-sm text-mainColor font-bold text-left pb-2">昨夜の就寝時間</p>
-                <div className="mx-4">
+                <div >
                     <ul className="flex flex-row text-[22px] font-bold text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                         <li className="basis-1/2  " role="presentation">
                             <button onClick={() => { setTabIndex(1) }} className={"shadow-[0px_-1px_4px_4px_rgba(0,0,0,0.03)] rounded-l-2xl py-3 w-full inline-block px-4   font-black " + (tabindex == 1 ? "bg-btnbgColor text-white" : "text-mainColor bg-white")} id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">{getDate(true)}</button>
@@ -63,13 +63,16 @@ const Sleep = () => {
                 <input style={{WebkitAppearance: "none"}} className="flex items-center justify-center  focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time2} onChange={(ev) => {settime2(ev.target.value);}} />
                 <div className="my-4">
                     <p className="text-sm text-mainColor text-left pb-2">今朝のお口の状態はいかがでしたか？</p>
-                    <select style={{WebkitAppearance: "none", appearance: "none",textAlignLast: "center",WebkitAlignContent:"center", textAlign:"center"}} id="fruits" value={selectindex} className="flex items-center justify-center  bg-white text-mainColor  my-2 text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center object-center"
-                        onChange={(e) => setSelect(e.target.value)}>
-                        <option value={1}>すっきりしている</option>
-                        <option value={2}>特に問題なし</option>
-                        <option value={3}>軽い違和感</option>
-                        <option value={4}> 痛みあり</option>
-                    </select>
+                    <label style={{display:"-webkit-box",WebkitBoxPack:"center",boxPack:"center",}}>
+                        <select style={{WebkitAppearance: "none", appearance: "none",textAlignLast: "center",WebkitAlignContent:"center", textAlign:"center"}} id="fruits" value={selectindex} className="flex items-center justify-center  bg-white text-mainColor  my-2 text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center object-center"
+                            onChange={(e) => setSelect(e.target.value)}>
+                            <option value={1}>すっきりしている</option>
+                            <option value={2}>特に問題なし</option>
+                            <option value={3}>軽い違和感</option>
+                            <option value={4}> 痛みあり</option>
+                        </select>
+                    </label>
+
                     <DefaultButton text="記録をする" buttonClick={create}></DefaultButton>
                 </div>
             </div>
