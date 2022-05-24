@@ -19,7 +19,7 @@ const Home = () => {
                     <p className="px-2">東京医科歯科大学</p>
                 </div>
             </div>
-            <div className='mx-[230px] mt-[20px] bg-white h-full'>
+            <div className=' h-full'>
                 <Routes>
                     <Route path="/patientmamage/*"  element={<PatientManager />}/>
                     <Route path="/programmanage/*"  element={<ProgramManager/>}/>

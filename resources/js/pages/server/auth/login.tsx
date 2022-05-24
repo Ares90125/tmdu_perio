@@ -46,7 +46,7 @@ const Login = () => {
                 <input   className="tracking-[.3em] rounded-xl text-base  border border-adminborderColor focus:outline-none focus:border-focusColor bg-[background: #F9F9F9] px-4 py-3 border-cyan-400 font-semibold w-full" placeholder="ID" value={userid} onChange={(value:React.ChangeEvent<HTMLInputElement>)=>{handleChange(value);}}/>
                 <p className="pt-5 text-sm font-bold text-teal-700 pb-2">パスワード</p>
                 <input   className="tracking-[.3em] rounded-xl text-base  border border-adminborderColor focus:outline-none focus:border-focusColor bg-[background: #F9F9F9] px-4 py-3 border-cyan-400 font-semibold w-full" placeholder="PASSWORD" type="password" value={password} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setPassword(e.target.value);}}/>
-                <div className="my-20">
+                <div className="my-20 flex justify-center ">
                      <AdminDefaultButton buttonClick={logIn} text="ログイン"/>
                 </div>
             </div>

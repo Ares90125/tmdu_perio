@@ -23,7 +23,8 @@ module.exports = {
       "adminmainColor":"#8FA4CD",
       "adminbuttonColor":"#7898EC",
       "adminbgColor":"#F8F8F8",
-      "adminborderColor":"#9C9C9C"
+      "adminborderColor":"#9C9C9C",
+      "textareaColor":"#F5F5F5"
     }
   },
   plugins: [],

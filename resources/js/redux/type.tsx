@@ -15,3 +15,9 @@ export const MO_STATUS=[
     '軽い違和感',
     '痛みあり'
 ]
+export const PROGRAM=[
+    "プログラムA",
+    "プログラムB",
+    "プログラムC",
+    "プログラムD"
+]

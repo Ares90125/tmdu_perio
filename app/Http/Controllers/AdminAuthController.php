@@ -34,7 +34,7 @@ class AdminAuthController extends Controller
         return response()->json([
             'success'   =>  true,
             'data'      =>  [
-                'token' =>  $user->createToken('access_token')->plainTextToken,
+                'token' =>  $user->createToken('access_token',['server'])->plainTextToken,
                 'user'  =>  $user
             ]
         ]);

@@ -9,7 +9,7 @@ interface UserState {
   name: string,
   midpass:string,
   info:string|null,
-  firstcheck:Date|null,
+  firstcheck:string|null,
   type:number|null,
   userid:string,
 }

@@ -40,9 +40,13 @@ Route ::group(['prefix'=>'client'],function (){
 Route ::group(['prefix'=>'admin'],function (){
     Route::post('/register', [ClientAuthController::class,'register']);
     Route::post('/login', [AdminAuthController::class,'login']);
-
     Route::group(["middleware"=>'auth:sanctum'],function(){
         Route::get('/loadusers', [ClientAuthController::class,'loadusers']);
         Route::post('/registerclient', [ClientAuthController::class,'register']);
+        Route::post('/clientresetname', [ClientAuthController::class,'clientresetname']);
+        Route::post('/clientresetpass', [ClientAuthController::class,'clientresetpass']);
+        Route::post('/clientresetInfo', [ClientAuthController::class,'clientresetInfo']);
+        Route::post('/resettreat', [ClientAuthController::class,'resettreat']);
+        Route::get('/getuserdata',[DataController::class,"getuserdata"]);
     });
 });

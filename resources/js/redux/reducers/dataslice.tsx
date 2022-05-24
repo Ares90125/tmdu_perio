@@ -8,6 +8,7 @@ interface DataState {
   time: string,
   type:number,
   value:string|null,
+  date:string|null
 }
 interface DatasState{
     date:Date,
@@ -39,6 +40,7 @@ export const dataslice = createSlice({
                 "time":action.payload[i]["time"],
                 "type":action.payload[i]["type"],
                 "value":action.payload[i]["value"],
+                "date":action.payload[i]["date"],
             });
         }
     },

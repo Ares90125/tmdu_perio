@@ -10,12 +10,12 @@ class DataController extends Controller
 {
     public function __construct()
     {
-        $user = auth()->user();
-        if($user["name"]==null){
-            return response()->json([
-                'success'   =>  false
-            ]);
-        }
+        // $user = auth()->user();
+        // if($user["name"]==null){
+        //     return response()->json([
+        //         'success'   =>  false
+        //     ]);
+        // }
     }
     public function me(Request $request){
         return response()->json([
@@ -31,6 +31,17 @@ class DataController extends Controller
             'userid'  => $user->id,
             "date"  => date('Y-m-d',$time)
         ])->select('id',"time","type","value")->orderBy('time')->get();
+        return response()->json([
+            'success'   =>  true,
+            'data'      =>  [
+                $data
+            ]
+        ]);
+    }
+    public function getuserdata(Request $request){
+        $data=Data::Where([
+            'userid'  =>$request["userid"]
+        ])->select('date',"time","type","value")->orderBy('date')->orderBy('time')->paginate(7);
         return response()->json([
             'success'   =>  true,
             'data'      =>  [

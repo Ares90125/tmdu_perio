@@ -2,13 +2,16 @@ import React, { useState , useEffect} from "react";
 import {Route,Routes,NavLink,Link } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
 import AdminSmButton from "../../../../components/admindefaultbutton";
+import {  useAppDispatch,useAppSelector } from '../../../.././redux/hooks';
+import {  changeByAmount } from '../../../.././redux/reducers/indexslice';
 
 const Register = () => {
+    const dispatch = useAppDispatch();
     const [name,setUserName]=useState("");
     const [ticketid,setTicketId]=useState("");
     const [issuccess,setIsSuccess]=useState(false);
     const [message,setMessage]=useState("");
-    const [id,setId]=useState("");
+    const [id,setId]=useState(0);
     const [password,setPass]=useState("");
     const register=()=>{
 
@@ -34,7 +37,7 @@ const Register = () => {
         }
     }
     return (
-        <div className="min-h-screen h-full bg-white">
+        <div className="mx-[230px] mt-[20px] min-h-screen h-full bg-white">
             {issuccess&&<div>
                 <div className="flex flex-row items-center pt-[39px] pl-[94px] pb-[71px]">
                     <p className="text-[24px] font-bold">
@@ -77,8 +80,8 @@ const Register = () => {
                     </table>
 
                     <div className="pt-[140px] flex justify-center">
-                        <NavLink to="">
-                        <AdminSmButton text="患者情報へ" buttonClick={()=>{}} px={20}/>
+                        <NavLink to="../patientedit">
+                        <AdminSmButton text="患者情報へ" buttonClick={()=>{dispatch(changeByAmount(id));}} px={20}/>
                         </NavLink>
                     </div>
                 </div>}

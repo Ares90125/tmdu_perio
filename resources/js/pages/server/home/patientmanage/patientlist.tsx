@@ -5,6 +5,7 @@ import axios, { AxiosResponse } from 'axios';
 import {  useAppDispatch,useAppSelector } from '../../../.././redux/hooks'
 import AdminSmButton from "../../../../components/admindefaultbutton";
 import { changeusers } from "../../../../redux/reducers/userslice";
+import {  changeByAmount } from '../../../.././redux/reducers/indexslice'
 
 const PatientList = () => {
     const dispatch = useAppDispatch();
@@ -31,7 +32,7 @@ const PatientList = () => {
         loadusers();
     },[])
     return (
-        <div className="min-h-screen h-full bg-white overflow-hidden">
+        <div className="mx-[230px] mt-[20px] min-h-screen h-full bg-white overflow-hidden">
             <div className="flex flex-row items-center pt-[39px] pl-[94px]">
                 <p className="text-[24px] font-bold">
                     患者一覧
@@ -81,7 +82,9 @@ const PatientList = () => {
                                     <p className="py-[10px]">{v.info}</p>
                                 </td>
                                 <td className="pt-[22px] pb-[9px] text-right">
-                                    <AdminSmButton text="詳細" buttonClick={()=>{}} px={20} />
+                                    <NavLink to="patientedit">
+                                        <AdminSmButton text="詳細" buttonClick={()=>{dispatch(changeByAmount(index));}} px={20} />
+                                    </NavLink>
                                 </td>
                             </tr>
                             )

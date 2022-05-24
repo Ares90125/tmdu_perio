@@ -13,11 +13,6 @@ class ClientAuthController extends Controller
 {
     public function loadusers(Request $request){
         $user = auth()->user();
-        if($user["name"]!=null){
-            return response()->json([
-                'success'   =>  false
-            ]);
-        }
         $data=Users::select('id',"ticketid","name","midpassword","info","firstcheck","type","userid")->orderBy('id')->get();
         return response()->json([
             'success'   =>  true,
@@ -26,16 +21,49 @@ class ClientAuthController extends Controller
             ]
         ]);
     }
+    public function clientresetname(Request $request)
+    {
+        if (empty($request['name'])) {
+            return response()->json(['success'   =>  false,'message' => '名前が必要です',], 200);
+        }
+        if (empty($request['ticketid'])) {
+            return response()->json(['success'   =>  false,'message' => 'チケットIDが必要です'], 200);
+        }
+        $user=Users::Where([
+            'ticketid'  =>  $request['ticketid']
+        ])->first();
+        if ($user) {
+            return response()->json(['success'   =>  false,'message' => 'チケットIDは一意である必要があります'], 200);
+        }
+        $update["name"]=$request["name"];
+        $update["ticketid"]=$request["ticketid"];
+        $data=Users::Where([
+            'id'  => $request["id"],
+        ])->update($update);
+        return response()->json(['success' => true], 200);
+    }
+    public function clientresetInfo(Request $request)
+    {
+        $update["info"]=$request["info"];
+        $data=Users::Where([
+            'id'  => $request["id"],
+        ])->update($update);
+        return response()->json(['success' => true], 200);
+    }
+    public function resettreat(Request $request)
+    {
+        $update["type"]=$request["type"];
+        $update["firstcheck"]=$request["firstcheck"];
+        $data=Users::Where([
+            'id'  => $request["id"],
+        ])->update($update);
+        return response()->json(['success' => true], 200);
+    }
     public function register(Request $request)
     {
         $user = auth()->user();
-        if($user["name"]!=null){
-            return response()->json([
-                'success'   =>  false
-            ]);
-        }
         if (empty($request['name'])) {
-            return response()->json(['success'   =>  false,'message' => '名前が必要です'], 200);
+            return response()->json(['success'   =>  false,'message' => '名前が必要です',], 200);
         }
         if (empty($request['ticketid'])) {
             return response()->json(['success'   =>  false,'message' => 'チケットIDが必要です'], 200);
@@ -68,6 +96,28 @@ class ClientAuthController extends Controller
         $user->save();
         return response()->json(['success' => true,"id"=>$userid,"password"=>$password], 200);
     }
+    public function clientresetpass(Request $request)
+    {
+
+        $permitted_chars = 'abcdefghijklmnopqrstuvwxyz';
+        $userid=substr(str_shuffle($permitted_chars), 0, 1);
+        for(;;){
+            $userid = $userid.(string)rand(100000,999999);
+            $user=Users::Where([
+                'userid'  =>  $userid
+            ])->first();
+            if (!$user) {
+                break;
+            }
+        }
+        $password=(string)rand(10000000,99999999);
+        $data['password'] = Hash::make($password);
+        $data['midpassword']=$password;
+        $data=Users::Where([
+            'id'  => $request["id"],
+        ])->update($data);
+        return response()->json(['success' => true,"password"=>$password], 200);
+    }
     public function login(ChildRequest $request){
         $data=$request->validated();
         $user=Users::Where([
@@ -92,7 +142,7 @@ class ClientAuthController extends Controller
         return response()->json([
             'success'   =>  true,
             'data'      =>  [
-                'token' =>  $user->createToken('access_token')->plainTextToken,
+                'token' =>  $user->createToken('access_token',['client'])->plainTextToken,
                 'user'  =>  $user
             ]
         ]);
