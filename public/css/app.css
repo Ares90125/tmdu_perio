@@ -1012,6 +1012,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .pt-\[30px\] {
   padding-top: 30px;
 }
+.pr-\[40px\] {
+  padding-right: 40px;
+}
 .pt-\[140px\] {
   padding-top: 140px;
 }
@@ -1044,33 +1047,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pt-12 {
   padding-top: 3rem;
-}
-.pr-\[5px\] {
-  padding-right: 5px;
-}
-.pr-\[59px\] {
-  padding-right: 59px;
-}
-.pr-\[52px\] {
-  padding-right: 52px;
-}
-.pr-\[50px\] {
-  padding-right: 50px;
-}
-.pr-\[51px\] {
-  padding-right: 51px;
-}
-.pr-\[48px\] {
-  padding-right: 48px;
-}
-.pr-\[46px\] {
-  padding-right: 46px;
-}
-.pr-\[42px\] {
-  padding-right: 42px;
-}
-.pr-\[40px\] {
-  padding-right: 40px;
 }
 .text-left {
   text-align: left;
@@ -1331,43 +1307,74 @@ Ensure the default browser behavior of the `hidden` attribute.
     box-pack:center;
     -webkit-box-pack:center;
 }
-.placeholder\:tracking-wider::-moz-placeholder {
+.c-mouthStatus__container{
+    width:87%;
+    position:relative;
+    box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #fff;
+    border: 1.5px solid base.$aquaGreen;
+}
+.c-mouthStatus__container-status{
+      font-size:26px;
+      line-height:40px;
+      text-align: -webkit-center;
+}
+.onIndexMS{
+    width:100%;
+    margin-bottom:30px;
+    margin-top:10px;
+      .c-mouthStatus__container-status{
+        padding:3px 0;
+        display: -webkit-box;
+        display: box;
+        box-pack:center;
+        -webkit-box-pack:center;
+        line-height: normal;
+        height:45px;
+        padding:13px 0 12px 5px;
+      }
+  }
+  .u-m-auto {
+  margin: auto;
+}
+  .placeholder\:tracking-wider::-moz-placeholder {
   letter-spacing: 0.05em;
 }
-.placeholder\:tracking-wider:-ms-input-placeholder {
+  .placeholder\:tracking-wider:-ms-input-placeholder {
   letter-spacing: 0.05em;
 }
-.placeholder\:tracking-wider::placeholder {
+  .placeholder\:tracking-wider::placeholder {
   letter-spacing: 0.05em;
 }
-.hover\:text-mainColor:hover {
+  .hover\:text-mainColor:hover {
   --tw-text-opacity: 1;
   color: rgb(16 100 100 / var(--tw-text-opacity));
 }
-.focus\:border-focusColor:focus {
+  .focus\:border-focusColor:focus {
   --tw-border-opacity: 1;
   border-color: rgb(34 138 152 / var(--tw-border-opacity));
 }
-.focus\:border-mainColor:focus {
+  .focus\:border-mainColor:focus {
   --tw-border-opacity: 1;
   border-color: rgb(16 100 100 / var(--tw-border-opacity));
 }
-.focus\:border-black:focus {
+  .focus\:border-black:focus {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
-.focus\:outline-none:focus {
+  .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
-@media (min-width: 640px) {
+  @media (min-width: 640px) {
 
   .sm\:py-2 {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
 }
-@media (min-width: 768px) {
+  @media (min-width: 768px) {
 
   .md\:flex {
     display: flex;
