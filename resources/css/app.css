@@ -85,3 +85,34 @@
     box-pack:center;
     -webkit-box-pack:center;
 }
+.c-mouthStatus__container{
+    width:87%;
+    position:relative;
+    box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #fff;
+    border: 1.5px solid base.$aquaGreen;
+}
+.c-mouthStatus__container-status{
+      font-size:26px;
+      line-height:40px;
+      text-align: -webkit-center;
+}
+.onIndexMS{
+    width:100%;
+    margin-bottom:30px;
+    margin-top:10px;
+      .c-mouthStatus__container-status{
+        padding:3px 0;
+        display: -webkit-box;
+        display: box;
+        box-pack:center;
+        -webkit-box-pack:center;
+        line-height: normal;
+        height:45px;
+        padding:13px 0 12px 5px;
+      }
+  }
+  .u-m-auto {
+  margin: auto;
+}

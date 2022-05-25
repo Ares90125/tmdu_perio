@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from 'axios';
 import Timepicker from "../../../../components/timepicker";
 import DefaultButton from "../../../../components/button";
 import { textTransform } from "@mui/system";
+import $ from 'jquery'
 
 const Sleep = () => {
     const [tabindex, setTabIndex] = useState(1);
@@ -42,6 +43,15 @@ const Sleep = () => {
         let day = newDate.getDay();
         return last ? `${month}月${date - 1}日` : `${month}月${date}日`;
     }
+    useEffect(() => {
+        $(document).ready(function() {
+            $('#resizing_select').change(function(){
+               $("#width_tmp_option").html($('#resizing_select option:selected').text());
+               console.log($("#width_tmp_select").width() );
+               $(this).width($("#width_tmp_select").width()! + 60);
+            });
+           });
+    }, [])
     return (
         <div className="w-full">
             <div className="mt-8 mx-8 font-bold bg-bgColor">
@@ -63,15 +73,20 @@ const Sleep = () => {
                 <input style={{WebkitAppearance: "none"}} className="flex items-center justify-center  focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time2} onChange={(ev) => {settime2(ev.target.value);}} />
                 <div className="my-4">
                     <p className="text-sm text-mainColor text-left pb-2">今朝のお口の状態はいかがでしたか？</p>
-                    <label className="c-mouthStatus-label">
-                        <select style={{WebkitAppearance: "none", appearance: "none",textAlignLast: "center",WebkitAlignContent:"center", textAlign:"center"}} id="fruits" value={selectindex} className="flex items-center justify-center  bg-white text-mainColor  my-2 text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center object-center"
-                            onChange={(e) => setSelect(e.target.value)}>
-                            <option value={1}>すっきりしている</option>
-                            <option value={2}>特に問題なし</option>
-                            <option value={3}>軽い違和感</option>
-                            <option value={4}> 痛みあり</option>
-                        </select>
-                    </label>
+                    <div className="c-mouthStatus__container u-m-auto onIndexMS">
+                        <label className="c-mouthStatus-label">
+                            <select id="resizing_select" value={selectindex} className="flex items-center justify-center c-mouthStatus__container-status c-timeSelect__timeInput bg-white text-mainColor text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center object-center"
+                                onChange={(e) => setSelect(e.target.value)}>
+                                <option className="c-mouthStatus-choices" value={1}>すっきりしている</option>
+                                <option className="c-mouthStatus-choices" value={2}>特に問題なし</option>
+                                <option className="c-mouthStatus-choices" value={3}>軽い違和感</option>
+                                <option className="c-mouthStatus-choices"  value={4}> 痛みあり</option>
+                            </select>
+                            <select id="width_tmp_select w-0" style={{display:"none"}}>
+                                <option id="width_tmp_option"></option>
+                            </select>
+                        </label>
+                    </div>
 
                     <DefaultButton text="記録をする" buttonClick={create}></DefaultButton>
                 </div>

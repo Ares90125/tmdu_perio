@@ -4,15 +4,36 @@ import axios, { AxiosResponse } from 'axios';
 import AdminSmButton from "../../../../components/admindefaultbutton";
 import {  useAppDispatch,useAppSelector } from '../../../.././redux/hooks';
 import {  changeByAmount } from '../../../.././redux/reducers/indexslice';
+import { changeusers } from "../../../../redux/reducers/userslice";
+
 
 const Register = () => {
     const dispatch = useAppDispatch();
+    const data=useAppSelector((state) => state.user.value);
     const [name,setUserName]=useState("");
     const [ticketid,setTicketId]=useState("");
     const [issuccess,setIsSuccess]=useState(false);
     const [message,setMessage]=useState("");
     const [id,setId]=useState(0);
     const [password,setPass]=useState("");
+    const loadusers = () => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        try {
+            axios.get(`/api/admin/loadusers`, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
+                    dispatch(changeusers(response.data["data"][0]));
+                } else {
+                }
+            });
+        }
+        catch (err) {
+
+        }
+    }
     const register=()=>{
 
         const config={
@@ -27,6 +48,8 @@ const Register = () => {
                     setIsSuccess(true);
                     setId(response.data["id"]);
                     setPass(response.data["password"]);
+                    loadusers();
+
                 }else{
                     setMessage(response.data["message"]);
                 }
@@ -81,7 +104,7 @@ const Register = () => {
 
                     <div className="pt-[140px] flex justify-center">
                         <NavLink to="../patientedit">
-                        <AdminSmButton text="患者情報へ" buttonClick={()=>{dispatch(changeByAmount(id));}} px={20}/>
+                            <AdminSmButton text="患者情報へ" buttonClick={()=>{dispatch(changeByAmount(data.length-1));}} px={20}/>
                         </NavLink>
                     </div>
                 </div>}
