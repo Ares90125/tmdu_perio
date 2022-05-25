@@ -38,7 +38,7 @@ const Status = () => {
     return (
         <div >
             <p className="text-4xl text-mainColor py-8 font-black text-center pb-2">{"記録を編集する"}</p>
-            <p className="text-base text-mainColor pt-2 pb-4 font-light text-center pb-2">{"朝のお口の状態を編集しましょう"}</p>
+            <p className="text-base text-mainColor pt-2 pb-4 font-light text-center">{"朝のお口の状態を編集しましょう"}</p>
             <TypeHeader text="朝のお口の状態"/>
             <div className="px-8 pt-4" style={{textAlign:"center"}}>
                 <p className="text-sm text-mainColor text-left pb-2">今朝のお口の状態はいかがでしたか？</p>

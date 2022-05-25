@@ -5,16 +5,38 @@ import axios, { AxiosResponse } from 'axios';
 import { useAppDispatch, useAppSelector } from '../../../.././redux/hooks'
 import { changedata, changedate } from '../../../.././redux/reducers/dataslice'
 import AdminDefaultButton from "../../../../components/adminbutton";
-import { BRESH_TIME, BRESH_TOOL, MO_STATUS,PROGRAM} from "../../../../redux/type";
+import { BRESH_TIME, BRESH_TOOL, MO_STATUS, PROGRAM } from "../../../../redux/type";
+import { CSVLink } from "react-csv";
 
 const PatientEdit = () => {
+    const [lastpage,setLastPage]=useState(1);
+    const headers = [
+        { label: "dataid", key: "dataid" },
+        { label: "patientid", key: "patientid" },
+        { label: "患者名", key: "name" },
+        { label: "入力日時", key: "date" },
+        { label: "タイムス タンプ", key: "timestamp" },
+        { label: "記録デー", key: "type" },
+        { label: "データ", key: "info" },
+        { label: "画像", key: "image" },
+    ];
+    const [csvdata, setCsvData] = useState(Array<{
+        dataid: number;
+        patientid: number;
+        name: string;
+        date: string | null;
+        timestamp: string;
+        type: string;
+        info: string | null;
+        image: string;
+    }>());
     const data = useAppSelector((state) => state.data.value);
     const index = useAppSelector((state) => state.index.value);
     const selectuser = useAppSelector((state) => state.user.value)[index];
     const dispatch = useAppDispatch();
     const [navindex, setNavindex] = useState(1);
-    const [password, resetPassword]=useState(selectuser.midpass);
-    const [info,setInfo]=useState(selectuser.info);
+    const [password, resetPassword] = useState(selectuser.midpass);
+    const [info, setInfo] = useState(selectuser.info);
     const getUserdata = () => {
         const config = {
             headers: {
@@ -25,6 +47,7 @@ const PatientEdit = () => {
             axios.get(`/api/admin/getuserdata?userid=` + selectuser.id + `&page=` + navindex, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
                     dispatch(changedata(response.data["data"][0]["data"]));
+                    setLastPage(response.data["data"][0]["last_page"]);
                 } else {
                 }
             });
@@ -33,58 +56,78 @@ const PatientEdit = () => {
 
         }
     }
-    const getDate=(date:string, time:string)=>{
-        return date.split("-")[0]+"."+date!.split("-")[1]+"."+date!.split("-")[2]+" "+(time.split(":")[0].substring(0,1)=="0"?time.split(":")[0].substring(1):time.split(":")[0])+":"+time.split(":")[1];
+    const getcsvdate = () => {
+        let csv = [];
+        let csvindex=0;
+        for (let i = 0; i < data.length; i++) {
+            switch(data[i].type){
+                case 1:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.id, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"起床", info: "", image: "" };
+                        csvindex++;
+                        csv[i] = { dataid: data[i].id, patientid: selectuser.id, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"起床", info: MO_STATUS[Number(data[i].value!) - 1], image: "" };
+                        csvindex++;
+                        break;
+                case 2:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.id, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "歯磨き記録", info: getstate(data[i].value!), image: "" };csvindex++;break;
+                case 3:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.id, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "食事の記録", info: data[i].value!.split("|")[0], image: data[i].value!.split("|")[1] };csvindex++;break;
+                case 4:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.id, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "就寝", info: "", image: "" };csvindex++;break;
+            }
+        }
+        console.log(csv);
+        setCsvData(csv);
+}
+    const getDate = (date: string, time: string) => {
+        return date.split("-")[0] + "." + date!.split("-")[1] + "." + date!.split("-")[2] + " " + (time.split(":")[0].substring(0, 1) == "0" ? time.split(":")[0].substring(1) : time.split(":")[0]) + ":" + time.split(":")[1];
     }
-    const getstate=(value:string)=>{
-        return (Number(value!.split("|")[1])==0?"":"歯磨き"+BRESH_TIME[Number(value!.split("|")[1])-1])
-        +((Number(value!.split("|")[0].split(',')[0]))==1?", "+BRESH_TOOL[0]:"")
-        +((Number(value!.split("|")[0].split(',')[1]))==1?", "+BRESH_TOOL[1]:"")
-        +((Number(value!.split("|")[0].split(',')[2]))==1?", "+BRESH_TOOL[2]:"")
+    const getstate = (value: string) => {
+        return (Number(value!.split("|")[1]) == 0 ? "" : "歯磨き" + BRESH_TIME[Number(value!.split("|")[1]) - 1])
+            + ((Number(value!.split("|")[0].split(',')[0])) == 1 ? ", " + BRESH_TOOL[0] : "")
+            + ((Number(value!.split("|")[0].split(',')[1])) == 1 ? ", " + BRESH_TOOL[1] : "")
+            + ((Number(value!.split("|")[0].split(',')[2])) == 1 ? ", " + BRESH_TOOL[2] : "")
     }
-
+    useEffect(() => {
+        getcsvdate();
+    }, [data])
     useEffect(() => {
         getUserdata();
-    }, [])
-    const resetPass=()=>{
+    }, [navindex])
+    const resetPass = () => {
 
-        const config={
-            headers:{
-                'Content-Type':'application/json'
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
             }
         };
-        const body=JSON.stringify({"id":selectuser.id});
-        try{
-            axios.post('/api/admin/clientresetpass',body,config).then((response:AxiosResponse)=>{
-                if(response.data["success"]==true){
+        const body = JSON.stringify({ "id": selectuser.id });
+        try {
+            axios.post('/api/admin/clientresetpass', body, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
                     resetPassword(response.data["password"]);
-                }else{
+                } else {
 
                 }
             });
         }
-        catch(err){
+        catch (err) {
 
         }
     }
-    const resetInfo=()=>{
+    const resetInfo = () => {
 
-        const config={
-            headers:{
-                'Content-Type':'application/json'
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
             }
         };
-        const body=JSON.stringify({"id":selectuser.id,"info":info});
-        try{
-            axios.post('/api/admin/clientresetInfo',body,config).then((response:AxiosResponse)=>{
-                if(response.data["success"]==true){
+        const body = JSON.stringify({ "id": selectuser.id, "info": info });
+        try {
+            axios.post('/api/admin/clientresetInfo', body, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
                     window.alert("success");
-                }else{
+                } else {
 
                 }
             });
         }
-        catch(err){
+        catch (err) {
 
         }
     }
@@ -95,9 +138,9 @@ const PatientEdit = () => {
                     <p className="text-[24px] font-bold mr-[20px]">
                         患者情報
                     </p>
-                   <NavLink to="../patientinfoedit">
+                    <NavLink to="../patientinfoedit">
                         <AdminDefaultButton text="編集" buttonClick={() => { }} />
-                   </NavLink>
+                    </NavLink>
                 </div>
                 <table className="">
                     <tbody>
@@ -149,7 +192,7 @@ const PatientEdit = () => {
                 <p className="text-[16px] font-bold pt-[56px] pb-[8px]">
                     患者メモ
                 </p>
-                <textarea onChange={(e:React.ChangeEvent<HTMLTextAreaElement>)=>{setInfo(e.target.value);}} value={info==null?"":info!} className="pb-[15px] resize-none font-[13px] p-[15px] bg-textareaColor border-2 border-adminborderColor w-full" rows={13} placeholder="Your message"  />
+                <textarea onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => { setInfo(e.target.value); }} value={info == null ? "" : info!} className="pb-[15px] resize-none font-[13px] p-[15px] bg-textareaColor border-2 border-adminborderColor w-full" rows={13} placeholder="Your message" />
                 <div className="flex flex-row-reverse">
                     <AdminDefaultButton text="保存" buttonClick={resetInfo} />
                 </div>
@@ -172,18 +215,26 @@ const PatientEdit = () => {
                         <p className="text-[16px] font-bold pr-[79px]">
                             セルフケアタイプ
                         </p>
-                        <p className="text-[16px] font-bold text-responseColor tracking-[.25em]">{PROGRAM[Number(selectuser.type)-2]}</p>
+                        <p className="text-[16px] font-bold text-responseColor tracking-[.25em]">{PROGRAM[Number(selectuser.type) - 2]}</p>
                     </div>
                 </div>
                 <div className="mt-[20px] h-full bg-white px-[68px] shrink">
-                    <div className="flex items-center mb-[37px] ">
-                        <p className="text-[24px] font-bold mr-[20px]">
-                            実施ログ
-                        </p>
-                        <AdminDefaultButton text="csvDL" buttonClick={() => { }} />
-                        {/* <p className="right-0">
-                            1
-                        </p> */}
+                    <div className="flex justify-between mb-[37px] items-center">
+                        <div className="flex items-center ">
+                            <p className="text-[24px] font-bold mr-[20px]">
+                                実施ログ
+                            </p>
+                            <CSVLink headers={headers} data={csvdata} >
+                                <AdminDefaultButton text="csvDL" buttonClick={() => { }} />
+                            </CSVLink>
+                        </div>
+                        <div>
+                            {
+                                Array(lastpage).fill(1).map((element,index) => {
+                                    return <button className="text-[20px] font-bold mr-[20px]" key={index} onClick={()=>{setNavindex(index+1);}}>{index+1}</button>
+                                })
+                            }
+                        </div>
                     </div>
                     <table className=" w-full">
                         <tbody>
@@ -205,8 +256,8 @@ const PatientEdit = () => {
                                 data && data.map((v, index) => {
                                     switch (v.type) {
                                         case 1: return <>
-                                            <tr  className="text-[#555555] text-[16px] font-bold border-b-[1px] border-b-adminborderColor ">
-                                                <td className="pl-[90px] tracking-[.15em]">{getDate(v.date!,v.time)}</td>
+                                            <tr key={index.toString()} className="text-[#555555] text-[16px] font-bold border-b-[1px] border-b-adminborderColor ">
+                                                <td className="pl-[90px] tracking-[.15em]">{getDate(v.date!, v.time)}</td>
                                                 <td>起床</td>
                                                 <td >
                                                     <p className="py-[10px]"></p>
@@ -215,18 +266,18 @@ const PatientEdit = () => {
 
                                                 </td>
                                             </tr>
-                                            <tr key={index} className="text-[#555555] text-[16px] font-bold border-b-[1px] border-b-adminborderColor ">
-                                                <td className="pl-[90px] tracking-[.15em]">{getDate(v.date!,v.time)}</td>
+                                            <tr key={index.toString() + ".1"} className="text-[#555555] text-[16px] font-bold border-b-[1px] border-b-adminborderColor ">
+                                                <td className="pl-[90px] tracking-[.15em]">{getDate(v.date!, v.time)}</td>
                                                 <td>朝のお口の状態</td>
                                                 <td >
-                                                    <p className="py-[10px]">{MO_STATUS[Number(v.value!)-1]}</p>
+                                                    <p className="py-[10px]">{MO_STATUS[Number(v.value!) - 1]}</p>
                                                 </td>
                                                 <td className="py-[22px] text-right">
                                                 </td>
                                             </tr>
                                         </>
-                                        case 2: return <tr key={index} className="text-[#555555] text-[16px] font-bold border-b-[1px] border-b-adminborderColor ">
-                                            <td className="pl-[90px] tracking-[.15em]">{getDate(v.date!,v.time)}</td>
+                                        case 2: return <tr key={index.toString()} className="text-[#555555] text-[16px] font-bold border-b-[1px] border-b-adminborderColor ">
+                                            <td className="pl-[90px] tracking-[.15em]">{getDate(v.date!, v.time)}</td>
                                             <td>歯磨き記録</td>
                                             <td >
                                                 <p className="py-[10px]">{getstate(v.value!)}</p>
@@ -235,8 +286,8 @@ const PatientEdit = () => {
 
                                             </td>
                                         </tr>
-                                        case 3: return <tr key={index} className="text-[#555555] text-[16px] font-bold border-b-[1px] border-b-adminborderColor ">
-                                            <td className="pl-[90px] tracking-[.15em]">{getDate(v.date!,v.time)}</td>
+                                        case 3: return <tr key={index.toString()} className="text-[#555555] text-[16px] font-bold border-b-[1px] border-b-adminborderColor ">
+                                            <td className="pl-[90px] tracking-[.15em]">{getDate(v.date!, v.time)}</td>
                                             <td>食事の記録</td>
                                             <td >
                                                 <p className="py-[10px]">{v.value!.split("|")[0]}</p>
@@ -245,14 +296,13 @@ const PatientEdit = () => {
                                                 <img src={v.value!.split("|")[1]} className="w-[195px] h-auto py-4"></img>
                                             </td>
                                         </tr>
-                                        case 4: return <tr key={index} className="text-[#555555] text-[16px] font-bold border-b-[1px] border-b-adminborderColor ">
-                                            <td className="pl-[90px] tracking-[.15em]">{getDate(v.date!,v.time)}</td>
+                                        case 4: return <tr key={index.toString()} className="text-[#555555] text-[16px] font-bold border-b-[1px] border-b-adminborderColor ">
+                                            <td className="pl-[90px] tracking-[.15em]">{getDate(v.date!, v.time)}</td>
                                             <td>就寝</td>
                                             <td >
                                                 <p className="py-[10px]"></p>
                                             </td>
                                             <td className="py-[22px] text-right">
-                                                <img src="../../../images/bresh-none.svg" />
                                             </td>
                                         </tr>
                                     }

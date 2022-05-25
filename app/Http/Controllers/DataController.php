@@ -41,7 +41,7 @@ class DataController extends Controller
     public function getuserdata(Request $request){
         $data=Data::Where([
             'userid'  =>$request["userid"]
-        ])->select('date',"time","type","value")->orderBy('date')->orderBy('time')->paginate(7);
+        ])->select('id','date',"time","type","value","updated_at")->orderBy('date')->orderBy('time')->paginate(7);
         return response()->json([
             'success'   =>  true,
             'data'      =>  [

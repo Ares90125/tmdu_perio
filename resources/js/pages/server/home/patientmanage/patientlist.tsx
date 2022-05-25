@@ -10,6 +10,8 @@ import {  changeByAmount } from '../../../.././redux/reducers/indexslice'
 const PatientList = () => {
     const dispatch = useAppDispatch();
     const data=useAppSelector((state) => state.user.value);
+    const [ticketid,setTicketid]=useState("");
+    const [name,setName]=useState("");
     const loadusers = () => {
         const config = {
             headers: {
@@ -18,6 +20,25 @@ const PatientList = () => {
         };
         try {
             axios.get(`/api/admin/loadusers`, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
+                    dispatch(changeusers(response.data["data"][0]));
+                } else {
+                }
+            });
+        }
+        catch (err) {
+
+        }
+    }
+    const searchUsers = () => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        const body = JSON.stringify({ "name": name,"ticketid":ticketid });
+        try {
+            axios.post(`/api/admin/searchusers`,body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
                     dispatch(changeusers(response.data["data"][0]));
                 } else {
@@ -46,16 +67,16 @@ const PatientList = () => {
                     <p className="text-[16px] pb-[11px]">
                          診察券番号
                     </p>
-                    <input className="tracking-[.3em] rounded-xl text-base  border border-adminborderColor focus:outline-none focus:border-black bg-white px-4 py-3 border-cyan-400 font-semibold w-full" />
+                    <input className="tracking-[.3em] rounded-xl text-base  border border-adminborderColor focus:outline-none focus:border-black bg-white px-4 py-3 border-cyan-400 font-semibold w-full" value={ticketid} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setTicketid(e.target.value);}}/>
                 </div>
                 <div className="basis-[37.5%]">
                     <p className="text-[16px] pb-[11px]">
-                         診察券番号
+                        氏名
                     </p>
-                    <input className="tracking-[.3em] rounded-xl text-base  border border-adminborderColor focus:outline-none focus:border-black bg-white px-4 py-3 border-cyan-400 font-semibold w-full" />
+                    <input className="tracking-[.3em] rounded-xl text-base  border border-adminborderColor focus:outline-none focus:border-black bg-white px-4 py-3 border-cyan-400 font-semibold w-full" value={name} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setName(e.target.value);}}/>
                 </div>
                 <div className="basis-[12.5] pb-[5px]">
-                     <AdminSmButton text="検索" buttonClick={()=>{}} px={20}/>
+                     <AdminSmButton text="検索" buttonClick={searchUsers} px={20}/>
                 </div>
             </div>
             <div className="px-[62px] table-auto">

@@ -4,6 +4,7 @@ import authenticationReducer from './reducers/authentication'
 import dataReducer from './reducers/dataslice'
 import userReducer from './reducers/userslice'
 import addReducer from './reducers/addslice'
+import videoReduce from "./reducers/videoslice"
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     authenticater:authenticationReducer,
     data:dataReducer,
     user:userReducer,
-    adddate:addReducer
+    adddate:addReducer,
+    video:videoReduce
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

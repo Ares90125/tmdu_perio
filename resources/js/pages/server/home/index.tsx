@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink, Route, Routes } from 'react-router-dom';
+import { Navigate, NavLink, Route, Routes } from 'react-router-dom';
 import PatientManager from "./patientmanage";
 import ProgramManager from "./programmanage";
 const Home = () => {
@@ -22,6 +22,7 @@ const Home = () => {
             <div className=' h-full'>
                 <Routes>
                     <Route path="/patientmamage/*"  element={<PatientManager />}/>
+                    <Route path="/programmanage"  element={<Navigate to="/admin/main/programmanage/programA"/>}/>
                     <Route path="/programmanage/*"  element={<ProgramManager/>}/>
                 </Routes>
             </div>

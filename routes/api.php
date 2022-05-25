@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientAuthController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\DataController;
-
+use App\Http\Controllers\VideoController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,11 +42,13 @@ Route ::group(['prefix'=>'admin'],function (){
     Route::post('/login', [AdminAuthController::class,'login']);
     Route::group(["middleware"=>'auth:sanctum'],function(){
         Route::get('/loadusers', [ClientAuthController::class,'loadusers']);
+        Route::post('/searchusers', [ClientAuthController::class,'searchusers']);
         Route::post('/registerclient', [ClientAuthController::class,'register']);
         Route::post('/clientresetname', [ClientAuthController::class,'clientresetname']);
         Route::post('/clientresetpass', [ClientAuthController::class,'clientresetpass']);
         Route::post('/clientresetInfo', [ClientAuthController::class,'clientresetInfo']);
         Route::post('/resettreat', [ClientAuthController::class,'resettreat']);
         Route::get('/getuserdata',[DataController::class,"getuserdata"]);
+        Route::get('/loadvideo',[VideoController::class,"loadvideo"]);
     });
 });

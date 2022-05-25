@@ -466,8 +466,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bottom-0 {
   bottom: 0px;
 }
-.right-0 {
-  right: 0px;
+.m-\[30px\] {
+  margin: 30px;
 }
 .my-5 {
   margin-top: 1.25rem;
@@ -508,6 +508,26 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-\[230px\] {
   margin-left: 230px;
   margin-right: 230px;
+}
+.mx-\[\] {
+  margin-left: ;
+  margin-right: ;
+}
+.mx-\[2px\] {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.mx-\[30px\] {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.my-\[\] {
+  margin-top: ;
+  margin-bottom: ;
+}
+.my-\[10px\] {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .mt-4 {
   margin-top: 1rem;
@@ -571,6 +591,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .mb-\[58px\] {
   margin-bottom: 58px;
+}
+.mr-\[30px\] {
+  margin-right: 30px;
+}
+.mt-\[10px\] {
+  margin-top: 10px;
+}
+.mt-\[30px\] {
+  margin-top: 30px;
+}
+.ml-\[30px\] {
+  margin-left: 30px;
 }
 .inline-block {
   display: inline-block;
@@ -1335,46 +1367,46 @@ Ensure the default browser behavior of the `hidden` attribute.
         padding:13px 0 12px 5px;
       }
   }
-  .u-m-auto {
+.u-m-auto {
   margin: auto;
 }
-  .placeholder\:tracking-wider::-moz-placeholder {
+.placeholder\:tracking-wider::-moz-placeholder {
   letter-spacing: 0.05em;
 }
-  .placeholder\:tracking-wider:-ms-input-placeholder {
+.placeholder\:tracking-wider:-ms-input-placeholder {
   letter-spacing: 0.05em;
 }
-  .placeholder\:tracking-wider::placeholder {
+.placeholder\:tracking-wider::placeholder {
   letter-spacing: 0.05em;
 }
-  .hover\:text-mainColor:hover {
+.hover\:text-mainColor:hover {
   --tw-text-opacity: 1;
   color: rgb(16 100 100 / var(--tw-text-opacity));
 }
-  .focus\:border-focusColor:focus {
+.focus\:border-focusColor:focus {
   --tw-border-opacity: 1;
   border-color: rgb(34 138 152 / var(--tw-border-opacity));
 }
-  .focus\:border-mainColor:focus {
+.focus\:border-mainColor:focus {
   --tw-border-opacity: 1;
   border-color: rgb(16 100 100 / var(--tw-border-opacity));
 }
-  .focus\:border-black:focus {
+.focus\:border-black:focus {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
-  .focus\:outline-none:focus {
+.focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
-  @media (min-width: 640px) {
+@media (min-width: 640px) {
 
   .sm\:py-2 {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
 }
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
 
   .md\:flex {
     display: flex;

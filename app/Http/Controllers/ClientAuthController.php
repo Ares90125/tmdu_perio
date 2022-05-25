@@ -21,6 +21,24 @@ class ClientAuthController extends Controller
             ]
         ]);
     }
+    public function searchusers(Request $request){
+        if(empty($request["ticketid"]))
+        {
+            $data=Users::select('id',"ticketid","name","midpassword","info","firstcheck","type","userid")->where("name","like",'%'.$request["name"].'%')->orderBy('id')->get();
+        }
+        else if(empty($request["name"])){
+            $data=Users::select('id',"ticketid","name","midpassword","info","firstcheck","type","userid")->where("ticketid","like",'%'.$request["ticketid"].'%')->orderBy('id')->get();
+        }
+        else{
+            $data=Users::select('id',"ticketid","name","midpassword","info","firstcheck","type","userid")->where("name","like",'%'.$request["name"].'%')->orwhere("ticketid","like",'%'.$request["ticketid"].'%')->orderBy('id')->get();
+        }
+        return response()->json([
+            'success'   =>  true,
+            'data'      =>  [
+                $data
+            ]
+        ]);
+    }
     public function clientresetname(Request $request)
     {
         if (empty($request['name'])) {
