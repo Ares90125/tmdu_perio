@@ -13,7 +13,7 @@ class ClientAuthController extends Controller
 {
     public function loadusers(Request $request){
         $user = auth()->user();
-        $data=Users::select('id',"ticketid","name","midpassword","info","firstcheck","type","userid")->orderBy('id')->get();
+        $data=Users::select('id',"ticketid","name","midpassword","info","created_at","type","userid")->orderBy('id')->get();
         return response()->json([
             'success'   =>  true,
             'data'      =>  [
@@ -24,13 +24,13 @@ class ClientAuthController extends Controller
     public function searchusers(Request $request){
         if(empty($request["ticketid"]))
         {
-            $data=Users::select('id',"ticketid","name","midpassword","info","firstcheck","type","userid")->where("name","like",'%'.$request["name"].'%')->orderBy('id')->get();
+            $data=Users::select('id',"ticketid","name","midpassword","info","created_at","type","userid")->where("name","like",'%'.$request["name"].'%')->orderBy('id')->get();
         }
         else if(empty($request["name"])){
-            $data=Users::select('id',"ticketid","name","midpassword","info","firstcheck","type","userid")->where("ticketid","like",'%'.$request["ticketid"].'%')->orderBy('id')->get();
+            $data=Users::select('id',"ticketid","name","midpassword","info","created_at","type","userid")->where("ticketid","like",'%'.$request["ticketid"].'%')->orderBy('id')->get();
         }
         else{
-            $data=Users::select('id',"ticketid","name","midpassword","info","firstcheck","type","userid")->where("name","like",'%'.$request["name"].'%')->orwhere("ticketid","like",'%'.$request["ticketid"].'%')->orderBy('id')->get();
+            $data=Users::select('id',"ticketid","name","midpassword","info","created_at","type","userid")->where("name","like",'%'.$request["name"].'%')->orwhere("ticketid","like",'%'.$request["ticketid"].'%')->orderBy('id')->get();
         }
         return response()->json([
             'success'   =>  true,
@@ -71,7 +71,6 @@ class ClientAuthController extends Controller
     public function resettreat(Request $request)
     {
         $update["type"]=$request["type"];
-        $update["firstcheck"]=$request["firstcheck"];
         $data=Users::Where([
             'id'  => $request["id"],
         ])->update($update);
@@ -161,7 +160,7 @@ class ClientAuthController extends Controller
             'success'   =>  true,
             'data'      =>  [
                 'token' =>  $user->createToken('access_token',['client'])->plainTextToken,
-                'user'  =>  $user
+                'username'  =>  $user["name"]
             ]
         ]);
     }

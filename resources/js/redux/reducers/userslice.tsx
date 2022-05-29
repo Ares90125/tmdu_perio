@@ -9,7 +9,7 @@ interface UserState {
   name: string,
   midpass:string,
   info:string|null,
-  firstcheck:string|null,
+  date:string,
   type:number|null,
   userid:string,
 }
@@ -36,13 +36,15 @@ export const userslice = createSlice({
                 "midpass":action.payload[i]["midpassword"],
                 "info":action.payload[i]["info"],
                 "userid":action.payload[i]["userid"],
-                "firstcheck":action.payload[i]["firstcheck"]
+                "date":getStringValue(action.payload[i]["created_at"]).split("T")[0]
             });
         }
     }
   },
 })
-
+function getStringValue(value: any): string {
+    return value.toString();
+}
 export const { changeusers} = userslice.actions
 
 export default userslice.reducer

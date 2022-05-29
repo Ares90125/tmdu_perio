@@ -14,7 +14,7 @@ const Home = () => {
                         <p className="mx-2 underline hover:text-mainColor sm:py-2 font-content"> プログラムリスト</p>
                     </NavLink>
                     <NavLink to="patientmamage/" className="md:border-r-[1px] px-1">
-                        <p className="mx-2 underline hover:text-mainColor sm:py-2">プログラムリスト</p>
+                        <p className="mx-2 underline hover:text-mainColor sm:py-2">患者管理</p>
                     </NavLink>
                     <p className="px-2">東京医科歯科大学</p>
                 </div>

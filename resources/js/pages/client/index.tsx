@@ -6,10 +6,11 @@ import Login from './auth/login';
 import ResetPass from './auth/resetpassword';
 import Home from './home';
 import axios, { AxiosResponse } from 'axios';
-import {  setclient } from '../.././redux/reducers/authentication'
+import {  setclient, setname } from '../.././redux/reducers/authentication'
 import {  useAppDispatch } from '../.././redux/hooks'
 import { tr } from 'date-fns/locale';
 const Client = () => {
+    
     const dispatch = useAppDispatch();
     const isauth = useAppSelector((state) => state.authenticater.client);
     const pathname = window.location.pathname.split('/')[2];
@@ -40,6 +41,7 @@ const Client = () => {
     if(pathname!="login"&&!flag){
         if( localStorage.getItem('token')){
             setFlag(true);
+            dispatch(setname(localStorage.getItem('username')!));
         }
     }
     useEffect(() =>{

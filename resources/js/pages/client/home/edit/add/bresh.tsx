@@ -22,7 +22,7 @@ const Bresh = () => {
         }
     }
     const create = () => {
-        ; const config = {
+        const config = {
             headers: {
                 'Content-Type': 'application/json',
             }

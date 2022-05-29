@@ -10,7 +10,7 @@ const TreatSet = () => {
     const index = useAppSelector((state) => state.index.value);
     const selectuser = useAppSelector((state) => state.user.value)[index];
     const [selectindex, setSelect] = useState(selectuser.type==null?"1":selectuser.type!.toString());
-    const [firstcheck,setFirstcheck]=useState(selectuser.firstcheck);
+    const firstcheck=selectuser.date;
     const resettreat = () => {
 
         const config = {
@@ -18,7 +18,7 @@ const TreatSet = () => {
                 'Content-Type': 'application/json'
             }
         };
-        const body = JSON.stringify({ "id": selectuser.id, "type": selectindex,"firstcheck":firstcheck });
+        const body = JSON.stringify({ "id": selectuser.id, "type": selectindex});
         try {
             axios.post('/api/admin/resettreat', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
@@ -43,7 +43,7 @@ const TreatSet = () => {
                 <p className="text-[20px] font-bold pr-[56px]">
                     初回セルフ検査日
                 </p>
-                <input value={firstcheck!}  onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setFirstcheck(e.target.value); }} className="w-[382px] tracking-[.3em] rounded-xl text-base  border border-adminborderColor focus:outline-none focus:border-black bg-white px-4 py-3 border-cyan-400 font-semibold" type={"date" }/>
+                <input value={firstcheck!} disabled={true} className="w-[382px] tracking-[.3em] rounded-xl text-base  border border-adminborderColor focus:outline-none focus:border-black bg-white px-4 py-3 border-cyan-400 font-semibold" type={"date" }/>
             </div>
             <div className="flex items-center pt-[30px] justify-center">
                 <p className="text-[20px] font-bold pr-[56px]">
@@ -58,7 +58,7 @@ const TreatSet = () => {
                         </select>
             </div>
             <div className="pt-[140px] flex justify-center">
-                <AdminSmButton text="検索" buttonClick={resettreat} px={20} />
+                <AdminSmButton text="更新" buttonClick={resettreat} px={20} />
             </div>
         </div>
     );

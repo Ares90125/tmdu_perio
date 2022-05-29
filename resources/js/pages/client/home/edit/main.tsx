@@ -163,7 +163,7 @@ const Main = () => {
                 )
             }
             </div>
-          {  data.length!=0 && <NavLink to="add/bresh" className="basis-1/6"><DefaultButton text="記録をする" buttonClick={() => { dispatch(changeDate(new Date()));}}></DefaultButton> </NavLink>}
+          {  data.length!=0 && <NavLink to="add/bresh" className="basis-1/6"><DefaultButton text="記録をする" buttonClick={() => { dispatch(changeDate(date));}}></DefaultButton> </NavLink>}
         </div>
     );
 };

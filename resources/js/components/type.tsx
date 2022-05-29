@@ -4,7 +4,7 @@ interface ButtonProps {
   }
 function TypeHeader(props:ButtonProps){
     return (
-       <div className="mt-20 py-2 w-full text-center bg-white border-y border-mainColor text-xl text-mainColor font-bold">
+       <div className="py-2 w-full text-center bg-white border-y border-mainColor text-xl text-mainColor font-bold">
            {props.text}
        </div>
     );

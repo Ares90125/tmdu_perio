@@ -5,7 +5,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { ja } from "date-fns/locale";
 import {  useAppDispatch,useAppSelector } from '../../../.././redux/hooks'
-import {  changeDate } from '../../../.././redux/reducers/addslice'
+import {  changedate } from '../../../.././redux/reducers/dataslice'
 import { useNavigate } from "react-router-dom";
 
 const Calender = () => {
@@ -20,8 +20,8 @@ const Calender = () => {
         document.addEventListener("click", function(e) {
             const target=e.target as HTMLTableColElement;
             if(target.classList.contains("p-calendar__td") || target.classList.contains("today")) {
-                dispatch(changeDate(new Date(target.dataset.date!)));
-                navigate('../add/bresh');
+                dispatch(changedate(new Date(target.dataset.date!)));
+                navigate('../');
                 // alert('クリックした日付は' +target.dataset.date+ 'です')
             }
         })

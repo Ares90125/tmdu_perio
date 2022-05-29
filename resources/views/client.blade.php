@@ -9,7 +9,7 @@
         <!-- Fonts -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="bg-bgColor" style=' font-family: "Hiragino Kaku Gothic Pro", sans-serif;'>
+    <body class="bg-bgColor">
         <div id="app"></div>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>

@@ -24,7 +24,11 @@ module.exports = {
       "adminbuttonColor":"#7898EC",
       "adminbgColor":"#F8F8F8",
       "adminborderColor":"#9C9C9C",
-      "textareaColor":"#F5F5F5"
+      "textareaColor":"#F5F5F5",
+      "divColor":"#E3F0EF",
+      "dateColor":"#C7CED1",
+      "imageColor":"#C4C4C4",
+      "checkColor":"#D64A4A"
     }
   },
   plugins: [],

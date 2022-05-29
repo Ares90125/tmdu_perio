@@ -9,8 +9,10 @@ import Diary from "./diary";
 import SetMeal from "./setmeal";
 import BedTime from "./bedtime";
 import Adder from "./add";
+import { useAppSelector } from "../../../../redux/hooks";
 
 const Editer = () => {
+    const name=useAppSelector((state) => state.authenticater.name);
     const [flag, setFlag]=useState(false);
     const location = useLocation();
     const path=location.pathname.split("/");
@@ -30,7 +32,7 @@ const Editer = () => {
                         <img src={'/images/back.png'} className="w-full h-full"/>
                     </div>
                 </NavLink>
-                <p className="text-base text-mainColor  font-semibold text-center">松田 聖子 さん</p>
+                <p className="text-base text-mainColor  font-semibold text-center">{name+" さん"}</p>
                 <NavLink to="calender" className={flag?"invisible":""}>
                     <div className="bg-mainColor text-white rounded-md w-[1.875rem] h-[1.875rem] p-[3px]">
                         <img src={'/images/calender.png'} className="w-full h-full"/>

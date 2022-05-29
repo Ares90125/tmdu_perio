@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('password', 255);
             $table->string('clinic_id')->nullable();;
             $table->text("info")->nullable();
-            $table->date("firstcheck")->nullable();
             $table->integer("type")->nullable();
             $table->timestamps();
         });

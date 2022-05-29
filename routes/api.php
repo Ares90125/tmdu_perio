@@ -6,6 +6,7 @@ use App\Http\Controllers\ClientAuthController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\NotificationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,6 +36,11 @@ Route ::group(['prefix'=>'client'],function (){
         Route::get('/loaddata',[DataController::class,"loaddata"]);
         Route::post('/update',[DataController::class,"update"]);
         Route::post('/updatemeal',[DataController::class,"updatemeal"]);
+        Route::post('/notification',[NotificationController::class,"notification"]);
+        Route::post('/createbreshtime',[NotificationController::class,"createbreshtime"]);
+        Route::get('/loadbreshtime',[NotificationController::class,"loadbreshtime"]);
+        Route::post('/updatebreshtime',[NotificationController::class,"updatebreshtime"]);
+        Route::get('/deletebreshtime',[NotificationController::class,"deletebreshtime"]);
     });
 });
 Route ::group(['prefix'=>'admin'],function (){
