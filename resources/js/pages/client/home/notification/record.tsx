@@ -4,17 +4,44 @@ import { BiArrowBack, BiCalendar } from "react-icons/bi";
 import DefaultButton from "../../../../components/button";
 import TypeHeader from "../../../../components/type";
 import { useAppSelector } from "../../../../redux/hooks";
+import axios, { AxiosResponse } from "axios";
 
 const Record = () => {
     const name=useAppSelector((state) => state.authenticater.name);
     const [image, setImage] = useState<any | null>(null);
     const [imageurl, setImageurl] = useState("");
+    const [index,setIndex]=useState(1);
     const handleSetImage = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files?.length != 0) {
             setImage(event.target.files![0]);
             setImageurl(URL.createObjectURL(event.target.files![0]));
         }
     };
+    const create = () => {
+        let date = new Date();
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        };
+        const formData = new FormData();
+        formData.append("image", image);
+        formData.append("time", date.toTimeString().split(' ')[0].substring(0,6)+"00");
+        formData.append("date", date.getFullYear() + ":" + (date.getMonth() + 1) + ":" + date.getDate());
+        formData.append('value',`${index}`);
+        try {
+            axios.post('/api/client/createself', formData, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
+                    window.alert("success");
+                } else {
+
+                }
+            });
+        }
+        catch (err) {
+
+        }
+    }
     return (
         <div className="mx-[3px]">
             <div className="flex justify-center items-center pt-4 pb-2 px-4 relatvice">
@@ -54,14 +81,14 @@ const Record = () => {
                 <p className="text-mainColor text-[10px] mt-[4px] font-black">陽性・陰性の判断基準：右半分が赤い</p>
             </div>
             <div className="mt-[19px] mx-[23px] flex justify-between">
-                <button className="px-[60px] py-[15px] bg-btnbgColor rounded-[10px]">陽性</button>
-                <button className="px-[60px] py-[15px] bg-btnbgColor rounded-[10px]">陽性</button>
+                <button onClick={()=>{setIndex(1)}} className={"px-[60px] py-[15px] rounded-[10px] "+(index==1?"bg-btnbgColor text-white":"bg-white text-btnbgColor")}>陽性</button>
+                <button onClick={()=>{setIndex(2)}} className={"px-[60px] py-[15px] rounded-[10px] "+(index==2?"bg-btnbgColor text-white":"bg-white text-btnbgColor")}>陽性</button>
             </div>
-            <div className="flex items-center mt-[20px]">
-                <button className="mx-auto px-[60px] py-[15px] bg-btnbgColor rounded-[10px]">陽性</button>
+            <div className="flex justify-center mt-[20px]">
+                <button onClick={()=>{setIndex(3)}} className={"px-[60px] py-[15px] rounded-[10px] "+(index==3?"bg-btnbgColor text-white":"bg-white text-btnbgColor")}>陽性</button>
             </div>
             <div className="my-[24px]">
-                <DefaultButton text="記録をする" buttonClick={() => { }}></DefaultButton>
+                <DefaultButton text="記録をする" buttonClick={create}></DefaultButton>
             </div>
         </div>
     );

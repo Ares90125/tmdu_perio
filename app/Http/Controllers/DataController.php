@@ -111,6 +111,33 @@ class DataController extends Controller
         $user->tokens()->delete();
         return response()->json('Successfully logged out');
     }
+    public function createself(Request $request){
+        $user = auth()->user();
+        $image =$request->file('image');
+        if($image!=null){
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images/upload/');
+            $image->move($destinationPath, $imageName);
+            $image->imagePath = $destinationPath . $imageName;
+            $imageName="/images/upload/".$imageName;
+        }
+        else{
+            $destinationPath="";
+            $imageName="";
+        }
+        $data=new Data;
+        $data->userid=$user->id;
+        $data->date=$request['date'];
+        $data->time=$request['time'];
+        $data->type=5;
+        $data->value=$request['value']."|".$imageName;
+        $data->save();
+        return response()->json([
+            'success'   =>  true,
+            'data'      =>  [
+            ]
+        ]);
+    }
     public function createfile(Request $request){
         $user = auth()->user();
         $image =$request->file('image');

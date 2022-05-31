@@ -5,7 +5,7 @@ import axios, { AxiosResponse } from 'axios';
 import { useAppDispatch, useAppSelector } from '../../../.././redux/hooks'
 import { changedata, changedate } from '../../../.././redux/reducers/dataslice'
 import AdminDefaultButton from "../../../../components/adminbutton";
-import { BRESH_TIME, BRESH_TOOL, MO_STATUS, PROGRAM } from "../../../../redux/type";
+import { BRESH_TIME,SELF, BRESH_TOOL, MO_STATUS, PROGRAM } from "../../../../redux/type";
 import { CSVLink } from "react-csv";
 
 const PatientEdit = () => {
@@ -69,6 +69,7 @@ const PatientEdit = () => {
                 case 2:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "歯磨き記録", info: getstate(data[i].value!), image: "" };csvindex++;break;
                 case 3:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "食事の記録", info: data[i].value!.split("|")[0], image: data[i].value!.split("|")[1] };csvindex++;break;
                 case 4:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "就寝", info: "", image: "" };csvindex++;break;
+                case 5:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "セルフ検査", info: SELF[Number(data[i].value!.split("|")[0])-1], image: data[i].value!.split("|")[1] };csvindex++;break;
             }
         }
         // console.log(csv);
@@ -303,6 +304,16 @@ const PatientEdit = () => {
                                                 <p className="py-[10px]"></p>
                                             </td>
                                             <td className="py-[22px] text-right">
+                                            </td>
+                                        </tr>
+                                        case 5: return <tr key={index.toString()} className="text-[#555555] text-[16px] font-bold border-b-[1px] border-b-adminborderColor ">
+                                            <td className="pl-[90px] tracking-[.15em]">{getDate(v.date!, v.time)}</td>
+                                            <td>セルフ検査</td>
+                                            <td >
+                                                <p className="py-[10px]">{SELF[Number(v.value!.split("|")[0])-1]}</p>
+                                            </td>
+                                            <td className="py-[22px] text-right">
+                                                <img src={v.value!.split("|")[1]} className="w-[195px] h-auto py-4"></img>
                                             </td>
                                         </tr>
                                     }

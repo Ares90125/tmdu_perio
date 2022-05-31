@@ -21,3 +21,8 @@ export const PROGRAM=[
     "プログラムC",
     "プログラムD"
 ]
+export const SELF=[
+    "陽性",
+    "陰性",
+    "わからない"
+]

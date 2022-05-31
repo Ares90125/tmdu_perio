@@ -32,6 +32,7 @@ Route ::group(['prefix'=>'client'],function (){
         Route::get('/logout',[DataController::class,"logout"]);
         Route::post('/create',[DataController::class,"create"]);
         Route::post('/createfile',[DataController::class,"createfile"]);
+        Route::post('/createself',[DataController::class,"createself"]);
         Route::post('/createsleep',[DataController::class,"createsleep"]);
         Route::get('/loaddata',[DataController::class,"loaddata"]);
         Route::post('/update',[DataController::class,"update"]);

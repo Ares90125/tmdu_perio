@@ -32,7 +32,7 @@ function Meal(props: ButtonProps) {
     //     window.addEventListener('focus', handleFocusBack);
     // }
     const create = () => {
-        ; const config = {
+        const config = {
             headers: {
                 'Content-Type': 'multipart/form-data',
             }

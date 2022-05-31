@@ -22,7 +22,6 @@ function Meal(props: ButtonProps) {
         window.removeEventListener('focus', handleFocusBack);
     };
     function handleFocusBack(){
-        console.log("adsfadsfa");
         setImageurl("");
         setImage(null);
         window.removeEventListener('focus', handleFocusBack);
@@ -32,7 +31,7 @@ function Meal(props: ButtonProps) {
     }
     const create = () => {
         let date = new Date();
-        ; const config = {
+        const config = {
             headers: {
                 'Content-Type': 'multipart/form-data',
             }
