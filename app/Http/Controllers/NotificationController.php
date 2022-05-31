@@ -112,7 +112,7 @@ class NotificationController extends Controller
         //     ]
         // ]);
         $selfcheckday = Carbon::parse($date)->diffInDays(Carbon::parse(strtotime(substr($user->created_at,0,10))))%7;
-        if($selfcheckday==6){
+        if($selfcheckday>6&&(($selfcheckday%7)==6)){
             $isinvitevbreshcount=Notifications::Where([
                 'userid'  => $user->id,
                 'date'  => date('Y-m-d',$date),
@@ -130,7 +130,7 @@ class NotificationController extends Controller
               }
             }
         }
-        else if($selfcheckday==0){
+        else if($selfcheckday>6&&(($selfcheckday%7)==0)){
             $isinvitevbreshcount=Notifications::Where([
                 'userid'  => $user->id,
                 'date'  => date('Y-m-d',$date),
@@ -148,7 +148,7 @@ class NotificationController extends Controller
                   }
             }
         }
-        else if($selfcheckday==1){
+        else if($selfcheckday>6&&(($selfcheckday%7)==1)){
             $isinvitevbreshcount=Notifications::Where([
                 'userid'  => $user->id,
                 'date'  => date('Y-m-d',$date),

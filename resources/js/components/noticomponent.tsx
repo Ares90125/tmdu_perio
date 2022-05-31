@@ -81,7 +81,7 @@ function NotifiComponent(props: ButtonProps) {
                                     }
                                 </p>
                             </button>
-                            <div className={((visible||(props.element.value!="2")) ? "h-0 opacity-0 invisible" : "h-auto opacity-100 visible")}>
+                            <div className={((visible||(props.element.value=="3")) ? "h-0 opacity-0 invisible" : "h-auto opacity-100 visible")}>
                                 <div className="px-[10px] text-[13px] font-normal text-mainColor pt-[8px]">
                                     定期的なセルフ検査は重要です。食事２時間後に検査しましょう試薬はあらかじめ室温に戻しておきましょうこちらのリンクから、セルフ検査をしましょう。
                                 </div>
