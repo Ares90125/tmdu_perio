@@ -5,8 +5,13 @@ import Register from "./register";
 import Editer from "./edit";
 import Notification from './notification'
 import axios, { AxiosResponse } from "axios";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { changedata,changecount } from "../../../redux/reducers/notificationslice";
+import FooterComponent from "../../../components/footercomponent";
 
 const Home = () => {
+    const dispatch = useAppDispatch();
+    
     const location = useLocation();
     const path = location.pathname.split("/");
     useEffect(() => {
@@ -31,7 +36,8 @@ const Home = () => {
         try {
             axios.post('/api/client/notification', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    return true;
+                    dispatch(changecount(response.data["count"][0]));
+                    dispatch(changedata(response.data["value"][0]["data"]));
                 } else {
                     return false;
                 }
@@ -53,34 +59,7 @@ const Home = () => {
                     <Route path="/email/*" element={<Notification />} />
                 </Routes>
             </div>
-            <footer className="p-4 bg-white fixed bottom-0 h-20 w-full rounded-t-[40px] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.1)]">
-                <div className="flex flew-row" >
-                    <NavLink to="register/" className={"basis-1/3 " + (selectindex == 1 ? "text-footColor" : "text-gray-400")}>
-                        <button type="button" onClick={() => { SetIndex(1) }} className="mx-auto w-full" >
-                            <div className="text-white rounded-md w-[1.5625rem] h-[1.5625rem] text-xl flex flex-col mx-auto">
-                                <img src={selectindex == 1 ? '/images/add-icon-hover.png' : '/images/add-icon.png'} className="w-full h-full" />
-                            </div>
-                            <p className="text-xs text-center">記録する</p>
-                        </button>
-                    </NavLink>
-                    <NavLink to="edit/" className={"basis-1/3 " + (selectindex == 2 ? "text-footColor" : "text-gray-400")} >
-                        <button type="button" onClick={() => { SetIndex(2) }} className="mx-auto w-full" >
-                            <div className="text-white rounded-md w-[1.5625rem] h-[1.5625rem] text-xl flex flex-col mx-auto">
-                                <img src={selectindex == 2 ? '/images/chk-icon-hover.png' : '/images/chk-icon.png'} className="w-full h-full" />
-                            </div>
-                            <p className="text-xs  text-center">記録を見る</p>
-                        </button>
-                    </NavLink>
-                    <NavLink to="email/" className={"basis-1/3 " + (selectindex == 3 ? "text-footColor" : "text-gray-400")} >
-                        <button type="button" onClick={() => { SetIndex(3) }} className="mx-auto w-full">
-                            <div className="text-white rounded-md w-[1.5625rem] h-[1.5625rem] text-xl flex flex-col mx-auto">
-                                <img src={selectindex == 3 ? '/images/msg-icon-hover.png' : '/images/msg-icon.png'} className="w-full h-full" />
-                            </div>
-                            <p className="text-xs  text-center">お知らせ</p>
-                        </button>
-                    </NavLink>
-                </div>
-            </footer>
+            <FooterComponent selectindex={selectindex} SetIndex={(index)=>{SetIndex(index)}} />
 
         </div>
     );

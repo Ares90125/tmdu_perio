@@ -4,6 +4,7 @@ import NotifiComponent from "../../../../components/noticomponent";
 import { useAppSelector } from "../../../../redux/hooks";
 
 const NotificationList = () => {
+    const data = useAppSelector((state) => state.notification.value);
     const name=useAppSelector((state) => state.authenticater.name);
     const [tabindex, setTab] = useState(1);
     return (
@@ -31,8 +32,11 @@ const NotificationList = () => {
                 </div>
                 <div className="mt-[25px] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)] w-full rounded-[10px] bg-white px-[20px] pt-[24px] pb-[10px]">
                     {
-                        Array(6).fill(0).map((element, index) => {
-                            return <NotifiComponent index={index} buttonClick={()=>{}} />
+                       data.map((element, index) => {
+                            return <div key={index} className="w-full">
+                                <NotifiComponent element={element} index={index} buttonClick={()=>{}} />
+                            </div>
+
                         })
                     }
                 </div>

@@ -41,6 +41,7 @@ Route ::group(['prefix'=>'client'],function (){
         Route::get('/loadbreshtime',[NotificationController::class,"loadbreshtime"]);
         Route::post('/updatebreshtime',[NotificationController::class,"updatebreshtime"]);
         Route::get('/deletebreshtime',[NotificationController::class,"deletebreshtime"]);
+        Route::post('/invited',[NotificationController::class,"invited"]);
     });
 });
 Route ::group(['prefix'=>'admin'],function (){

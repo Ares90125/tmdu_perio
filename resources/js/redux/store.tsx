@@ -6,6 +6,7 @@ import breshtimeReducer from './reducers/breshtimeslice'
 import userReducer from './reducers/userslice'
 import addReducer from './reducers/addslice'
 import videoReduce from "./reducers/videoslice"
+import notificationReduce from "./reducers/notificationslice"
 
 const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
     breshtime:breshtimeReducer,
     user:userReducer,
     adddate:addReducer,
-    video:videoReduce
+    video:videoReduce,
+    notification:notificationReduce
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

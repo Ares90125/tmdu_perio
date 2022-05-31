@@ -28,7 +28,8 @@ module.exports = {
       "divColor":"#E3F0EF",
       "dateColor":"#C7CED1",
       "imageColor":"#C4C4C4",
-      "checkColor":"#D64A4A"
+      "checkColor":"#D64A4A",
+      "notifyColor":"#ef5350"
     }
   },
   plugins: [],
