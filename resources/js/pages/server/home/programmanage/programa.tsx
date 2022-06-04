@@ -34,7 +34,7 @@ const ProgramA = () => {
            {
               video&&video.map((element,index) => {
                    return <div key={index} className="ml-[30px] mt-[30px] ">
-                        <video width="311" height="172" controls >
+                        <video key={element.image} width="311" height="172" controls >
                             <source src={element.image} type="video/mp4"/>
                         </video>
                         <p className="text-[20px] mx-[2px]  hover:text-mainColor sm:py-2 font-content">{element.title}</p>
