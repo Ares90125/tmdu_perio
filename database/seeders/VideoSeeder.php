@@ -16,186 +16,55 @@ class VideoSeeder extends Seeder
     public function run()
     {
         DB::table('videos')->insert([
-            'value' =>  "/program/a1.mp4",
-            "title" =>" フロス・糸ようじ",
-            'type' =>1,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/a2.mp4",
-            "title" =>"歯間ブラシ",
-            'type' =>1,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/a3.mp4",
-            "title" =>"磨き方",
-            'type' =>1,
-        ]);
-        DB::table('videos')->insert([
             'value' =>  "/program/a4.mp4",
             "title" =>" 歯ブラシの持ち方",
             'type' =>1,
         ]);
         DB::table('videos')->insert([
-            'value' =>  "/program/a5.mp4",
-            "title" =>"前歯 内側",
-            'type' =>1,
+            'value' =>  "/program/a3.mp4",
+            "title" =>"磨き方",
+            'type' =>2,
         ]);
         DB::table('videos')->insert([
             'value' =>  "/program/a6.mp4",
             "title" =>"前歯 外側",
-            'type' =>1,
+            'type' =>2,
         ]);
         DB::table('videos')->insert([
-            'value' =>  "/program/a7.mp4",
-            "title" =>"下の奥歯 内側",
-            'type' =>1,
+            'value' =>  "/program/a5.mp4",
+            "title" =>"前歯 内側",
+            'type' =>3,
         ]);
         DB::table('videos')->insert([
-            'value' =>  "/program/a8.mp4",
-            "title" =>"上の奥歯 内側",
-            'type' =>1,
+            'value' =>  "/program/a10.mp4",
+            "title" =>"上の奥歯 外側",
+            'type' =>3,
         ]);
         DB::table('videos')->insert([
             'value' =>  "/program/a9.mp4",
             "title" =>"下の奥歯 外側",
-            'type' =>1,
+            'type' =>3,
         ]);
         // 1111111111111111111
+
         DB::table('videos')->insert([
-            'value' =>  "/program/a10.mp4",
-            "title" =>"上の奥歯 外側",
-            'type' =>1,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>2,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"上の奥歯",
-            'type' =>2,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>2,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>2,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"上の奥歯",
-            'type' =>2,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>2,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>2,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"上の奥歯",
-            'type' =>2,
-        ]);
-        //2222222222
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
+            'value' =>  "/program/a8.mp4",
+            "title" =>"上の奥歯 内側",
             'type' =>3,
         ]);
         DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>3,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"上の奥歯",
-            'type' =>3,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>3,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>3,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"上の奥歯",
-            'type' =>3,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>3,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>3,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"上の奥歯",
-            'type' =>3,
-        ]);
-        //33333333333333333
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
+            'value' =>  "/program/a7.mp4",
+            "title" =>"下の奥歯 内側",
             'type' =>4,
         ]);
         DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
+            'value' =>  "/program/a2.mp4",
+            "title" =>"歯間ブラシ",
             'type' =>4,
         ]);
         DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"上の奥歯",
-            'type' =>4,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>4,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>4,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"上の奥歯",
-            'type' =>4,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>4,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"下の奥歯内側",
-            'type' =>4,
-        ]);
-        DB::table('videos')->insert([
-            'value' =>  "/program/test.mp4",
-            "title" =>"上の奥歯",
+            'value' =>  "/program/a1.mp4",
+            "title" =>" フロス・糸ようじ",
             'type' =>4,
         ]);
     }

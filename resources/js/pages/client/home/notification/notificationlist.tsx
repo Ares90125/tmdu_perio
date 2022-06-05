@@ -1,12 +1,42 @@
+import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { Route, Routes, NavLink, useLocation, Navigate } from 'react-router-dom';
 import NotifiComponent from "../../../../components/noticomponent";
-import { useAppSelector } from "../../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { changecount, changedata, changepage } from "../../../../redux/reducers/notificationslice";
 
 const NotificationList = () => {
+    const dispatch = useAppDispatch();
     const data = useAppSelector((state) => state.notification.value);
+    const page = useAppSelector((state) => state.notification.page);
     const name=useAppSelector((state) => state.authenticater.name);
     const [tabindex, setTab] = useState(1);
+    const notification = () => {
+        let date = new Date();
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        try {
+            axios.get('/api/client/onlynotification?page='+tabindex, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
+                    dispatch(changecount(response.data["count"][0]));
+                    dispatch(changedata(response.data["value"][0]["data"]));
+                    dispatch(changepage(response.data["value"][0]["last_page"]));
+
+                } else {
+                    return false;
+                }
+            });
+        }
+        catch (err) {
+            return false;
+        }
+    }
+    useEffect(() => {
+        notification();
+    }, [tabindex])
     return (
         <div className="pb-10 mx-[3px]">
             <div className="flex justify-center items-center pt-4 pb-2 px-4 relatvice">
@@ -23,7 +53,7 @@ const NotificationList = () => {
             <div className="mx-[20px]">
                 <div className=" flex flex-row items-center justify-center">
                     {
-                        Array(2).fill(0).map((element, index) => {
+                        Array(page).fill(0).map((element, index) => {
                             return <div key={index} className={"flex items-center justify-center ml-[20px] w-[32px] h-[32px] rounded-[50%] " + (tabindex == index + 1 ? "bg-mainColor text-white" : "")}>
                                 <button onClick={() => { setTab(index + 1) }} className="text-[14px] mx-[2px] sm:py-2 font-content">{index + 1}</button>
                             </div>

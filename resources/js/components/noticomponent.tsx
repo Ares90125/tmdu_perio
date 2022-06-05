@@ -3,6 +3,7 @@ import { produceWithPatches } from "immer";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch } from "../redux/hooks";
+import { changeByAmount } from "../redux/reducers/indexslice";
 import { changevisited, deccount } from "../redux/reducers/notificationslice";
 import DefaultButton from "./button";
 interface Element {
@@ -104,6 +105,34 @@ function NotifiComponent(props: ButtonProps) {
                                     {"昨日のあなたの歯磨き回数は" + props.element.value + "回でした。"}
                                 </p>
                             </button>
+                            <div className="w-full h-[1px] bg-divColor mt-[5px]">
+                            </div>
+                        </div>
+                        case 4: return <div key={index} className="w-full">
+                            <button className="w-full flex flex-col items-start font-black pt-[10px]" onClick={() => { setVisible(!visible);if(props.element.visited!=1){invited(props.element.id);}}}>
+                                <p className=" text-dateColor text-[10px] ">
+                                    {props.element.date.replace("-", ".") + " " + props.element.time.substring(0, 5)}
+                                </p>
+                                <p className="text-mainColor text-[13px] pt-[5px]">
+                                    {props.element.value?.split("|")[0]}
+                                </p>
+                            </button>
+                            {
+                                visible?<div></div>:
+                                <div className={(visible ? "h-0 opacity-0 invisible" : "h-auto opacity-100 visible")}>
+                                    <div className="px-[10px] text-[13px] font-normal text-mainColor pt-[8px]">
+                                        あなたにオススメの歯周病向けのセルフケア動画です。<br></br>動画を見ながら、しっかりと磨きましょう
+                                    </div>
+                                    <div className="my-[10px] relative w-full grid">
+                                        <video  className="h-auto w-full disabled" controls >
+                                            <source src= {props.element.value?.split("|")[1]} type="video/mp4"/>
+                                        </video>
+                                        <NavLink to="video" className="absolute place-self-center">
+                                            <DefaultButton text="検査する" buttonClick={()=>{dispatch(changeByAmount(index));}}></DefaultButton>
+                                        </NavLink>
+                                    </div>
+                                </div>
+                            }
                             <div className="w-full h-[1px] bg-divColor mt-[5px]">
                             </div>
                         </div>

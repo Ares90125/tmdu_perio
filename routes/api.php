@@ -38,6 +38,7 @@ Route ::group(['prefix'=>'client'],function (){
         Route::post('/update',[DataController::class,"update"]);
         Route::post('/updatemeal',[DataController::class,"updatemeal"]);
         Route::post('/notification',[NotificationController::class,"notification"]);
+        Route::get('/onlynotification',[NotificationController::class,"onlynotification"]);
         Route::post('/createbreshtime',[NotificationController::class,"createbreshtime"]);
         Route::get('/loadbreshtime',[NotificationController::class,"loadbreshtime"]);
         Route::post('/updatebreshtime',[NotificationController::class,"updatebreshtime"]);

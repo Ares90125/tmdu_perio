@@ -5,6 +5,7 @@ import NotificationList from "./notificationlist";
 import BreshNotify from "./breshnotify"
 import SelfCheck from "./selfcheck";
 import Record from "./record";
+import VideoNotify from "./videonotification";
 
 const Notification = () => {
    return (
@@ -13,6 +14,7 @@ const Notification = () => {
         <Route  path="/breshnotify" element={ <BreshNotify />}/>
         <Route  path="/selfcheck" element={ <SelfCheck />}/>
         <Route  path="/record" element={ <Record />}/>
+        <Route  path="/video" element={ <VideoNotify />}/>
     </Routes>
    )
 };

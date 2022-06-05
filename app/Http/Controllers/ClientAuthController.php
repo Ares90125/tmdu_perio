@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Crypt;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Notifications\Notification;
+use Carbon\Carbon;
+use App\Models\Videos;
+use App\Models\Notifications;
 
 class ClientAuthController extends Controller
 {
@@ -58,7 +62,9 @@ class ClientAuthController extends Controller
         $data=Users::Where([
             'id'  => $request["id"],
         ])->update($update);
+
         return response()->json(['success' => true], 200);
+
     }
     public function clientresetInfo(Request $request)
     {
@@ -74,6 +80,18 @@ class ClientAuthController extends Controller
         $data=Users::Where([
             'id'  => $request["id"],
         ])->update($update);
+        $videos=Videos::Where([
+            'type'  =>$request["type"]
+        ])->select('value','title')->get();
+        foreach($videos as $value){
+            $breshcout=new Notifications;
+            $breshcout['date'] =Carbon::now()->format('Y-m-d');
+            $breshcout['time']= Carbon::now()->format('H:m:s');
+            $breshcout['userid']=$request["id"];
+            $breshcout["type"]=4;
+            $breshcout["value"]=$value["title"]."|".$value["value"];
+            $breshcout->save();
+        }
         return response()->json(['success' => true], 200);
     }
     public function register(Request $request)
@@ -115,7 +133,6 @@ class ClientAuthController extends Controller
     }
     public function clientresetpass(Request $request)
     {
-
         $permitted_chars = 'abcdefghijklmnopqrstuvwxyz';
         $userid=substr(str_shuffle($permitted_chars), 0, 1);
         for(;;){

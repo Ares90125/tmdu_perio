@@ -13,10 +13,12 @@ interface NotificationState {
 }
 interface NotificationsState{
 count:number,
+page:number,
 value:Array<NotificationState>
 }
 const initialState: NotificationsState = {
   count:0,
+  page:0,
   value:new Array<NotificationState>()
 }
 export const notificationslice = createSlice({
@@ -25,6 +27,9 @@ export const notificationslice = createSlice({
   reducers: {
     changecount:(state,action:PayloadAction<number>)=>{
         state.count=action.payload;
+    },
+    changepage:(state,action:PayloadAction<number>)=>{
+        state.page=action.payload;
     },
     changevisited:(state,action:PayloadAction<number>)=>{
         state.value[action.payload].visited=1;
@@ -49,6 +54,6 @@ export const notificationslice = createSlice({
   },
 })
 
-export const { changedata,changecount,deccount,changevisited} = notificationslice.actions
+export const { changedata,changecount,changepage,deccount,changevisited} = notificationslice.actions
 
 export default notificationslice.reducer

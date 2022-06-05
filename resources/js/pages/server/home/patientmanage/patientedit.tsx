@@ -319,7 +319,6 @@ const PatientEdit = () => {
                                     }
                                 }
                                 )
-
                             }
                         </tbody>
                     </table>

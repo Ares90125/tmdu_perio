@@ -6,12 +6,11 @@ import Editer from "./edit";
 import Notification from './notification'
 import axios, { AxiosResponse } from "axios";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { changedata,changecount } from "../../../redux/reducers/notificationslice";
+import { changedata,changepage,changecount } from "../../../redux/reducers/notificationslice";
 import FooterComponent from "../../../components/footercomponent";
 
 const Home = () => {
     const dispatch = useAppDispatch();
-    
     const location = useLocation();
     const path = location.pathname.split("/");
     useEffect(() => {
@@ -38,6 +37,8 @@ const Home = () => {
                 if (response.data["success"] == true) {
                     dispatch(changecount(response.data["count"][0]));
                     dispatch(changedata(response.data["value"][0]["data"]));
+                    dispatch(changepage(response.data["value"][0]["last_page"]));
+
                 } else {
                     return false;
                 }

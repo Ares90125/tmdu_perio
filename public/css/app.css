@@ -493,14 +493,29 @@ Ensure the default browser behavior of the `hidden` attribute.
 .right-0 {
   right: 0px;
 }
+.right-\[40\%\] {
+  right: 40%;
+}
+.top-\[\] {
+  top: ;
+}
+.top-\[76px\] {
+  top: 76px;
+}
+.top-\[0px\] {
+  top: 0px;
+}
+.top-\[50\%\] {
+  top: 50%;
+}
+.top-\[20\%\] {
+  top: 20%;
+}
 .right-\[\] {
   right: ;
 }
-.right-\[40\] {
-  right: 40;
-}
-.right-\[40\%\] {
-  right: 40%;
+.right-\[50\%\] {
+  right: 50%;
 }
 .z-50 {
   z-index: 50;
@@ -568,6 +583,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 2px;
   margin-right: 2px;
 }
+.my-\[3px\] {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.mx-\[9px\] {
+  margin-left: 9px;
+  margin-right: 9px;
+}
 .mx-\[23px\] {
   margin-left: 23px;
   margin-right: 23px;
@@ -580,13 +603,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 230px;
   margin-right: 230px;
 }
-.my-\[3px\] {
-  margin-top: 3px;
-  margin-bottom: 3px;
+.mx-\[\] {
+  margin-left: ;
+  margin-right: ;
 }
-.mx-\[9px\] {
-  margin-left: 9px;
-  margin-right: 9px;
+.mx-\[28px\] {
+  margin-left: 28px;
+  margin-right: 28px;
 }
 .mt-4 {
   margin-top: 1rem;
@@ -699,6 +722,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .table {
   display: table;
 }
+.grid {
+  display: grid;
+}
 .contents {
   display: contents;
 }
@@ -741,35 +767,29 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-screen {
   height: 100vh;
 }
+.h-\[43px\] {
+  height: 43px;
+}
 .h-\[32px\] {
   height: 32px;
 }
 .h-\[23px\] {
   height: 23px;
 }
-.h-\[177px\] {
-  height: 177px;
-}
-.h-\[\] {
-  height: ;
-}
-.h-\[3\] {
-  height: 3;
-}
-.h-\[38\] {
-  height: 38;
-}
-.h-\[38px\] {
-  height: 38px;
-}
-.h-\[17\] {
-  height: 17;
-}
 .h-\[17px\] {
   height: 17px;
 }
-.h-\[43px\] {
-  height: 43px;
+.h-\[177px\] {
+  height: 177px;
+}
+.h-\[344\] {
+  height: 344;
+}
+.h-\[344px\] {
+  height: 344px;
+}
+.h-\[152px\] {
+  height: 152px;
 }
 .min-h-full {
   min-height: 100%;
@@ -810,8 +830,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-\[32px\] {
   width: 32px;
 }
-.w-\[50\%\] {
-  width: 50%;
+.w-\[30\%\] {
+  width: 30%;
+}
+.w-\[2\%\] {
+  width: 2%;
 }
 .w-\[195px\] {
   width: 195px;
@@ -819,17 +842,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-\[382px\] {
   width: 382px;
 }
-.w-\[30\%\] {
-  width: 30%;
-}
-.w-\[10\%\] {
-  width: 10%;
-}
-.w-\[3\%\] {
-  width: 3%;
-}
-.w-\[2\%\] {
-  width: 2%;
+.w-auto {
+  width: auto;
 }
 .shrink {
   flex-shrink: 1;
@@ -896,6 +910,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .justify-evenly {
   justify-content: space-evenly;
+}
+.place-self-center {
+  place-self: center;
 }
 .self-center {
   align-self: center;
@@ -1166,10 +1183,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 44px;
   padding-right: 44px;
 }
-.py-\[2px\] {
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
 .px-\[60px\] {
   padding-left: 60px;
   padding-right: 60px;
@@ -1177,6 +1190,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-\[15px\] {
   padding-top: 15px;
   padding-bottom: 15px;
+}
+.px-\[34px\] {
+  padding-left: 34px;
+  padding-right: 34px;
 }
 .px-\[68px\] {
   padding-left: 68px;
@@ -1198,21 +1215,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 62px;
   padding-right: 62px;
 }
-.py-\[3\] {
-  padding-top: 3;
-  padding-bottom: 3;
-}
-.py-\[9px\] {
-  padding-top: 9px;
-  padding-bottom: 9px;
-}
-.py-\[px\] {
-  padding-top: px;
-  padding-bottom: px;
-}
-.px-\[34px\] {
-  padding-left: 34px;
-  padding-right: 34px;
+.px-\[\] {
+  padding-left: ;
+  padding-right: ;
 }
 .pt-\[10px\] {
   padding-top: 10px;
@@ -1349,14 +1354,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .pt-12 {
   padding-top: 3rem;
 }
-.pr-\[50px\] {
-  padding-right: 50px;
+.pb-\[30px\] {
+  padding-bottom: 30px;
 }
-.pr-\[px\] {
-  padding-right: px;
-}
-.pr-\[36px\] {
-  padding-right: 36px;
+.pt-\[26px\] {
+  padding-top: 26px;
 }
 .text-left {
   text-align: left;

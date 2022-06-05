@@ -5,7 +5,7 @@ import TypeHeader from "../../../../components/type";
 import axios, { AxiosResponse } from 'axios';
 import {useAppSelector } from '../../../.././redux/hooks'
 const BedTime = () => {
-       const index=useAppSelector((state) => state.index.value);
+    const index=useAppSelector((state) => state.index.value);
     const date = useAppSelector((state) => state.data.date);
     const data=useAppSelector((state) => state.data.value[index]);
     const [time1, settime1] = useState(data.time);

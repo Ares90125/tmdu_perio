@@ -70,6 +70,26 @@ class NotificationController extends Controller
             ]
         ]);
     }
+    public function onlynotification(Request $request){
+        $user = auth()->user();
+        $count=Notifications::Where([
+            'userid'  => $user->id,
+            "visited"  => false,
+        ])->count();
+        $notifications=Notifications::Where([
+            'userid'  =>$user->id,
+        ])->select('id','date',"time","type","value","visited")->orderBy('date',"DESC")->orderBy('time',"DESC")->paginate(6);
+        return response()->json([
+            'success'   =>  true,
+            'count'      =>  [
+                $count
+            ],
+            'value' =>[
+                $notifications
+            ]
+        ]);
+
+    }
     public function notification(Request $request){
         $user = auth()->user();
         $date = strtotime($request["date"]);
