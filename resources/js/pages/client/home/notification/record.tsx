@@ -10,7 +10,7 @@ const Record = () => {
     const name=useAppSelector((state) => state.authenticater.name);
     const [image, setImage] = useState<any | null>(null);
     const [imageurl, setImageurl] = useState("");
-    const [index,setIndex]=useState(1);
+    const [index,setIndex]=useState(0);
     const handleSetImage = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files?.length != 0) {
             setImage(event.target.files![0]);
@@ -74,21 +74,27 @@ const Record = () => {
 
             </div>
             <div className="px-[44px] w-full ">
-                <div className="w-full h-[23px] bg-white mt-[20px] px-[5px] py-[2px] relative rounded-[9px]">
-                    <div className="h-full w-[50%] bg-checkColor  absolute right-0">
+                <div className="w-full h-[23px] bg-recordColor mt-[20px]  relative rounded-[9px] rounded-xl">
+                    <div className="h-[17px] w-[30%] bg-checkColor  absolute right-0  my-[3px] mx-[9px]">
+                    </div>
+                    <div className="h-[17px] w-[2%] bg-checkColor  absolute right-[40%]  my-[3px] mx-[9px]">
                     </div>
                 </div>
-                <p className="text-mainColor text-[10px] mt-[4px] font-black">陽性・陰性の判断基準：右半分が赤い</p>
+                <p className="text-mainColor text-[10px] mt-[4px] font-black">陽性の判断基準：試験紙の赤いライン以上、赤く変色した場合。</p>
             </div>
             <div className="mt-[19px] mx-[23px] flex justify-between">
-                <button onClick={()=>{setIndex(1)}} className={"px-[60px] py-[15px] rounded-[10px] "+(index==1?"bg-btnbgColor text-white":"bg-white text-btnbgColor")}>陽性</button>
-                <button onClick={()=>{setIndex(2)}} className={"px-[60px] py-[15px] rounded-[10px] "+(index==2?"bg-btnbgColor text-white":"bg-white text-btnbgColor")}>陽性</button>
+                <button onClick={()=>{setIndex(1)}} className={"px-[60px] py-[15px] rounded-[10px] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)] text-[18px] font-bold "+(index==1?"bg-btnbgColor text-white":"bg-white text-btnbgColor")}>陽性</button>
+                <button onClick={()=>{setIndex(2)}} className={"px-[60px] py-[15px] rounded-[10px] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)] text-[18px] font-bold "+(index==2?"bg-btnbgColor text-white":"bg-white text-btnbgColor")}>陰性</button>
             </div>
             <div className="flex justify-center mt-[20px]">
-                <button onClick={()=>{setIndex(3)}} className={"px-[60px] py-[15px] rounded-[10px] "+(index==3?"bg-btnbgColor text-white":"bg-white text-btnbgColor")}>陽性</button>
+                <button onClick={()=>{setIndex(3)}} className={"px-[34px] py-[15px] rounded-[10px] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)] text-[18px] font-bold "+(index==3?"bg-btnbgColor text-white":"bg-white text-btnbgColor")}>わからない</button>
             </div>
-            <div className="my-[24px]">
-                <DefaultButton text="記録をする" buttonClick={create}></DefaultButton>
+            <div className={"my-[24px] "+(index==0?"opacity-25":"")}>
+                <DefaultButton text="記録をする" buttonClick={()=>{
+                    if(index!=0){
+                        create();
+                    }
+                }}></DefaultButton>
             </div>
         </div>
     );

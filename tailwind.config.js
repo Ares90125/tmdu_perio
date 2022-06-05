@@ -29,7 +29,8 @@ module.exports = {
       "dateColor":"#C7CED1",
       "imageColor":"#C4C4C4",
       "checkColor":"#D64A4A",
-      "notifyColor":"#ef5350"
+      "notifyColor":"#ef5350",
+      "recordColor":"#FFFAEE"
     }
   },
   plugins: [],

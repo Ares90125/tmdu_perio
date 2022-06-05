@@ -114,7 +114,7 @@ const Register = () => {
                         新規患者登録
                     </p>
                 </div>
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center ml-[20px]">
                     <p className="text-[20px] font-bold pr-[56px]">
                           患者氏名
                     </p>
