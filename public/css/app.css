@@ -496,27 +496,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .right-\[40\%\] {
   right: 40%;
 }
-.top-\[\] {
-  top: ;
-}
-.top-\[76px\] {
-  top: 76px;
-}
-.top-\[0px\] {
-  top: 0px;
-}
-.top-\[50\%\] {
-  top: 50%;
-}
-.top-\[20\%\] {
-  top: 20%;
-}
-.right-\[\] {
-  right: ;
-}
-.right-\[50\%\] {
-  right: 50%;
-}
 .z-50 {
   z-index: 50;
 }
@@ -599,17 +578,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 24px;
   margin-bottom: 24px;
 }
-.mx-\[230px\] {
-  margin-left: 230px;
-  margin-right: 230px;
-}
-.mx-\[\] {
-  margin-left: ;
-  margin-right: ;
-}
 .mx-\[28px\] {
   margin-left: 28px;
   margin-right: 28px;
+}
+.mx-\[230px\] {
+  margin-left: 230px;
+  margin-right: 230px;
 }
 .mt-4 {
   margin-top: 1rem;
@@ -782,14 +757,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-\[177px\] {
   height: 177px;
 }
-.h-\[344\] {
-  height: 344;
-}
 .h-\[344px\] {
   height: 344px;
-}
-.h-\[152px\] {
-  height: 152px;
 }
 .min-h-full {
   min-height: 100%;
@@ -836,14 +805,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-\[2\%\] {
   width: 2%;
 }
+.w-auto {
+  width: auto;
+}
 .w-\[195px\] {
   width: 195px;
 }
 .w-\[382px\] {
   width: 382px;
-}
-.w-auto {
-  width: auto;
 }
 .shrink {
   flex-shrink: 1;
@@ -1215,10 +1184,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 62px;
   padding-right: 62px;
 }
-.px-\[\] {
-  padding-left: ;
-  padding-right: ;
-}
 .pt-\[10px\] {
   padding-top: 10px;
 }
@@ -1278,6 +1243,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pt-\[12px\] {
   padding-top: 12px;
+}
+.pt-\[26px\] {
+  padding-top: 26px;
 }
 .pt-\[54px\] {
   padding-top: 54px;
@@ -1353,12 +1321,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pt-12 {
   padding-top: 3rem;
-}
-.pb-\[30px\] {
-  padding-bottom: 30px;
-}
-.pt-\[26px\] {
-  padding-top: 26px;
 }
 .text-left {
   text-align: left;

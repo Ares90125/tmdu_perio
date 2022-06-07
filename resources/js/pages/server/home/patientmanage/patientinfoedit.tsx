@@ -38,14 +38,14 @@ const PatientInfoEdit = () => {
                     患者情報編集
                 </p>
             </div>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center  ml-[20px]">
                 <p className="text-[20px] font-bold pr-[56px]">
                     患者氏名
                 </p>
                 <input value={name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setUserName(e.target.value); }} className="w-[382px] tracking-[.3em] rounded-xl text-base  border border-adminborderColor focus:outline-none focus:border-black bg-white px-4 py-3 border-cyan-400 font-semibold" />
             </div>
             <div className="flex items-center pt-[30px] justify-center">
-                <p className="text-[20px] font-bold pr-[40px]">
+                <p className="text-[20px] font-bold pr-[56px]">
                     診察券番号
                 </p>
                 <input value={ticketid} onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setTicketId(e.target.value); }} className="w-[382px] tracking-[.3em] rounded-xl text-base  border border-adminborderColor focus:outline-none focus:border-black bg-white px-4 py-3 border-cyan-400 font-semibold" />

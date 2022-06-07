@@ -15,8 +15,8 @@ const PatientEdit = () => {
         { label: "patientid", key: "patientid" },
         { label: "患者名", key: "name" },
         { label: "入力日時", key: "date" },
-        { label: "タイムス タンプ", key: "timestamp" },
-        { label: "記録デー", key: "type" },
+        { label: "タイムスタンプ", key: "timestamp" },
+        { label: "記録データ", key: "type" },
         { label: "データ", key: "info" },
         { label: "画像", key: "image" },
     ];

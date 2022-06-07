@@ -53,9 +53,9 @@ class ClientAuthController extends Controller
         }
         $user=Users::Where([
             'ticketid'  =>  $request['ticketid']
-        ])->first();
-        if ($user) {
-            return response()->json(['success'   =>  false,'message' => 'チケットIDは一意である必要があります'], 200);
+        ])->count();
+        if ($user>1) {
+            return response()->json(['success'   =>  false,'message' => 'TickIDはUniqueと思います。同じTickIDですのでエラーメッセージが出ます'], 200);
         }
         $update["name"]=$request["name"];
         $update["ticketid"]=$request["ticketid"];
@@ -107,7 +107,7 @@ class ClientAuthController extends Controller
             'ticketid'  =>  $request['ticketid']
         ])->first();
         if ($user) {
-            return response()->json(['success'   =>  false,'message' => 'チケットIDは一意である必要があります'], 200);
+            return response()->json(['success'   =>  false,'message' => 'TickIDはUniqueと思います。同じTickIDですのでエラーメッセージが出ます'], 200);
         }
         $permitted_chars = 'abcdefghijklmnopqrstuvwxyz';
         $userid=substr(str_shuffle($permitted_chars), 0, 1);
