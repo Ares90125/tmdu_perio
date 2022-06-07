@@ -28,10 +28,14 @@ export const breshtimeslice = createSlice({
                 "time":action.payload[i]["time"],
             });
         }
+    },
+    removeindex: (state, action: PayloadAction<number>) => {
+        state.value.splice(0);
+        state.value.splice(action.payload,1);
     }
   },
 })
 
-export const { changedata} = breshtimeslice.actions
+export const { changedata,removeindex} = breshtimeslice.actions
 
 export default breshtimeslice.reducer

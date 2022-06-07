@@ -4,7 +4,7 @@ import { BiArrowBack, BiCalendar } from "react-icons/bi";
 import DefaultButton from "../../../../components/button";
 import axios, { AxiosResponse } from "axios";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
-import { changedata } from "../../../../redux/reducers/breshtimeslice";
+import { changedata, removeindex } from "../../../../redux/reducers/breshtimeslice";
 import BreshTime from "../../../../components/breshtime";
 
 const BreshNotify = () => {
@@ -13,7 +13,7 @@ const BreshNotify = () => {
     const dispatch = useAppDispatch();
     const [visible, setVisible] = useState(false);
     const [id, setId] = useState(-1);
-    const [time1, settime1] = useState("");
+    const [time1, settime1] = useState("08:00");
     const loadbreshtime = () => {
         const config = {
             headers: {
@@ -32,15 +32,16 @@ const BreshNotify = () => {
 
         }
     }
-    const deletebreshtime = (index:number) => {
+    const deletebreshtime = (id:number,index:number) => {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
             }
         };
         try {
-            axios.get(`/api/client/deletebreshtime?id=${index}`, config).then((response: AxiosResponse) => {
+            axios.get(`/api/client/deletebreshtime?id=${id}`, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
+                    dispatch(removeindex(index));
                     window.alert("success");
                 } else {
 
@@ -104,7 +105,7 @@ const BreshNotify = () => {
                 {
                     data.map((element, index) =>
                         <div key={index}>
-                            <BreshTime deleteClick={()=>{deletebreshtime(index);}} time={element.time}  buttonClick={(visible) => { setVisible(visible); setId(index);settime1(element.time); }} />
+                            <BreshTime deleteClick={()=>{deletebreshtime(element.id,index);}} time={element.time}  buttonClick={(visible) => { setVisible(visible); setId(index);settime1(element.time); }} />
                         </div>
 
                     )
@@ -124,7 +125,7 @@ const BreshNotify = () => {
                         <img src={'/images/quit.svg'} className="w-full h-full" />
                     </div>
                 </button>
-                <input style={{ WebkitAppearance: "none" }} className="h-[43px] mt-[325px] focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full bg-white" type="time" value={time1} onChange={(ev) => { settime1(ev.target.value); }} />
+                <input style={{ WebkitAppearance: "none" }} className="flex items-center justify-center h-[43px] mt-[325px] focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full bg-white" type="time" value={time1} onChange={(ev) => { settime1(ev.target.value); }} />
                 <div className="my-[50px]">
                     <DefaultButton text="記録をする" buttonClick={create}></DefaultButton>
                 </div>

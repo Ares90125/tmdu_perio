@@ -66,7 +66,7 @@ const Sleep = () => {
                         </li>
                     </ul>
                 </div>
-                  <input style={{WebkitAppearance: "none"}} className="flex items-center justify-center  focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time1} onChange={(ev) => {settime1(ev.target.value);}} />
+                <input style={{WebkitAppearance: "none"}} className="flex items-center justify-center  focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time1} onChange={(ev) => {settime1(ev.target.value);}} />
                 <div className="mt-8,mb-4">
                     <p className="text-sm text-mainColor text-left mt-6 mb-2">起床時間</p>
                 </div>
