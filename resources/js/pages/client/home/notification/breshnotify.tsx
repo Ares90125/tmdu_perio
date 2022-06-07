@@ -118,7 +118,7 @@ const BreshNotify = () => {
             </div>
             <div className={"w-full h-screen bg-opacity-70 bg-black fixed top-0 right-0 px-[30px] " + (visible ? "z-50 opacity-100 pointer-events-auto" : "z-0 opacity-0 pointer-events-none")}>
                 <button onClick={() => {
-                    setVisible(false); settime1('');
+                    setVisible(false); settime1('08:00');
                     setId(-1);
                 }} className={"absolute right-0 mt-[30px] px-[15px]"}>
                     <div className="text-white rounded-md w-[1.875rem] h-[1.875rem] p-[3px]">
