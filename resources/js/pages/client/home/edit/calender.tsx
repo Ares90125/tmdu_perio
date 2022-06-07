@@ -20,8 +20,7 @@ const Calender = () => {
         document.addEventListener("click", function(e) {
             const target=e.target as HTMLTableColElement;
             if(target.classList.contains("p-calendar__td") || target.classList.contains("today")) {
-                window.alert(new Date(target.dataset.date!));
-                dispatch(changedate(new Date(target.dataset.date!+"T00:00:00")));
+                dispatch(changedate(new Date(target.dataset.date!.replace(/-/g, "/"))));
                 navigate('../');
                 // alert('クリックした日付は' +target.dataset.date+ 'です')
             }
