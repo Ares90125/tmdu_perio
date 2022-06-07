@@ -51,7 +51,7 @@ function SetMeal(props: ButtonProps) {
         }
     }
     return (
-        <div>
+        <div className="w-full overflow-hidden">
             <p className="text-4xl text-mainColor py-8 font-black text-center pb-2">{"記録を編集する"}</p>
             <p className="text-base text-mainColor pt-2 pb-4 font-light text-center">{"歯磨きや食事の内容を記録しましょう"}</p>
             <TypeHeader text="食事"/>
