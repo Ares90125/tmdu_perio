@@ -72,7 +72,7 @@ function Meal(props: ButtonProps) {
         getCurrentTime();
     }, 1000);
     return (
-        <div>
+        <div className="w-full overflow-hidden">
             <div className="mt-4 pb-4 mx-auto rounded-lg font-bold text-center text-lg text-mainColor w-4/5 border-solid border border-mainColor bg-white" >
                 {
                     (imageurl!="")?<img src={imageurl} alt="" className="w-full p-2"/>:
