@@ -63,7 +63,7 @@ const PatientEdit = () => {
             switch(data[i].type){
                 case 1:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"起床", info: "", image: "" };
                         csvindex++;
-                        csv[i] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"朝のお口の状態", info: MO_STATUS[Number(data[i].value!) - 1], image: "" };
+                        csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"朝のお口の状態", info: MO_STATUS[Number(data[i].value!) - 1], image: "" };
                         csvindex++;
                         break;
                 case 2:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, date: data[i].date?.toString() + " " + data[i].time, timestamp: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "歯磨き記録", info: getstate(data[i].value!), image: "" };csvindex++;break;
