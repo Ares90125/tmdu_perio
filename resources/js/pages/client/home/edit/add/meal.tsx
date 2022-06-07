@@ -58,7 +58,7 @@ function Meal(props: ButtonProps) {
     }
     return (
         <div className="w-full overflow-hidden">
-            {/* <div className="mt-4 pb-4 mx-auto rounded-lg font-bold text-center text-lg text-mainColor w-4/5 border-solid border border-mainColor bg-white" >
+            <div className="mt-4 pb-4 mx-auto rounded-lg font-bold text-center text-lg text-mainColor w-4/5 border-solid border border-mainColor bg-white" >
                 {
                     (imageurl!="")?<img src={imageurl} alt="" className="w-full p-2"/>:
                     <div className={(imageurl!="")?"opacity-0":""}>
@@ -71,7 +71,7 @@ function Meal(props: ButtonProps) {
                     <label htmlFor="image_upload" className="bg-white px-1 border-solid border border-mainColor text-xl rounded-full my-2">撮影／アップロード</label>
                     <input type="file" className="opacity-0 w-0" id="image_upload" accept=".gif,.jpg,.jpeg,.png" onChange={(e) => {handleSetImage(e);}} />
                 </div>
-            </div> */}
+            </div>
             <div className="mt-10 w-4/5 mx-auto">
                 <p className="text-lg text-mainColor font-bold"> 食事のメモ</p>
             <TextareaAutosize aria-label="minimum height" className="text-mainColor" minLength={3} maxLength={40} minRows={4} placeholder={"家系ラーメン"} onChange={(value)=>{setText(value.target.value)}} style={{ width: '100%', borderRadius: 8, border: '2px solid #88BFBF', padding: 5 }} />
