@@ -9,6 +9,7 @@ import TypeHeader from "../../../../components/type";
 import DefaultButton from "../../../../components/button";
 import {  useAppSelector } from '../../../.././redux/hooks'
 import Timepicker from "../../../../components/timepicker";
+import { MO_STATUS } from "../../../../redux/type";
 
 const Status = () => {
     const index=useAppSelector((state) => state.index.value);
@@ -46,10 +47,12 @@ const Status = () => {
                         <label className="c-mouthStatus-label">
                             <select id="resizing_select" value={selectindex!} className="flex items-center justify-center c-mouthStatus__container-status c-timeSelect__timeInput bg-white text-mainColor text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center object-center"
                                 onChange={(e) => setSelect(e.target.value)}>
-                                <option className="c-mouthStatus-choices" value={1}>すっきりしている</option>
-                                <option className="c-mouthStatus-choices" value={2}>特に問題なし</option>
-                                <option className="c-mouthStatus-choices" value={3}>軽い違和感</option>
-                                <option className="c-mouthStatus-choices"  value={4}> 痛みあり</option>
+                                <option className="c-mouthStatus-choices" value={1}>{MO_STATUS[0]}</option>
+                                <option className="c-mouthStatus-choices" value={2}>{MO_STATUS[1]}</option>
+                                <option className="c-mouthStatus-choices" value={3}>{MO_STATUS[2]}</option>
+                                <option className="c-mouthStatus-choices" value={4}> {MO_STATUS[3]}</option>
+                                <option className="c-mouthStatus-choices" value={5}> {MO_STATUS[4]}</option>
+                                <option className="c-mouthStatus-choices" value={6}> {MO_STATUS[5]}</option>
                             </select>
                             <select id="width_tmp_select w-0" style={{display:"none"}}>
                                 <option id="width_tmp_option"></option>

@@ -1,7 +1,14 @@
 import React, { ChangeEvent, useState } from "react";
 import axios, { AxiosResponse } from 'axios';
+import {useNavigate } from 'react-router-dom';
 import { Button, Card, CardContent, CardActions, Container, TextareaAutosize, Typography } from '@mui/material';
 import DefaultButton from "../../../../components/button";
+import MuiButton from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 interface ButtonProps {
     // text: string;
@@ -9,6 +16,15 @@ interface ButtonProps {
 }
 
 function Meal(props: ButtonProps) {
+    const navigate = useNavigate();
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+
+      const handleClose = () => {
+        setOpen(false);
+      };
     const [image, setImage] = useState<any | null>(null);
     const [statetext,setText]=useState("");
     const [imageurl,setImageurl]=useState("");
@@ -45,14 +61,14 @@ function Meal(props: ButtonProps) {
         try {
             axios.post('/api/client/createfile', formData, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/client/home/edit/');
                 } else {
-
+                    handleClickOpen();
                 }
             });
         }
         catch (err) {
-
+            handleClickOpen();
         }
     }
     function getCurrentDate() {
@@ -61,7 +77,7 @@ function Meal(props: ButtonProps) {
         let date = newDate.getDate();
         let month = newDate.getMonth() + 1;
         let day = newDate.getDay();
-        return `${month}月${date<10?date+"0":date}日(${weekday[day]})`;
+        return `${month}月${date<10?"0"+date:date}日(${weekday[day]})`;
     }
     function getCurrentTime() {
         let newDate = new Date();
@@ -100,6 +116,26 @@ function Meal(props: ButtonProps) {
                 </Typography>
             </Container>
             <DefaultButton text="記録をする" buttonClick={create}></DefaultButton>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                 >
+                <DialogTitle id="alert-dialog-title">
+                {"エラー"}
+                </DialogTitle>
+                <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    正常に処理できませんでした。ページを再読み込みして再度お試しください。
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <MuiButton onClick={handleClose} autoFocus>
+                    確認
+                </MuiButton>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };

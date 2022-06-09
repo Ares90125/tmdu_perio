@@ -6,7 +6,22 @@ import {useNavigate } from 'react-router-dom';
 import {  setclient,setname } from '../../.././redux/reducers/authentication'
 import {  useAppDispatch } from '../../.././redux/hooks'
 import  setAuthToken from '../../.././redux/utils/setauthtoken'
+import MuiButton from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 const Login = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+
+      const handleClose = () => {
+        setOpen(false);
+      };
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [userid,setUserId]=useState("");
@@ -32,12 +47,12 @@ const Login = () => {
                     dispatch(setname(response.data["data"]["username"]));
                     navigate('/');
                 }else{
-
+                    handleClickOpen();
                 }
             });
         }
         catch(err){
-
+            handleClickOpen();
         }
     }
     const signUp=(id:string,pass:string)=>{
@@ -64,7 +79,29 @@ const Login = () => {
                 <p className="pt-5 text-sm font-bold  pb-2 text-mainColor">パスワード</p>
                 <input   className="tracking-[.3em] rounded-xl text-base  border border-borderColor focus:outline-none focus:border-focusColor bg-white px-4 py-3 border-cyan-400 font-semibold w-full" placeholder="PASSWORD" type="password" value={password} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setPassword(e.target.value);}}/>
                 <div className="my-10">
-                <div  className=" btn btn-primary"><DefaultButton buttonClick={()=>{logIn(userid,password)}} text="ログイン"/></div>
+                <div  className=" btn btn-primary">
+                    <DefaultButton buttonClick={()=>{logIn(userid,password)}} text="ログイン"/>
+                    <Dialog
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">
+                        {"ログインエラー"}
+                        </DialogTitle>
+                        <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                        ログインIDまたはパスワードが正しくありません。ご確認の上再度お試しください。
+                        </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                        <MuiButton onClick={handleClose} autoFocus>
+                             確認
+                        </MuiButton>
+                        </DialogActions>
+                    </Dialog>
+                    </div>
                 </div>
                 <p className="text-center text-base font-bold pb-2 text-black">パスワードがわからない場合は、<br></br>お問い合わせをお願いします</p>
             </div>

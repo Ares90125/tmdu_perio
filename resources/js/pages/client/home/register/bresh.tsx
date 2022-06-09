@@ -4,7 +4,24 @@ import axios, { AxiosResponse } from 'axios';
 import BreshComponent from "../../../../components/breshcomponent";
 import DefaultButton from "../../../../components/button";
 import ToolButton from "../../../../components/toolcomponent";
+import MuiButton from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import {useNavigate } from 'react-router-dom';
+
 const Bresh = () => {
+    const navigate = useNavigate();
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+
+      const handleClose = () => {
+        setOpen(false);
+      };
     const [index_1, setIndex_1] = useState(false);
     const [index_2, setIndex_2] = useState(false);
     const [index_3, setIndex_3] = useState(false);
@@ -17,7 +34,7 @@ const Bresh = () => {
         let date = newDate.getDate();
         let month = newDate.getMonth() + 1;
         let day = newDate.getDay();
-        return `${month}月${date<10?date+"0":date}日(${weekday[day]})`;
+        return `${month}月${date<10?"0"+date:date}日(${weekday[day]})`;
     }
     function setTime(val:number){
         if(tabindex==val){
@@ -46,14 +63,14 @@ const Bresh = () => {
         try {
             axios.post('/api/client/create', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/client/home/edit/');
                 } else {
-
+                    handleClickOpen();
                 }
             });
         }
         catch (err) {
-
+            handleClickOpen();
         }
     }
     return (
@@ -82,6 +99,26 @@ const Bresh = () => {
             <DefaultButton text="記録をする" buttonClick={() => {
                 create();
             }}></DefaultButton>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                 >
+                <DialogTitle id="alert-dialog-title">
+                {"エラー"}
+                </DialogTitle>
+                <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    正常に処理できませんでした。ページを再読み込みして再度お試しください。
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <MuiButton onClick={handleClose} autoFocus>
+                    確認
+                </MuiButton>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };

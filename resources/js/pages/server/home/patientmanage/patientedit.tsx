@@ -7,8 +7,22 @@ import { changedata, changedate } from '../../../.././redux/reducers/dataslice'
 import AdminDefaultButton from "../../../../components/adminbutton";
 import { BRESH_TIME,SELF, BRESH_TOOL, MO_STATUS, PROGRAM } from "../../../../redux/type";
 import { CSVLink } from "react-csv";
+import MuiButton from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const PatientEdit = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+
+      const handleClose = () => {
+        setOpen(false);
+      };
     const [lastpage,setLastPage]=useState(1);
     const headers = [
         { label: "dataid", key: "dataid" },
@@ -188,7 +202,29 @@ const PatientEdit = () => {
                     </tbody>
                 </table>
                 <div className="flex flex-row-reverse">
-                    <AdminDefaultButton text="パスワードを再発行する" buttonClick={resetPass} />
+                    <AdminDefaultButton text="パスワードを再発行する" buttonClick={handleClickOpen} />
+                    <Dialog
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">
+                        {"パスワード変更"}
+                        </DialogTitle>
+                        <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                        本当にパスワードを変更しますか？
+                        </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                        <MuiButton onClick={handleClose}>キャンセル</MuiButton>
+                        <MuiButton onClick={()=>{resetPass();handleClose();}} autoFocus>
+                            変更する
+                        </MuiButton>
+                        </DialogActions>
+                    </Dialog>
+
                 </div>
                 <p className="text-[16px] font-bold pt-[56px] pb-[8px]">
                     患者メモ

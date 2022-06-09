@@ -113,7 +113,7 @@ class NotificationController extends Controller
                     ['date' ,"=", date('Y-m-d',$date)],
                     ["time","<=",$time],
                     ["time",">=",$startbreshtime],
-                    ["type","=",2]
+                    ["type","=",1]
                 ])->first();
                 if(!$currentbresh){
                     $breshnoti=new Notifications;
@@ -175,13 +175,15 @@ class NotificationController extends Controller
                 'type' =>"2"
             ])->first();
             if(!$isinvitevbreshcount){
-                $selfcheck=new Notifications;
-                $selfcheck['date'] =$request["date"];
-                $selfcheck['time']="00:00:00";
-                $selfcheck['userid']=$user->id;
-                $selfcheck["type"]=2;
-                $selfcheck["value"]="3";
-                $selfcheck->save();
+                if(Carbon::parse($time)->format('H')>=8){
+                    $selfcheck=new Notifications;
+                    $selfcheck['date'] =$request["date"];
+                    $selfcheck['time']="08:00:00";
+                    $selfcheck['userid']=$user->id;
+                    $selfcheck["type"]=2;
+                    $selfcheck["value"]="3";
+                    $selfcheck->save();
+                }
             }
         }
         // return response()->json([
@@ -195,7 +197,7 @@ class NotificationController extends Controller
             'date'  => date('Y-m-d',$date),
             'type' =>"3"
         ])->first();
-        if(!$isinvitevbreshcount){
+        if(!$isinvitevbreshcount&&(Carbon::parse($user->created_up)->diffInDays(Carbon::parse($date))!=0)&&(Carbon::parse($time)->format('H')>=8)){
             $count=Data::Where([
                 'userid'  => $user->id,
                 'date'  => date('Y-m-d', strtotime('-1 day', $date)),
@@ -203,7 +205,7 @@ class NotificationController extends Controller
             ])->count();
             $breshcout=new Notifications;
             $breshcout['date'] =$request["date"];
-            $breshcout['time']="00:00:00";
+            $breshcout['time']="08:00:00";
             $breshcout['userid']=$user->id;
             $breshcout["type"]=3;
             $breshcout["value"]=$count;

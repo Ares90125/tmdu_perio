@@ -4,8 +4,26 @@ import Timepicker from "../../../../components/timepicker";
 import DefaultButton from "../../../../components/button";
 import { textTransform } from "@mui/system";
 import $ from 'jquery'
+import { MO_STATUS } from "../../../../redux/type";
+import MuiButton from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import {useNavigate } from 'react-router-dom';
 
 const Sleep = () => {
+    const navigate = useNavigate();
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+
+      const handleClose = () => {
+        setOpen(false);
+      };
+    const[visible,setvisible]=useState(true);
     const [tabindex, setTabIndex] = useState(1);
     const [selectindex, setSelect] = useState('1');
     const [time1, settime1] = useState("23:00");
@@ -26,7 +44,29 @@ const Sleep = () => {
         try {
             axios.post('/api/client/createsleep', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/client/home/edit/');
+                } else {
+                    handleClickOpen();
+                }
+            });
+        }
+        catch (err) {
+            handleClickOpen();
+        }
+    }
+    const IsRegister = () => {
+        let date = new Date();
+        ; const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        const body = JSON.stringify({
+            "update": date.getFullYear() + ":" + (date.getMonth() + 1) + ":" + date.getDate()});
+        try {
+            axios.post('/api/client/isregister', body, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
+                    setvisible(false);
                 } else {
 
                 }
@@ -44,6 +84,7 @@ const Sleep = () => {
         return last ? `${month}月${date - 1}日` : `${month}月${date}日`;
     }
     useEffect(() => {
+        IsRegister();
         $(document).ready(function() {
             $('#resizing_select').change(function(){
                $("#width_tmp_option").html($('#resizing_select option:selected').text());
@@ -77,18 +118,47 @@ const Sleep = () => {
                         <label className="c-mouthStatus-label">
                             <select id="resizing_select" value={selectindex} className="flex items-center justify-center c-mouthStatus__container-status c-timeSelect__timeInput bg-white text-mainColor text-[26px] font-bold w-full rounded-lg border border-mainColor    outline-0 text-center object-center"
                                 onChange={(e) => setSelect(e.target.value)}>
-                                <option className="c-mouthStatus-choices" value={1}>すっきりしている</option>
-                                <option className="c-mouthStatus-choices" value={2}>特に問題なし</option>
-                                <option className="c-mouthStatus-choices" value={3}>軽い違和感</option>
-                                <option className="c-mouthStatus-choices"  value={4}> 痛みあり</option>
+                                <option className="c-mouthStatus-choices" value={1}>{MO_STATUS[0]}</option>
+                                <option className="c-mouthStatus-choices" value={2}>{MO_STATUS[1]}</option>
+                                <option className="c-mouthStatus-choices" value={3}>{MO_STATUS[2]}</option>
+                                <option className="c-mouthStatus-choices" value={4}> {MO_STATUS[3]}</option>
+                                <option className="c-mouthStatus-choices" value={5}> {MO_STATUS[4]}</option>
+                                <option className="c-mouthStatus-choices" value={6}> {MO_STATUS[5]}</option>
                             </select>
                             <select id="width_tmp_select w-0" style={{display:"none"}}>
                                 <option id="width_tmp_option"></option>
                             </select>
                         </label>
                     </div>
-
-                    <DefaultButton text="記録をする" buttonClick={create}></DefaultButton>
+                    <div className={(visible==false?"opacity-25":"")}>
+                    <DefaultButton text="記録をする" buttonClick={
+                        ()=>{
+                            if(visible==true){
+                                create();
+                            }
+                        }
+                    }></DefaultButton>
+                        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                            >
+                            <DialogTitle id="alert-dialog-title">
+                            {"エラー"}
+                            </DialogTitle>
+                            <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                正常に処理できませんでした。ページを再読み込みして再度お試しください。
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <MuiButton onClick={handleClose} autoFocus>
+                                確認
+                            </MuiButton>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
                 </div>
             </div>
         </div>

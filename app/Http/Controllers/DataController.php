@@ -85,6 +85,22 @@ class DataController extends Controller
             ]
         ]);
     }
+    public function isregister(Request $req){
+        $user = auth()->user();
+        $isregister=Data::Where([
+            'userid'  => $user->id,
+            'date'  => date('Y-m-d',$req["date"]),
+            'type' =>"1"
+        ])->first();
+        if($isregister){
+            return response()->json([
+                'success'   =>  true
+            ]);
+        }
+        return response()->json([
+            'success'   =>  false
+        ]);
+    }
     public function createsleep(Request $req){
         $user = auth()->user();
         $data1=new Data;

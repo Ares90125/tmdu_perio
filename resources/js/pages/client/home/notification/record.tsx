@@ -5,8 +5,24 @@ import DefaultButton from "../../../../components/button";
 import TypeHeader from "../../../../components/type";
 import { useAppSelector } from "../../../../redux/hooks";
 import axios, { AxiosResponse } from "axios";
+import MuiButton from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import {useNavigate } from 'react-router-dom';
 
 const Record = () => {
+    const navigate = useNavigate();
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+
+      const handleClose = () => {
+        setOpen(false);
+      };
     const name=useAppSelector((state) => state.authenticater.name);
     const [image, setImage] = useState<any | null>(null);
     const [imageurl, setImageurl] = useState("");
@@ -32,14 +48,14 @@ const Record = () => {
         try {
             axios.post('/api/client/createself', formData, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/client/home/edit/');
                 } else {
-
+                    handleClickOpen();
                 }
             });
         }
         catch (err) {
-
+            handleClickOpen();
         }
     }
     return (
@@ -95,6 +111,26 @@ const Record = () => {
                         create();
                     }
                 }}></DefaultButton>
+                <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                 >
+                <DialogTitle id="alert-dialog-title">
+                {"エラー"}
+                </DialogTitle>
+                <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    正常に処理できませんでした。ページを再読み込みして再度お試しください。
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <MuiButton onClick={handleClose} autoFocus>
+                    確認
+                </MuiButton>
+                </DialogActions>
+            </Dialog>
             </div>
         </div>
     );

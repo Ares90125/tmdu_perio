@@ -7,7 +7,22 @@ import {  setadmin } from '../../.././redux/reducers/authentication'
 import  setAuthToken from '../../.././redux/utils/setauthtoken'
 import {  useAppDispatch } from '../../.././redux/hooks'
 import {useNavigate } from 'react-router-dom';
+import MuiButton from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 const Login = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+
+      const handleClose = () => {
+        setOpen(false);
+      };
     const navigate = useNavigate();
     const [userid,setUserId]=useState("");
     const dispatch = useAppDispatch();
@@ -31,11 +46,12 @@ const Login = () => {
                     navigate('/admin/main');
                     navigate(0);
                 }else{
-
+                    handleClickOpen();
                 }
             });
         }
         catch(err){
+            handleClickOpen();
         }
     }
     return (
@@ -48,6 +64,26 @@ const Login = () => {
                 <input   className="tracking-[.3em] rounded-xl text-base  border border-adminborderColor focus:outline-none focus:border-focusColor bg-[background: #F9F9F9] px-4 py-3 border-cyan-400 font-semibold w-full" placeholder="PASSWORD" type="password" value={password} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setPassword(e.target.value);}}/>
                 <div className="my-20 flex justify-center ">
                      <AdminDefaultButton buttonClick={logIn} text="ログイン"/>
+                     <Dialog
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">
+                        {"ログインエラー"}
+                        </DialogTitle>
+                        <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                        ログインIDまたはパスワードが正しくありません。ご確認の上再度お試しください。
+                        </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                        <MuiButton onClick={handleClose} autoFocus>
+                             確認
+                        </MuiButton>
+                        </DialogActions>
+                    </Dialog>
                 </div>
             </div>
         </div>
