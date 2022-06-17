@@ -126,7 +126,7 @@ const Register = () => {
                     </p>
                     <input onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setTicketId(e.target.value);}} className="w-[382px] tracking-[.3em] rounded-xl text-base  border border-adminborderColor focus:outline-none focus:border-black bg-white px-4 py-3 border-cyan-400 font-semibold" />
                 </div>
-                {<p className="text-xl text-dangerColor flex justify-center">{message}</p>}
+                {<p className="text-xl text-redColor flex justify-center">{message}</p>}
                 <div className="pt-[140px] flex justify-center">
                      <AdminSmButton text="患者登録" buttonClick={register} px={20}/>
                 </div>

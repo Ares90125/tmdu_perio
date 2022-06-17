@@ -16,9 +16,9 @@ const Alignemnt = () => {
             <p className="text-6xl text-teal-700 pt-40 font-semibold text-center pb-32">PERIO</p>
             <div className="px-12">
                 <p className="mb-15 text-xl font-bold text-teal-700 pb-28 text-center"> LINEと連携する</p>
-                <DefaultButton buttonClick={()=>{window.alert("Reset")}} text="連携"/>            
+                <DefaultButton buttonClick={()=>{window.alert("Reset")}} text="連携"/>
             </div>
-        </div>        
+        </div>
     );
 };
 

@@ -13,7 +13,7 @@ const BreshNotify = () => {
     const dispatch = useAppDispatch();
     const [visible, setVisible] = useState(false);
     const [id, setId] = useState(-1);
-    const [time1, settime1] = useState("08:00");
+    const [time1, settime1] = useState("__:__");
     const loadbreshtime = () => {
         const config = {
             headers: {
@@ -42,7 +42,8 @@ const BreshNotify = () => {
             axios.get(`/api/client/deletebreshtime?id=${id}`, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
                     dispatch(removeindex(index));
-                    window.alert("success");
+                    setVisible(false); settime1('__:__');
+                    setId(-1);
                 } else {
 
                 }
@@ -68,7 +69,8 @@ const BreshNotify = () => {
                 const body = JSON.stringify({ "time": time1 });
                 axios.post('/api/client/createbreshtime', body, config).then((response: AxiosResponse) => {
                     if (response.data["success"] == true) {
-                        window.alert("success");
+                        setVisible(false); settime1('__:__');
+                        setId(-1);
                     } else {
                     }
                 });
@@ -77,7 +79,8 @@ const BreshNotify = () => {
                 const body = JSON.stringify({ "time": time1,"id":data[id].id });
                 axios.post('/api/client/updatebreshtime', body, config).then((response: AxiosResponse) => {
                     if (response.data["success"] == true) {
-                        window.alert("success");
+                        setVisible(false); settime1('__:__');
+                    setId(-1);
                     } else {
 
                     }
@@ -118,7 +121,7 @@ const BreshNotify = () => {
             </div>
             <div className={"w-full h-screen bg-opacity-70 bg-black fixed top-0 right-0 px-[30px] " + (visible ? "z-50 opacity-100 pointer-events-auto" : "z-0 opacity-0 pointer-events-none")}>
                 <button onClick={() => {
-                    setVisible(false); settime1('08:00');
+                    setVisible(false); settime1('__:__');
                     setId(-1);
                 }} className={"absolute right-0 mt-[30px] px-[15px]"}>
                     <div className="text-white rounded-md w-[1.875rem] h-[1.875rem] p-[3px]">

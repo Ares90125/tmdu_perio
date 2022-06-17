@@ -197,7 +197,7 @@ class NotificationController extends Controller
             'date'  => date('Y-m-d',$date),
             'type' =>"3"
         ])->first();
-        if(!$isinvitevbreshcount&&(Carbon::parse($user->created_up)->diffInDays(Carbon::parse($date))!=0)&&(Carbon::parse($time)->format('H')>=8)){
+        if(!$isinvitevbreshcount&&(Carbon::parse($user->created_at)->diffInDays(Carbon::parse($date))!=0)&&(Carbon::parse($time)->format('H')>=8)){
             $count=Data::Where([
                 'userid'  => $user->id,
                 'date'  => date('Y-m-d', strtotime('-1 day', $date)),

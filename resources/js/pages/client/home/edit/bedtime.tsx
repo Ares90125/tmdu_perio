@@ -4,7 +4,9 @@ import Timepicker from "../../../../components/timepicker";
 import TypeHeader from "../../../../components/type";
 import axios, { AxiosResponse } from 'axios';
 import {useAppSelector } from '../../../.././redux/hooks'
+import { useNavigate } from "react-router-dom";
 const BedTime = () => {
+    const navigate = useNavigate();
     const index=useAppSelector((state) => state.index.value);
     const date = useAppSelector((state) => state.data.date);
     const data=useAppSelector((state) => state.data.value[index]);
@@ -20,7 +22,7 @@ const BedTime = () => {
         try {
             axios.post('/api/client/update', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/client/home/edit/');
                 } else {
 
                 }

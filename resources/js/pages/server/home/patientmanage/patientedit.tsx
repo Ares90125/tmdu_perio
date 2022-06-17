@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../../../../components/button";
-import { Route, Routes, NavLink, Link } from 'react-router-dom';
+import { Route, Routes, NavLink, Link, useNavigate } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
 import { useAppDispatch, useAppSelector } from '../../../.././redux/hooks'
 import { changedata, changedate } from '../../../.././redux/reducers/dataslice'
@@ -15,7 +15,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const PatientEdit = () => {
+    const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
+    const [typing, setTyping] = React.useState(false);
     const handleClickOpen = () => {
         setOpen(true);
       };
@@ -136,7 +138,7 @@ const PatientEdit = () => {
         try {
             axios.post('/api/admin/clientresetInfo', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/admin/main/patientmamage/');
                 } else {
 
                 }
@@ -229,7 +231,7 @@ const PatientEdit = () => {
                 <p className="text-[16px] font-bold pt-[56px] pb-[8px]">
                     患者メモ
                 </p>
-                <textarea onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => { setInfo(e.target.value); }} value={info == null ? "" : info!} className="pb-[15px] resize-none font-[13px] p-[15px] bg-textareaColor border-2 border-adminborderColor w-full" rows={13} placeholder="症状・メモ等" />
+                <textarea onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => { setInfo(e.target.value); setTyping(true);}} value={info == null ? "" : info!} className={"pb-[15px] resize-none font-[13px] p-[15px] border-2 border-adminborderColor w-full "+(typing?"bg-white":"bg-textareaColor")} rows={13} placeholder="症状・メモ等" />
                 <div className="flex flex-row-reverse">
                     <AdminDefaultButton text="保存" buttonClick={resetInfo} />
                 </div>

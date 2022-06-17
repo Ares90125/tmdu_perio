@@ -5,7 +5,9 @@ import BreshComponent from "../../../../../components/breshcomponent";
 import DefaultButton from "../../../../../components/button";
 import ToolButton from "../../../../../components/toolcomponent";
 import {  useAppDispatch,useAppSelector } from '../../../../.././redux/hooks'
+import { useNavigate } from "react-router-dom";
 const Bresh = () => {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const date=useAppSelector((state) => state.adddate.value);
     const [index_1, setIndex_1] = useState(false);
@@ -31,7 +33,7 @@ const Bresh = () => {
         try {
             axios.post('/api/client/create', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/client/home/edit/');
                 } else {
 
                 }

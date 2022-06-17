@@ -94,7 +94,7 @@ const Sleep = () => {
            });
     }, [])
     return (
-        <div className="w-full">
+        <div className={"w-full "+(visible==false?"opacity-25 pointer-events-none":"")}>
             <div className="mt-8 mx-8 font-bold bg-bgColor">
                 <p className="text-sm text-mainColor font-bold text-left pb-2">昨夜の就寝時間</p>
                 <div >

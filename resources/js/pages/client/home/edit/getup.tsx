@@ -4,9 +4,11 @@ import DefaultButton from "../../../../components/button";
 import Timepicker from "../../../../components/timepicker";
 import axios, { AxiosResponse } from 'axios';
 import {  useAppDispatch,useAppSelector } from '../../../.././redux/hooks'
+import { useNavigate } from "react-router-dom";
 //import {  changedataindex } from '../../../.././redux/reducers/dataslice'
 
 const GetUp = () => {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const index=useAppSelector((state) => state.index.value);
     const data=useAppSelector((state) => state.data.value[index]);
@@ -22,7 +24,7 @@ const GetUp = () => {
         try {
             axios.post('/api/client/update', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/client/home/edit/');
                 } else {
 
                 }

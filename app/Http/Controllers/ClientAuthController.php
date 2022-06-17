@@ -107,7 +107,7 @@ class ClientAuthController extends Controller
             'ticketid'  =>  $request['ticketid']
         ])->first();
         if ($user) {
-            return response()->json(['success'   =>  false,'message' => 'TickIDはUniqueと思います。同じTickIDですのでエラーメッセージが出ます'], 200);
+            return response()->json(['success'   =>  false,'message' => 'この診察券番号は既に利用されています。'], 200);
         }
         $permitted_chars = 'abcdefghijklmnopqrstuvwxyz';
         $userid=substr(str_shuffle($permitted_chars), 0, 1);

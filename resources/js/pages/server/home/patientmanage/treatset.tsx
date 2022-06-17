@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, NavLink, Link } from 'react-router-dom';
+import { Route, Routes, NavLink, Link, useNavigate } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
 import AdminSmButton from "../../../../components/admindefaultbutton";
 import { useAppDispatch, useAppSelector } from '../../../.././redux/hooks'
@@ -7,6 +7,7 @@ import { BRESH_TIME, BRESH_TOOL, MO_STATUS,PROGRAM} from "../../../../redux/type
 import { format } from "date-fns";
 
 const TreatSet = () => {
+    const navigate = useNavigate();
     const index = useAppSelector((state) => state.index.value);
     const selectuser = useAppSelector((state) => state.user.value)[index];
     const [selectindex, setSelect] = useState(selectuser.type==null?"1":selectuser.type!.toString());
@@ -22,7 +23,7 @@ const TreatSet = () => {
         try {
             axios.post('/api/admin/resettreat', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/admin/main/patientmamage/');
                 } else {
 
                 }

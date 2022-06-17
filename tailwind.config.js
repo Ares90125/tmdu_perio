@@ -30,7 +30,8 @@ module.exports = {
       "imageColor":"#C4C4C4",
       "checkColor":"#D64A4A",
       "notifyColor":"#ef5350",
-      "recordColor":"#FFFAEE"
+      "recordColor":"#FFFAEE",
+      "redColor":"#FF0000"
     }
   },
   plugins: [],

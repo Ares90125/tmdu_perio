@@ -5,8 +5,10 @@ import BreshComponent from "../../../../components/breshcomponent";
 import ToolButton from "../../../../components/toolcomponent";
 import {  useAppSelector } from '../../../.././redux/hooks';
 import axios, { AxiosResponse } from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const Diary = () => {
+    const navigate = useNavigate();
     const index=useAppSelector((state) => state.index.value);
     const data=useAppSelector((state) => state.data.value[index]);
     const [index_1, setIndex_1] = useState(Boolean(Number(data.value!.split("|")[0].split(',')[0])));
@@ -31,7 +33,7 @@ const Diary = () => {
         try {
             axios.post('/api/client/update', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/client/home/edit/');
                 } else {
 
                 }

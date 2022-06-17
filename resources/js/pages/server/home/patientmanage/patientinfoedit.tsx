@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, NavLink, Link } from 'react-router-dom';
+import { Route, Routes, NavLink, Link, useNavigate } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
 import AdminSmButton from "../../../../components/admindefaultbutton";
 import { useAppDispatch, useAppSelector } from '../../../.././redux/hooks'
 
 const PatientInfoEdit = () => {
+    const navigate = useNavigate();
     const [message, setMessage] = useState("");
     const index = useAppSelector((state) => state.index.value);
     const selectuser = useAppSelector((state) => state.user.value)[index];
@@ -21,7 +22,7 @@ const PatientInfoEdit = () => {
         try {
             axios.post('/api/admin/clientresetname', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/admin/main/patientmamage/');
                 } else {
                     setMessage(response.data["message"]);
                 }

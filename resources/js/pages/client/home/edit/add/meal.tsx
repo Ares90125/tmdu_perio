@@ -3,6 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 import { Button, Card, CardContent, CardActions, Container, TextareaAutosize, Typography } from '@mui/material';
 import DefaultButton from "../../../../../components/button";
 import {  useAppDispatch,useAppSelector } from '../../../../.././redux/hooks'
+import { useNavigate } from "react-router-dom";
 
 interface ButtonProps {
     // text: string;
@@ -10,6 +11,7 @@ interface ButtonProps {
 }
 
 function Meal(props: ButtonProps) {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const date=useAppSelector((state) => state.adddate.value);
     const [time1, settime1] = useState("");
@@ -46,7 +48,7 @@ function Meal(props: ButtonProps) {
         try {
             axios.post('/api/client/createfile', formData, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/client/home/edit/');
                 } else {
 
                 }

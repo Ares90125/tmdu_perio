@@ -5,6 +5,7 @@ import DefaultButton from "../../../../components/button";
 import TypeHeader from "../../../../components/type";
 import Timepicker from "../../../../components/timepicker";
 import {  useAppSelector } from '../../../.././redux/hooks'
+import { useNavigate } from "react-router-dom";
 
 interface ButtonProps {
     // text: string;
@@ -12,6 +13,7 @@ interface ButtonProps {
 }
 
 function SetMeal(props: ButtonProps) {
+    const navigate = useNavigate();
     const index=useAppSelector((state) => state.index.value);
     const data=useAppSelector((state) => state.data.value[index]);
     const [time1, settime1] = useState(data.time);
@@ -40,7 +42,7 @@ function SetMeal(props: ButtonProps) {
         try {
             axios.post('/api/client/updatemeal', formData, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    window.alert("success");
+                    navigate('/client/home/edit/');
                 } else {
 
                 }

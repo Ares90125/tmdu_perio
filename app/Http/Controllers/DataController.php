@@ -42,6 +42,9 @@ class DataController extends Controller
         $data=Data::Where([
             'userid'  =>$request["userid"]
         ])->select('id','date',"time","type","value","updated_at")->orderBy('date')->orderBy('time')->paginate(7);
+        foreach ($data as &$value) {
+            $value['updated_at']=date('Y-m-d H:i',strtotime('+9 hours',strtotime($value['updated_at'])));
+          }
         return response()->json([
             'success'   =>  true,
             'data'      =>  [
