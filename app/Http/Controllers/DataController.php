@@ -30,7 +30,7 @@ class DataController extends Controller
         $data=Data::Where([
             'userid'  => $user->id,
             "date"  => date('Y-m-d',$time)
-        ])->select('id',"time","type","value")->orderBy('time','desc')->get();
+        ])->select('id',"time","type","value")->orderBy('time')->get();
         return response()->json([
             'success'   =>  true,
             'data'      =>  [
@@ -41,7 +41,7 @@ class DataController extends Controller
     public function getuserdata(Request $request){
         $data=Data::Where([
             'userid'  =>$request["userid"]
-        ])->select('id','date',"time","type","value","updated_at")->orderBy('date')->orderBy('time')->paginate(7);
+        ])->select('id','date',"time","type","value","updated_at")->orderBy('date','desc')->orderBy('time','desc')->paginate(7);
         foreach ($data as &$value) {
             $value['updated_at']=date('Y-m-d H:i',strtotime('+9 hours',strtotime($value['updated_at'])));
           }
