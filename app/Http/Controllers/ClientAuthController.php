@@ -52,9 +52,10 @@ class ClientAuthController extends Controller
             return response()->json(['success'   =>  false,'message' => 'チケットIDが必要です'], 200);
         }
         $user=Users::Where([
-            'ticketid'  =>  $request['ticketid']
-        ])->count();
-        if ($user>1) {
+            ['ticketid','=', $request['ticketid']],
+            ['id','!=', $request['id']]
+        ])->first();
+        if ($user) {
             return response()->json(['success'   =>  false,'message' => 'TickIDはUniqueと思います。同じTickIDですのでエラーメッセージが出ます'], 200);
         }
         $update["name"]=$request["name"];
