@@ -92,7 +92,7 @@ const PatientEdit = () => {
         setCsvData(csv);
 }
     const getDate = (date: string, time: string) => {
-        return date.split("-")[0] + "." + date!.split("-")[1] + "." + date!.split("-")[2] + " " + (time.split(":")[0].substring(0, 1) == "0" ? time.split(":")[0].substring(1) : time.split(":")[0]) + ":" + time.split(":")[1];
+        return date.split("-")[0] + "/" + date!.split("-")[1] + "/" + date!.split("-")[2] + " " + (time.split(":")[0].substring(0, 1) == "0" ? time.split(":")[0].substring(1) : time.split(":")[0]) + ":" + time.split(":")[1];
     }
     const getstate = (value: string) => {
         return (Number(value!.split("|")[1]) == 0 ? "" : "歯磨き" + BRESH_TIME[Number(value!.split("|")[1]) - 1])
@@ -247,14 +247,14 @@ const PatientEdit = () => {
                         </NavLink>
                     </div>
                     <div className="flex items-center pb-[55px]">
-                        <p className="text-[16px] font-bold pr-[79px]">
+                        {/* <p className="text-[16px] font-bold pr-[79px]">
                             初回セルフ検査日
                         </p>
-                        <p className="text-[16px] font-bold text-responseColor tracking-[.25em]  pr-[100px]">{selectuser.date}</p>
+                        <p className="text-[16px] font-bold text-responseColor tracking-[.25em]  pr-[100px]">{selectuser.date}</p> */}
                         <p className="text-[16px] font-bold pr-[79px]">
                             セルフケアタイプ
                         </p>
-                        <p className="text-[16px] font-bold text-responseColor tracking-[.25em]">{PROGRAM[Number(selectuser.type) - 2]}</p>
+                        <p className="text-[16px] font-bold text-responseColor tracking-[.25em]">{PROGRAM[Number(selectuser.type) - 1]}</p>
                     </div>
                 </div>
                 <div className="mt-[20px] h-full bg-white px-[68px] shrink">

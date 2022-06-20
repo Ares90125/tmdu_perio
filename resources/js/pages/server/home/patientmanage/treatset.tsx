@@ -4,9 +4,10 @@ import axios, { AxiosResponse } from 'axios';
 import AdminSmButton from "../../../../components/admindefaultbutton";
 import { useAppDispatch, useAppSelector } from '../../../.././redux/hooks'
 import { BRESH_TIME, BRESH_TOOL, MO_STATUS,PROGRAM} from "../../../../redux/type";
-import { format } from "date-fns";
+import { changeprogram } from "../../../../redux/reducers/userslice";
 
 const TreatSet = () => {
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const index = useAppSelector((state) => state.index.value);
     const selectuser = useAppSelector((state) => state.user.value)[index];
@@ -23,7 +24,8 @@ const TreatSet = () => {
         try {
             axios.post('/api/admin/resettreat', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    navigate('/admin/main/patientmamage/');
+                    dispatch(changeprogram({index:index,value:Number(selectindex)}))
+                    navigate('/admin/main/patientmamage/patientedit');
                 } else {
 
                 }
