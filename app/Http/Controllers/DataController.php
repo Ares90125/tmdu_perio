@@ -30,7 +30,7 @@ class DataController extends Controller
         $data=Data::Where([
             'userid'  => $user->id,
             "date"  => date('Y-m-d',$time)
-        ])->select('id',"time","type","value")->orderBy('time')->get();
+        ])->select('id',"time","type","value")->orderBy('time','desc')->get();
         return response()->json([
             'success'   =>  true,
             'data'      =>  [
