@@ -72,16 +72,16 @@ class DataController extends Controller
     public function create(DataRequest $request){
         $user = auth()->user();
         $req=$request->validated();
+        if (empty($req['time'])){
+            return response()->json([
+                'success'   =>  false
+            ]);
+        }
         $data=new Data;
         $data->userid=$user->id;
         $data->date=$req['date'];
         $data->time=$req['time'];
         $data->type=2;
-        if (empty($request['time'])){
-            return response()->json([
-                'success'   =>  false
-            ]);
-        }
         if (!empty($req['value'])){
             $data->value=$req['value'];
         }
@@ -163,7 +163,7 @@ class DataController extends Controller
     }
     public function createfile(Request $request){
         $user = auth()->user();
-        if (empty($req['time'])){
+        if (empty($request['time'])){
             return response()->json([
                 'success'   =>  false
             ]);
