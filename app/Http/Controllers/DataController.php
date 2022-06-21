@@ -71,11 +71,9 @@ class DataController extends Controller
     }
     public function create(DataRequest $request){
         $user = auth()->user();
-        if ($request['time']==""){
             return response()->json([
                 'success'   =>  false
             ]);
-        }
         $req=$request->validated();
         $data=new Data;
         $data->userid=$user->id;
