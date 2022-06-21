@@ -71,7 +71,7 @@ class DataController extends Controller
     }
     public function create(DataRequest $request){
         $user = auth()->user();
-        if (empty($request['time'])){
+        if ($request['time']==""){
             return response()->json([
                 'success'   =>  false
             ]);
