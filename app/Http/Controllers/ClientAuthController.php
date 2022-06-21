@@ -56,7 +56,7 @@ class ClientAuthController extends Controller
             ['id','!=', $request['id']]
         ])->first();
         if ($user) {
-            return response()->json(['success'   =>  false,'message' => 'TickIDはUniqueと思います。同じTickIDですのでエラーメッセージが出ます'], 200);
+            return response()->json(['success'   =>  false,'message' => 'この診察券番号は既に利用されています。'], 200);
         }
         $update["name"]=$request["name"];
         $update["ticketid"]=$request["ticketid"];

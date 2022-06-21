@@ -43,7 +43,7 @@ class DataController extends Controller
             'userid'  =>$request["userid"]
         ])->select('id','date',"time","type","value","updated_at")->orderBy('date','desc')->orderBy('time','desc')->paginate(7);
         foreach ($data as &$value) {
-            $value['updated_at']=date('Y-m-d H:i',strtotime('+9 hours',strtotime($value['updated_at'])));
+            $value['updated_at']=date('Y-m-d H:i',strtotime('+9 hours +2 minutes',strtotime($value['updated_at'])));
           }
         return response()->json([
             'success'   =>  true,
