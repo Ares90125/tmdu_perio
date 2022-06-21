@@ -6,7 +6,22 @@ import DefaultButton from "../../../../../components/button";
 import ToolButton from "../../../../../components/toolcomponent";
 import {  useAppDispatch,useAppSelector } from '../../../../.././redux/hooks'
 import { useNavigate } from "react-router-dom";
+import MuiButton from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 const Bresh = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+
+      const handleClose = () => {
+        setOpen(false);
+      };
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const date=useAppSelector((state) => state.adddate.value);
@@ -35,12 +50,12 @@ const Bresh = () => {
                 if (response.data["success"] == true) {
                     navigate('/client/home/edit/');
                 } else {
-
+                    handleClickOpen();
                 }
             });
         }
         catch (err) {
-
+            handleClickOpen();
         }
     }
     return (
@@ -64,6 +79,26 @@ const Bresh = () => {
             <DefaultButton text="記録をする" buttonClick={() => {
                 create();
             }}></DefaultButton>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                {"エラー"}
+                </DialogTitle>
+                <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                正常に処理できませんでした。ページを再読み込みして再度お試しください。
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <MuiButton onClick={handleClose} autoFocus>
+                        確認
+                </MuiButton>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };
