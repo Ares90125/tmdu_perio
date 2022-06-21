@@ -72,7 +72,7 @@ class DataController extends Controller
     public function create(DataRequest $request){
         $user = auth()->user();
         $req=$request->validated();
-        if (empty($req['time'])){
+        if ($req['time']==""){
             return response()->json([
                 'success'   =>  false
             ]);
