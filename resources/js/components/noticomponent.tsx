@@ -59,7 +59,7 @@ function NotifiComponent(props: ButtonProps) {
             {
                 Array(1).fill(0).map((v, index) => {
                     switch (props.element.type) {
-                        case 1: return <div key={index} className="w-full">
+                        case 1: return <div key={props.index} className="w-full">
                             <button className="w-full flex flex-col items-start font-black pt-[10px]" onClick={() => { setVisible(!visible); if(props.element.visited!=1){invited(props.element.id);}}}>
                                 <p className=" text-dateColor text-[10px] ">
                                     {props.element.date.replace("-", ".") + " " + props.element.time.substring(0, 5)}
@@ -71,7 +71,7 @@ function NotifiComponent(props: ButtonProps) {
                             <div className="w-full h-[1px] bg-divColor mt-[5px]">
                             </div>
                         </div>
-                        case 2: return <div key={index} className="w-full">
+                        case 2: return <div key={props.index} className="w-full">
                             <button className="w-full flex flex-col items-start font-black pt-[10px]" onClick={() => { setVisible(!visible);if(props.element.visited!=1){invited(props.element.id);}}}>
                                 <p className=" text-dateColor text-[10px] ">
                                     {props.element.date.replace("-", ".") + " " + props.element.time.substring(0, 5)}
@@ -96,7 +96,7 @@ function NotifiComponent(props: ButtonProps) {
                             <div className="w-full h-[1px] bg-divColor mt-[5px]">
                             </div>
                         </div>
-                        case 3: return <div key={index} className="w-full">
+                        case 3: return <div key={props.index} className="w-full">
                             <button className="w-full flex flex-col items-start font-black pt-[10px]" onClick={() => { setVisible(!visible);if(props.element.visited!=1){invited(props.element.id);}}}>
                                 <p className=" text-dateColor text-[10px] ">
                                     {props.element.date.replace("-", ".") + " " + props.element.time.substring(0, 5)}
@@ -108,7 +108,7 @@ function NotifiComponent(props: ButtonProps) {
                             <div className="w-full h-[1px] bg-divColor mt-[5px]">
                             </div>
                         </div>
-                        case 4: return <div key={index} className="w-full">
+                        case 4: return <div key={props.index} className="w-full">
                             <button className="w-full flex flex-col items-start font-black pt-[10px]" onClick={() => { setVisible(!visible);if(props.element.visited!=1){invited(props.element.id);}}}>
                                 <p className=" text-dateColor text-[10px] ">
                                     {props.element.date.replace("-", ".") + " " + props.element.time.substring(0, 5)}
@@ -128,7 +128,7 @@ function NotifiComponent(props: ButtonProps) {
                                             <source src= {props.element.value?.split("|")[1]} type="video/mp4"/>
                                         </video>
                                         <NavLink to="video" className="absolute place-self-center">
-                                            <DefaultButton text="検査する" buttonClick={()=>{dispatch(changeByAmount(index));}}></DefaultButton>
+                                            <DefaultButton text="検査する" buttonClick={()=>{dispatch(changeByAmount(props.index));}}></DefaultButton>
                                         </NavLink>
                                     </div>
                                 </div>
