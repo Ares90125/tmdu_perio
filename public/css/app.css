@@ -1486,10 +1486,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-text-opacity: 1;
   color: rgb(85 85 85 / var(--tw-text-opacity));
 }
-.text-dangerColor {
-  --tw-text-opacity: 1;
-  color: rgb(252 211 77 / var(--tw-text-opacity));
-}
 .text-redColor {
   --tw-text-opacity: 1;
   color: rgb(255 0 0 / var(--tw-text-opacity));

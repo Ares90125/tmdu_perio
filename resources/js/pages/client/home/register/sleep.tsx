@@ -12,8 +12,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {useNavigate } from 'react-router-dom';
+import {  changedata,changedate } from '../../../.././redux/reducers/dataslice'
+import { useAppDispatch } from "../../../../redux/hooks";
 
 const Sleep = () => {
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
@@ -44,6 +47,7 @@ const Sleep = () => {
         try {
             axios.post('/api/client/createsleep', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
+                    changeDay();
                     navigate('/client/home/edit/');
                 } else {
                     handleClickOpen();
@@ -75,6 +79,10 @@ const Sleep = () => {
         catch (err) {
 
         }
+    }
+    function changeDay(){
+        let day=new Date();
+        dispatch(changedate(day));
     }
     function getDate(last: boolean) {
         let newDate = new Date();

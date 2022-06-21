@@ -9,6 +9,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import {  changedata,changedate } from '../../../.././redux/reducers/dataslice'
+import { useAppDispatch } from "../../../../redux/hooks";
 
 interface ButtonProps {
     // text: string;
@@ -16,6 +18,7 @@ interface ButtonProps {
 }
 
 function Meal(props: ButtonProps) {
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
@@ -45,6 +48,10 @@ function Meal(props: ButtonProps) {
     function clickedFileInput(){
         window.addEventListener('focus', handleFocusBack);
     }
+    function changeDay(){
+        let day=new Date();
+        dispatch(changedate(day));
+    }
     const create = () => {
         let date = new Date();
         const config = {
@@ -60,6 +67,7 @@ function Meal(props: ButtonProps) {
         formData.append('value',`${statetext}`);
         try {
             axios.post('/api/client/createfile', formData, config).then((response: AxiosResponse) => {
+                changeDay();
                 if (response.data["success"] == true) {
                     navigate('/client/home/edit/');
                 } else {

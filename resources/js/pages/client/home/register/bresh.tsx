@@ -11,9 +11,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {useNavigate } from 'react-router-dom';
+import {  changedata,changedate } from '../../../.././redux/reducers/dataslice'
+import { useAppDispatch } from "../../../../redux/hooks";
+
 
 const Bresh = () => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
         setOpen(true);
@@ -44,6 +48,11 @@ const Bresh = () => {
             setTabIndex(val);
         }
     }
+    let day=new Date();
+    function changeDay(){
+        day=new Date();
+        dispatch(changedate(day));
+    }
     function getCurrentTime() {
         let newDate = new Date();
         setHour(newDate.getHours());
@@ -63,6 +72,7 @@ const Bresh = () => {
         try {
             axios.post('/api/client/create', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
+                    changeDay();
                     navigate('/client/home/edit/');
                 } else {
                     handleClickOpen();
