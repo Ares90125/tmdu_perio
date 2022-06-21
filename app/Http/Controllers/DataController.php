@@ -77,7 +77,7 @@ class DataController extends Controller
         $data->date=$req['date'];
         $data->time=$req['time'];
         $data->type=2;
-        if (!empty($req['time'])){
+        if (empty($req['time'])){
             return response()->json([
                 'success'   =>  false
             ]);
@@ -163,7 +163,7 @@ class DataController extends Controller
     }
     public function createfile(Request $request){
         $user = auth()->user();
-        if (!empty($req['time'])){
+        if (empty($req['time'])){
             return response()->json([
                 'success'   =>  false
             ]);
