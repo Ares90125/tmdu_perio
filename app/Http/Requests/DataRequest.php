@@ -26,7 +26,6 @@ class DataRequest extends FormRequest
         return [
             "userid"=>["nullable","string"],
             'date'=> ['required', 'string'],
-            'time'=> ['string'],
             "type"=>["nullable",'numeric', 'min:1', 'max:6'],
             'value'=>["nullable"]
         ];
