@@ -59,8 +59,8 @@ const PatientEdit = () => {
     const selectuser = useAppSelector((state) => state.user.value)[index];
     const dispatch = useAppDispatch();
     const [navindex, setNavindex] = useState(1);
-    const [password, resetPassword] = useState();//selectuser.midpass);
-    const [info, setInfo] = useState();//selectuser.info);
+    const [password, resetPassword] = useState(selectuser.midpass);
+    const [info, setInfo] = useState(selectuser.info);
     const getUserdata = () => {
         const config = {
             headers: {
