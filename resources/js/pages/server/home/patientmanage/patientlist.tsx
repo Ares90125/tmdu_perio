@@ -12,24 +12,6 @@ const PatientList = () => {
     const data=useAppSelector((state) => state.user.value);
     const [ticketid,setTicketid]=useState("");
     const [name,setName]=useState("");
-    const loadusers = () => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        };
-        try {
-            axios.get(`/api/admin/loadusers`, config).then((response: AxiosResponse) => {
-                if (response.data["success"] == true) {
-                    dispatch(changeusers(response.data["data"][0]));
-                } else {
-                }
-            });
-        }
-        catch (err) {
-
-        }
-    }
     const searchUsers = () => {
         const config = {
             headers: {
@@ -49,9 +31,6 @@ const PatientList = () => {
 
         }
     }
-    useEffect(() => {
-        loadusers();
-    },[])
     return (
         <div className="mx-[230px] mt-[20px] min-h-screen h-full bg-white overflow-hidden">
             <div className="flex flex-row items-center pt-[39px] pl-[94px]">

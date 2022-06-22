@@ -13,9 +13,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { changeusers } from "../../../../redux/reducers/userslice";
-import { isExists } from "date-fns";
-import { isEmptyObject } from "jquery";
 
 const PatientEdit = () => {
     interface DataState {
@@ -83,26 +80,6 @@ const PatientEdit = () => {
 
         }
     }
-    const loadusers = () => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        };
-        try {
-            axios.get(`/api/admin/loadusers`, config).then((response: AxiosResponse) => {
-                if (response.data["success"] == true) {
-                    dispatch(changeusers(response.data["data"][0]));
-                } else {
-                }
-            });
-        }
-        catch (err) {
-        }
-    }
-    useEffect(() => {
-        loadusers();
-    },[])
     const getAlldata = () => {
         const config = {
             headers: {
@@ -113,14 +90,15 @@ const PatientEdit = () => {
             axios.get(`/api/admin/getuserdata?userid=` + selectuser.id + `&page=-1`, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
                     var data=Array<DataState>();
-                    data.push({
-                        "id":response.data["data"][0]["data"]["id"],
-                        "time":response.data["data"][0]["data"]["time"],
-                        "type":response.data["data"][0]["data"]["type"],
-                        "value":response.data["data"][0]["data"]["value"],
-                        "date":response.data["data"][0]["data"]["date"],
-                        "updated_at":response.data["data"][0]["data"]["updated_at"],
-                    });
+                    for(let i=0;i<response.data["data"][0].lenght;i++)
+                        data.push({
+                            "id":response.data["data"][0]["data"]["id"],
+                            "time":response.data["data"][0]["data"]["time"],
+                            "type":response.data["data"][0]["data"]["type"],
+                            "value":response.data["data"][0]["data"]["value"],
+                            "date":response.data["data"][0]["data"]["date"],
+                            "updated_at":response.data["data"][0]["data"]["updated_at"],
+                        });
                     getcsvdate(data);
                 } else {
                 }
@@ -130,20 +108,20 @@ const PatientEdit = () => {
 
         }
     }
-    const getcsvdate = (data:Array<DataState>) => {
+    const getcsvdate = (datas:Array<DataState>) => {
         let csv = [];
         let csvindex=0;
-        for (let i = 0; i < data.length; i++) {
+        for (let i = 0; i < datas.length; i++) {
             switch(data[i].type){
-                case 1:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"起床", info: "", image: "" };
+                case 1:csv[csvindex] = { dataid: datas[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"起床", info: "", image: "" };
                         csvindex++;
-                        csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"朝のお口の状態", info: MO_STATUS[Number(data[i].value!) - 1], image: "" };
+                        csv[csvindex] = { dataid: datas[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"朝のお口の状態", info: MO_STATUS[Number(data[i].value!) - 1], image: "" };
                         csvindex++;
                         break;
-                case 2:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "歯磨き記録", info: getstate(data[i].value!), image: "" };csvindex++;break;
-                case 3:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "食事の記録", info: data[i].value!.split("|")[0], image: data[i].value!.split("|")[1] };csvindex++;break;
-                case 4:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "就寝", info: "", image: "" };csvindex++;break;
-                case 5:csv[csvindex] = { dataid: data[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "セルフ検査", info: SELF[Number(data[i].value!.split("|")[0])-1], image: data[i].value!.split("|")[1] };csvindex++;break;
+                case 2:csv[csvindex] = { dataid: datas[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "歯磨き記録", info: getstate(data[i].value!), image: "" };csvindex++;break;
+                case 3:csv[csvindex] = { dataid: datas[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "食事の記録", info: data[i].value!.split("|")[0], image: data[i].value!.split("|")[1] };csvindex++;break;
+                case 4:csv[csvindex] = { dataid: datas[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "就寝", info: "", image: "" };csvindex++;break;
+                case 5:csv[csvindex] = { dataid: datas[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type: "セルフ検査", info: SELF[Number(data[i].value!.split("|")[0])-1], image: data[i].value!.split("|")[1] };csvindex++;break;
             }
         }
         // console.log(csv);
@@ -160,7 +138,7 @@ const PatientEdit = () => {
     }
     useEffect(() => {
         getAlldata();
-    }, [selectuser])
+    }, [])
     useEffect(() => {
         getUserdata();
     }, [navindex])
@@ -207,7 +185,6 @@ const PatientEdit = () => {
         }
     }
     return (
-        isEmptyObject(selectuser)?<div></div>:
         <div className="min-h-screen h-full overflow-hidden ml-[60px] flex flex-basis">
             <div className="basis-1/4 bg-white  px-[20px] pt-[54px]">
                 <div className="flex items-center mb-[20px] ">
