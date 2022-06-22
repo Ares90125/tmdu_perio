@@ -97,15 +97,15 @@ const PatientEdit = () => {
                 if (response.data["success"] == true) {
                     var csv=Array<DataState>();
                     csv.splice(0);
-                    for(let i=0;i<response.data["data"][0].lenght;i++)
+                    for(let i=0;i<response.data["data"][0]['data'].lenght;i++)
                         {
                             csv.push({
-                                "id":response.data["data"][0]["data"]["id"],
-                                "time":response.data["data"][0]["data"]["time"],
-                                "type":response.data["data"][0]["data"]["type"],
-                                "value":response.data["data"][0]["data"]["value"],
-                                "date":response.data["data"][0]["data"]["date"],
-                                "updated_at":response.data["data"][0]["data"]["updated_at"],
+                                "id":response.data["data"][0]["data"][i]["id"],
+                                "time":response.data["data"][0]["data"][i]["time"],
+                                "type":response.data["data"][0]["data"][i]["type"],
+                                "value":response.data["data"][0]["data"][i]["value"],
+                                "date":response.data["data"][0]["data"][i]["date"],
+                                "updated_at":response.data["data"][0]["data"][i]["updated_at"],
                             });
                         }
                         console.log(csv);
