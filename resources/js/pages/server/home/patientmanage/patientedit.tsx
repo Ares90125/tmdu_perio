@@ -98,14 +98,17 @@ const PatientEdit = () => {
                     var csv=Array<DataState>();
                     csv.splice(0);
                     for(let i=0;i<response.data["data"][0].lenght;i++)
-                        csv.push({
-                            "id":response.data["data"][0]["data"]["id"],
-                            "time":response.data["data"][0]["data"]["time"],
-                            "type":response.data["data"][0]["data"]["type"],
-                            "value":response.data["data"][0]["data"]["value"],
-                            "date":response.data["data"][0]["data"]["date"],
-                            "updated_at":response.data["data"][0]["data"]["updated_at"],
-                        });
+                        {
+                            csv.push({
+                                "id":response.data["data"][0]["data"]["id"],
+                                "time":response.data["data"][0]["data"]["time"],
+                                "type":response.data["data"][0]["data"]["type"],
+                                "value":response.data["data"][0]["data"]["value"],
+                                "date":response.data["data"][0]["data"]["date"],
+                                "updated_at":response.data["data"][0]["data"]["updated_at"],
+                            });
+                        }
+                        console.log(csv);
                     getcsvdate(csv);
                 } else {
                 }
@@ -118,6 +121,7 @@ const PatientEdit = () => {
     const getcsvdate = (datas:Array<DataState>) => {
         let csv = [];
         let csvindex=0;
+        console.log(datas);
         for (let i = 0; i < datas.length; i++) {
             switch(data[i].type){
                 case 1:csv[csvindex] = { dataid: datas[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"起床", info: "", image: "" };
@@ -150,7 +154,7 @@ const PatientEdit = () => {
     useEffect(() => {
         if(selectuser)
             getUserdata();
-    }, [navindex])
+    }, [navindex,selectuser])
     const resetPass = () => {
 
         const config = {
