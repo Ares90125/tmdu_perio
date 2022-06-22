@@ -145,7 +145,7 @@ const PatientEdit = () => {
     useEffect(() => {
         if(selectuser)
             getAlldata();
-    }, [])
+    }, [selectuser])
     useEffect(() => {
         if(selectuser)
             getUserdata();
@@ -182,7 +182,7 @@ const PatientEdit = () => {
         try {
             axios.post('/api/admin/clientresetInfo', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    navigate('/admin/main/patientmamage/');
+                    setInfo(info);
                 } else {
 
                 }
