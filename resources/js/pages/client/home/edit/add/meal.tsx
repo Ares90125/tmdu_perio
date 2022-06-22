@@ -93,7 +93,7 @@ function Meal(props: ButtonProps) {
             <TextareaAutosize aria-label="minimum height" className="text-mainColor" minLength={3} maxLength={40} minRows={4} placeholder={"家系ラーメン"} onChange={(value)=>{setText(value.target.value)}} style={{ width: '100%', borderRadius: 8, border: '2px solid #88BFBF', padding: 5 }} />
             </div>
             <div className="w-full px-8 pt-12">
-                <input style={{ WebkitAppearance: "none" }} className="flex items-center justify-center h-[43px] mt-[325px] focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full bg-white" placeholder={"--:--"} type="time"  value={time1} onChange={(ev) => {settime1(ev.target.value);}} />
+                <input style={{ WebkitAppearance: "none" }} className="flex items-center justify-center  h-[43px] mt-[325px] focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full bg-white" placeholder={"--:--"} type="time"  value={time1} onChange={(ev) => {settime1(ev.target.value);}} />
             </div>
             <DefaultButton text="記録をする" buttonClick={create}></DefaultButton>
             <Dialog
