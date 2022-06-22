@@ -7,7 +7,7 @@ import {useAppSelector } from '../../../.././redux/hooks'
 import { useNavigate } from "react-router-dom";
 const BedTime = () => {
     const navigate = useNavigate();
-    const index=useAppSelector((state) => state.index.value);
+    const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
     const date = useAppSelector((state) => state.data.date);
     const data=useAppSelector((state) => state.data.value[index]);
     const [time1, settime1] = useState(data.time);

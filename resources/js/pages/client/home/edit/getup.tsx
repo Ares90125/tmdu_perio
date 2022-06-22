@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 const GetUp = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const index=useAppSelector((state) => state.index.value);
+    const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
     const data=useAppSelector((state) => state.data.value[index]);
     const [time1, settime1] = useState(data.time);
     const update = () => {

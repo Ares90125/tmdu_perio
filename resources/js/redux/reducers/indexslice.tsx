@@ -16,6 +16,7 @@ export const selectSlice = createSlice({
   initialState,
   reducers: {
     changeByAmount: (state, action: PayloadAction<number>) => {
+        localStorage.setItem('index', action.payload.toString())
       state.value = action.payload
     },
   },

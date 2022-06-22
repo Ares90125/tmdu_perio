@@ -14,7 +14,7 @@ interface ButtonProps {
 
 function SetMeal(props: ButtonProps) {
     const navigate = useNavigate();
-    const index=useAppSelector((state) => state.index.value);
+    const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
     const data=useAppSelector((state) => state.data.value[index]);
     const [time1, settime1] = useState(data.time);
     const [image, setImage] = useState<any | null>(null);
