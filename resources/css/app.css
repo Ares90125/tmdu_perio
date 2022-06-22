@@ -119,3 +119,10 @@ body {
 .u-m-auto {
   margin: auto;
 }
+input:after {
+    content: attr(placeholder) !important;
+}
+
+input[value]:not([value=""]) + input:after {
+    content: '' !important;
+}
