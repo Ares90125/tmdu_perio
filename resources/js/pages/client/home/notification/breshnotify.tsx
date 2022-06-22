@@ -6,8 +6,23 @@ import axios, { AxiosResponse } from "axios";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { changedata, removeindex } from "../../../../redux/reducers/breshtimeslice";
 import BreshTime from "../../../../components/breshtime";
+import MuiButton from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 
 const BreshNotify = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+
+      const handleClose = () => {
+        setOpen(false);
+      };
     const name=useAppSelector((state) => state.authenticater.name);
     const data = useAppSelector((state) => state.breshtime.value);
     const dispatch = useAppDispatch();
@@ -25,11 +40,12 @@ const BreshNotify = () => {
                 if (response.data["success"] == true) {
                     dispatch(changedata(response.data["data"][0]));
                 } else {
+                    handleClickOpen();
                 }
             });
         }
         catch (err) {
-
+            handleClickOpen();
         }
     }
     const deletebreshtime = (id:number,index:number) => {
@@ -45,12 +61,12 @@ const BreshNotify = () => {
                     setVisible(false); settime1('');
                     setId(-1);
                 } else {
-
+                    handleClickOpen();
                 }
             });
         }
         catch (err) {
-
+            handleClickOpen();
         }
     }
     useEffect(() => {
@@ -131,6 +147,26 @@ const BreshNotify = () => {
                 <input style={{ WebkitAppearance: "none" }} className="flex items-center justify-center h-[43px] mt-[325px] focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full bg-white" placeholder={"--:--"} type="time" value={time1} onChange={(ev) => { settime1(ev.target.value); }} />
                 <div className="my-[50px]">
                     <DefaultButton text="記録をする" buttonClick={create}></DefaultButton>
+                    <Dialog
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">
+                        {"エラー"}
+                        </DialogTitle>
+                        <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                        正常に処理できませんでした。ページを再読み込みして再度お試しください。
+                        </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                        <MuiButton onClick={handleClose} autoFocus>
+                                確認
+                        </MuiButton>
+                        </DialogActions>
+                    </Dialog>
                 </div>
             </div>
         </div>

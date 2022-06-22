@@ -59,6 +59,11 @@ class NotificationController extends Controller
         ]);
     }
     public function loadbreshtime(Request $request){
+        if ($request['time']==""){
+            return response()->json([
+                'success'   =>  false
+            ]);
+        }
         $user = auth()->user();
         $data=Breshtimes::Where([
             'userid'  => $user->id,
