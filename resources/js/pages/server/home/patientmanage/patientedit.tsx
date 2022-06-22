@@ -121,7 +121,7 @@ const PatientEdit = () => {
         let csv = [];
         let csvindex=0;
         for (let i = 0; i < datas.length; i++) {
-            switch(data[i].type){
+            switch(datas[i].type){
                 case 1:csv[csvindex] = { dataid: datas[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"起床", info: "", image: "" };
                         csvindex++;
                         csv[csvindex] = { dataid: datas[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"朝のお口の状態", info: MO_STATUS[Number(data[i].value!) - 1], image: "" };
@@ -135,7 +135,6 @@ const PatientEdit = () => {
         }
         // console.log(csv);
         setCsvData(csv);
-        console.log(csvdata);
 }
     const getDate = (date: string, time: string) => {
         return date.split("-")[0] + "/" + date!.split("-")[1] + "/" + date!.split("-")[2] + " " + (time.split(":")[0].substring(0, 1) == "0" ? time.split(":")[0].substring(1) : time.split(":")[0]) + ":" + time.split(":")[1];
