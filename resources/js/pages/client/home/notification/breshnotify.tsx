@@ -40,12 +40,10 @@ const BreshNotify = () => {
                 if (response.data["success"] == true) {
                     dispatch(changedata(response.data["data"][0]));
                 } else {
-                    handleClickOpen();
                 }
             });
         }
         catch (err) {
-            handleClickOpen();
         }
     }
     const deletebreshtime = (id:number,index:number) => {
@@ -88,6 +86,7 @@ const BreshNotify = () => {
                         setVisible(false); settime1('');
                         setId(-1);
                     } else {
+                        handleClickOpen();
                     }
                 });
             }
@@ -98,7 +97,7 @@ const BreshNotify = () => {
                         setVisible(false); settime1('');
                     setId(-1);
                     } else {
-
+                        handleClickOpen();
                     }
                 });
             }

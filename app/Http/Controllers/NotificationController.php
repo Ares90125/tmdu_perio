@@ -14,6 +14,11 @@ class NotificationController extends Controller
     //
     public function createbreshtime(Request $request){
         $user = auth()->user();
+        if ($request['time']==""){
+            return response()->json([
+                'success'   =>  false
+            ]);
+        }
         $breshtime=new Breshtimes;
         $breshtime["userid"]=$user->id;
         $breshtime["time"]=$request['time'];
@@ -23,6 +28,11 @@ class NotificationController extends Controller
         ]);
     }
     public function updatebreshtime(Request $request){
+        if ($request['time']==""){
+            return response()->json([
+                'success'   =>  false
+            ]);
+        }
         $update['time']=$request['time'];
         $data=Breshtimes::Where([
             'id'  => $request["id"],
@@ -59,11 +69,7 @@ class NotificationController extends Controller
         ]);
     }
     public function loadbreshtime(Request $request){
-        if ($request['time']==""){
-            return response()->json([
-                'success'   =>  false
-            ]);
-        }
+
         $user = auth()->user();
         $data=Breshtimes::Where([
             'userid'  => $user->id,
