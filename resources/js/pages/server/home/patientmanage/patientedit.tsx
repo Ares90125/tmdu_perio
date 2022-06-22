@@ -97,7 +97,7 @@ const PatientEdit = () => {
                 if (response.data["success"] == true) {
                     var csv=Array<DataState>();
                     csv.splice(0);
-                    for(let i=0;i<response.data["data"][0]['data'].lenght;i++)
+                    for(let i=0;i<response.data["data"][0]['data'].length;i++)
                         {
                             csv.push({
                                 "id":response.data["data"][0]["data"][i]["id"],
