@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Diary = () => {
     const navigate = useNavigate();
-    const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
+    const index=Number(localStorage.getItem('index'));
     const data=useAppSelector((state) => state.data.value[index]);
     const [index_1, setIndex_1] = useState(false);
     const [index_2, setIndex_2] = useState(false);

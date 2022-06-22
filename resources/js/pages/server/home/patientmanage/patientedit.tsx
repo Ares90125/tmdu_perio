@@ -55,7 +55,7 @@ const PatientEdit = () => {
         image: string;
     }>());
     const data = useAppSelector((state) => state.data.value);
-    const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
+    const index=Number(localStorage.getItem('index'));
     const selectuser = useAppSelector((state) => state.user.value)[index];
     const dispatch = useAppDispatch();
     const [navindex, setNavindex] = useState(1);
@@ -95,9 +95,10 @@ const PatientEdit = () => {
         try {
             axios.get(`/api/admin/getuserdata?userid=` + selectuser.id + `&page=-1`, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
-                    var data=Array<DataState>();
+                    var csv=Array<DataState>();
+                    csv.splice(0);
                     for(let i=0;i<response.data["data"][0].lenght;i++)
-                        data.push({
+                        csv.push({
                             "id":response.data["data"][0]["data"]["id"],
                             "time":response.data["data"][0]["data"]["time"],
                             "type":response.data["data"][0]["data"]["type"],
@@ -105,7 +106,7 @@ const PatientEdit = () => {
                             "date":response.data["data"][0]["data"]["date"],
                             "updated_at":response.data["data"][0]["data"]["updated_at"],
                         });
-                    getcsvdate(data);
+                    getcsvdate(csv);
                 } else {
                 }
             });

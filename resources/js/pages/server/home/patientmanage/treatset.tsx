@@ -9,7 +9,7 @@ import { changeprogram } from "../../../../redux/reducers/userslice";
 const TreatSet = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
+    const index=Number(localStorage.getItem('index'));
     const selectuser = useAppSelector((state) => state.user.value)[index];
     const [selectindex, setSelect] = useState('');
     useEffect(() => {

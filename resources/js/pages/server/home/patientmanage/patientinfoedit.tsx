@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../.././redux/hooks'
 const PatientInfoEdit = () => {
     const navigate = useNavigate();
     const [message, setMessage] = useState("");
-    const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
+    const index=Number(localStorage.getItem('index'));
     const selectuser = useAppSelector((state) => state.user.value)[index];
     const [name, setUserName] = useState('');
     const [ticketid, setTicketId] = useState('');

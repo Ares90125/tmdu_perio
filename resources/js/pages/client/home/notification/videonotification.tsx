@@ -7,7 +7,7 @@ import { useAppSelector } from "../../../../redux/hooks";
 import axios, { AxiosResponse } from "axios";
 
 const VideoNotify = () => {
-    const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
+    const index=Number(localStorage.getItem('index'));
     const data = useAppSelector((state) => state.notification.value)[index];
     return (
         <div className="mx-[3px]">
