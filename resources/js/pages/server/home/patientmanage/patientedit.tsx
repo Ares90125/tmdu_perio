@@ -59,8 +59,8 @@ const PatientEdit = () => {
     const selectuser = useAppSelector((state) => state.user.value)[index];
     const dispatch = useAppDispatch();
     const [navindex, setNavindex] = useState(1);
-    const [password, resetPassword] = useState(selectuser.midpass);
-    const [info, setInfo] = useState(selectuser.info);
+    const [password, resetPassword] = useState("");
+    const [info, setInfo] = useState("");
     const getUserdata = () => {
         const config = {
             headers: {
@@ -80,6 +80,12 @@ const PatientEdit = () => {
 
         }
     }
+    useEffect(() => {
+        if(selectuser){
+            resetPassword(selectuser.midpass!);
+            setInfo(selectuser.info!);
+        }
+    }, [selectuser])
     const getAlldata = () => {
         const config = {
             headers: {
@@ -137,10 +143,12 @@ const PatientEdit = () => {
             + ((Number(value!.split("|")[0].split(',')[2])) == 1 ? ", " + BRESH_TOOL[2] : "")
     }
     useEffect(() => {
-        getAlldata();
+        if(selectuser)
+            getAlldata();
     }, [])
     useEffect(() => {
-        getUserdata();
+        if(selectuser)
+            getUserdata();
     }, [navindex])
     const resetPass = () => {
 
@@ -185,6 +193,7 @@ const PatientEdit = () => {
         }
     }
     return (
+        !selectuser?<div></div>:
         <div className="min-h-screen h-full overflow-hidden ml-[60px] flex flex-basis">
             <div className="basis-1/4 bg-white  px-[20px] pt-[54px]">
                 <div className="flex items-center mb-[20px] ">
