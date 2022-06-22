@@ -13,7 +13,7 @@ const BreshNotify = () => {
     const dispatch = useAppDispatch();
     const [visible, setVisible] = useState(false);
     const [id, setId] = useState(-1);
-    const [time1, settime1] = useState("__:__");
+    const [time1, settime1] = useState("");
     const loadbreshtime = () => {
         const config = {
             headers: {
@@ -42,7 +42,7 @@ const BreshNotify = () => {
             axios.get(`/api/client/deletebreshtime?id=${id}`, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
                     dispatch(removeindex(index));
-                    setVisible(false); settime1('__:__');
+                    setVisible(false); settime1('');
                     setId(-1);
                 } else {
 
@@ -69,7 +69,7 @@ const BreshNotify = () => {
                 const body = JSON.stringify({ "time": time1 });
                 axios.post('/api/client/createbreshtime', body, config).then((response: AxiosResponse) => {
                     if (response.data["success"] == true) {
-                        setVisible(false); settime1('__:__');
+                        setVisible(false); settime1('');
                         setId(-1);
                     } else {
                     }
@@ -79,7 +79,7 @@ const BreshNotify = () => {
                 const body = JSON.stringify({ "time": time1,"id":data[id].id });
                 axios.post('/api/client/updatebreshtime', body, config).then((response: AxiosResponse) => {
                     if (response.data["success"] == true) {
-                        setVisible(false); settime1('__:__');
+                        setVisible(false); settime1('');
                     setId(-1);
                     } else {
 
@@ -121,14 +121,14 @@ const BreshNotify = () => {
             </div>
             <div className={"w-full h-screen bg-opacity-70 bg-black fixed top-0 right-0 px-[30px] " + (visible ? "z-50 opacity-100 pointer-events-auto" : "z-0 opacity-0 pointer-events-none")}>
                 <button onClick={() => {
-                    setVisible(false); settime1('__:__');
+                    setVisible(false); settime1('');
                     setId(-1);
                 }} className={"absolute right-0 mt-[30px] px-[15px]"}>
                     <div className="text-white rounded-md w-[1.875rem] h-[1.875rem] p-[3px]">
                         <img src={'/images/quit.svg'} className="w-full h-full" />
                     </div>
                 </button>
-                <input style={{ WebkitAppearance: "none" }} className="flex items-center justify-center h-[43px] mt-[325px] focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full bg-white" type="time" value={time1} onChange={(ev) => { settime1(ev.target.value); }} />
+                <input style={{ WebkitAppearance: "none" }} className="flex items-center justify-center h-[43px] mt-[325px] focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full bg-white" placeholder={"--:--"} type="time" value={time1} onChange={(ev) => { settime1(ev.target.value); }} />
                 <div className="my-[50px]">
                     <DefaultButton text="記録をする" buttonClick={create}></DefaultButton>
                 </div>
