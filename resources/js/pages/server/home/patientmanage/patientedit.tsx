@@ -15,6 +15,14 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const PatientEdit = () => {
+    interface DataState {
+        id:number
+        time: string,
+        type:number,
+        value:string|null,
+        date:string|null,
+        updated_at:string
+      }
     const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
     const [typing, setTyping] = React.useState(false);
@@ -72,7 +80,34 @@ const PatientEdit = () => {
 
         }
     }
-    const getcsvdate = () => {
+    const getAlldata = () => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        try {
+            axios.get(`/api/admin/getuserdata?userid=` + selectuser.id, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
+                    var data=Array<DataState>();
+                    data.push({
+                        "id":response.data["data"][0]["data"]["id"],
+                        "time":response.data["data"][0]["data"]["time"],
+                        "type":response.data["data"][0]["data"]["type"],
+                        "value":response.data["data"][0]["data"]["value"],
+                        "date":response.data["data"][0]["data"]["date"],
+                        "updated_at":response.data["data"][0]["data"]["updated_at"],
+                    });
+                    getcsvdate(data);
+                } else {
+                }
+            });
+        }
+        catch (err) {
+
+        }
+    }
+    const getcsvdate = (data:Array<DataState>) => {
         let csv = [];
         let csvindex=0;
         for (let i = 0; i < data.length; i++) {
@@ -101,8 +136,8 @@ const PatientEdit = () => {
             + ((Number(value!.split("|")[0].split(',')[2])) == 1 ? ", " + BRESH_TOOL[2] : "")
     }
     useEffect(() => {
-        getcsvdate();
-    }, [data])
+        getAlldata();
+    }, [])
     useEffect(() => {
         getUserdata();
     }, [navindex])
