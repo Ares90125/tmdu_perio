@@ -108,7 +108,6 @@ const PatientEdit = () => {
                                 "updated_at":response.data["data"][0][i]["updated_at"],
                             });
                         }
-                        console.log(csv);
                     getcsvdate(csv);
                 } else {
                 }
@@ -121,7 +120,6 @@ const PatientEdit = () => {
     const getcsvdate = (datas:Array<DataState>) => {
         let csv = [];
         let csvindex=0;
-        console.log(datas);
         for (let i = 0; i < datas.length; i++) {
             switch(data[i].type){
                 case 1:csv[csvindex] = { dataid: datas[i].id, patientid: selectuser.userid, name: selectuser.name, timestamp: data[i].date?.toString() + " " + data[i].time, date: data[i].updated_at.split("T")[0]+" "+data[i].updated_at.split("T")[1].substring(0,8), type:"起床", info: "", image: "" };
@@ -137,6 +135,7 @@ const PatientEdit = () => {
         }
         // console.log(csv);
         setCsvData(csv);
+        console.log(csvdata);
 }
     const getDate = (date: string, time: string) => {
         return date.split("-")[0] + "/" + date!.split("-")[1] + "/" + date!.split("-")[2] + " " + (time.split(":")[0].substring(0, 1) == "0" ? time.split(":")[0].substring(1) : time.split(":")[0]) + ":" + time.split(":")[1];
