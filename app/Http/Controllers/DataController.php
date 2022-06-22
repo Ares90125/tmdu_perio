@@ -80,7 +80,7 @@ class DataController extends Controller
         $data=new Data;
         $data->userid=$user->id;
         $data->date=$req['date'];
-        $data->time=$req['time'];
+        $data->time=$request['time'];
         $data->type=2;
         if (!empty($req['value'])){
             $data->value=$req['value'];
