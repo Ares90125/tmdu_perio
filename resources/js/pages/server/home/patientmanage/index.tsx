@@ -11,14 +11,14 @@ import { changeusers } from '../../../../redux/reducers/userslice';
 
 const PatientManager = () => {
     const dispatch = useAppDispatch();
-    const loadusers = async () => {
+    const loadusers = () => {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
             }
         };
         try {
-            await axios.get(`/api/admin/loadusers`, config).then((response: AxiosResponse) => {
+            axios.get(`/api/admin/loadusers`, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
                     dispatch(changeusers(response.data["data"][0]));
                 } else {
@@ -29,7 +29,7 @@ const PatientManager = () => {
 
         }
     }
-    useEffect( () => {
+    useEffect(() => {
         loadusers();
     },[])
     return (
