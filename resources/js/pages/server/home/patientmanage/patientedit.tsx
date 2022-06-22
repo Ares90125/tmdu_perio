@@ -14,6 +14,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { changeusers } from "../../../../redux/reducers/userslice";
+import { isExists } from "date-fns";
+import { isEmptyObject } from "jquery";
 
 const PatientEdit = () => {
     interface DataState {
@@ -158,7 +160,7 @@ const PatientEdit = () => {
     }
     useEffect(() => {
         getAlldata();
-    }, [])
+    }, [selectuser])
     useEffect(() => {
         getUserdata();
     }, [navindex])
@@ -205,6 +207,7 @@ const PatientEdit = () => {
         }
     }
     return (
+        isEmptyObject(selectuser)?<div></div>:
         <div className="min-h-screen h-full overflow-hidden ml-[60px] flex flex-basis">
             <div className="basis-1/4 bg-white  px-[20px] pt-[54px]">
                 <div className="flex items-center mb-[20px] ">
