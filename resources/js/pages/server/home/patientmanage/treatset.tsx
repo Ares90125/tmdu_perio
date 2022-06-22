@@ -9,7 +9,7 @@ import { changeprogram } from "../../../../redux/reducers/userslice";
 const TreatSet = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const index = useAppSelector((state) => state.index.value);
+    const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
     const selectuser = useAppSelector((state) => state.user.value)[index];
     const [selectindex, setSelect] = useState(selectuser.type==null?"1":selectuser.type!.toString());
     const firstcheck=selectuser.date;

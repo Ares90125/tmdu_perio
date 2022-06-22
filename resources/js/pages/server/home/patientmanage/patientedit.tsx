@@ -13,6 +13,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { changeusers } from "../../../../redux/reducers/userslice";
 
 const PatientEdit = () => {
     interface DataState {
@@ -55,7 +56,7 @@ const PatientEdit = () => {
         image: string;
     }>());
     const data = useAppSelector((state) => state.data.value);
-    const index = useAppSelector((state) => state.index.value);
+    const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
     const selectuser = useAppSelector((state) => state.user.value)[index];
     const dispatch = useAppDispatch();
     const [navindex, setNavindex] = useState(1);
@@ -80,6 +81,26 @@ const PatientEdit = () => {
 
         }
     }
+    const loadusers = () => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        try {
+            axios.get(`/api/admin/loadusers`, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
+                    dispatch(changeusers(response.data["data"][0]));
+                } else {
+                }
+            });
+        }
+        catch (err) {
+        }
+    }
+    useEffect(() => {
+        loadusers();
+    },[])
     const getAlldata = () => {
         const config = {
             headers: {
@@ -87,7 +108,7 @@ const PatientEdit = () => {
             }
         };
         try {
-            axios.get(`/api/admin/getuserdata?userid=` + selectuser.id, config).then((response: AxiosResponse) => {
+            axios.get(`/api/admin/getuserdata?userid=` + selectuser.id + `&page=-1`, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
                     var data=Array<DataState>();
                     data.push({

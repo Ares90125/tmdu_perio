@@ -39,9 +39,15 @@ class DataController extends Controller
         ]);
     }
     public function getuserdata(Request $request){
-        $data=Data::Where([
-            'userid'  =>$request["userid"]
-        ])->select('id','date',"time","type","value","created_at")->orderBy('date','desc')->orderBy('time','desc')->paginate(7);
+        if($request['page']=='-1'){
+            $data=Data::Where([
+                'userid'  =>$request["userid"]
+            ])->select('id','date',"time","type","value","created_at")->orderBy('date','desc')->orderBy('time','desc')->get();
+        }else{
+            $data=Data::Where([
+                'userid'  =>$request["userid"]
+            ])->select('id','date',"time","type","value","created_at")->orderBy('date','desc')->orderBy('time','desc')->paginate(7);
+        }
         foreach ($data as &$value) {
             $value['updated_at']=date('Y-m-d H:i',strtotime('+9 hours',strtotime($value['created_at'])));
           }
