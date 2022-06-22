@@ -9,8 +9,14 @@ const PatientInfoEdit = () => {
     const [message, setMessage] = useState("");
     const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
     const selectuser = useAppSelector((state) => state.user.value)[index];
-    const [name, setUserName] = useState(selectuser.name);
-    const [ticketid, setTicketId] = useState(selectuser.ticketid);
+    const [name, setUserName] = useState('');
+    const [ticketid, setTicketId] = useState('');
+    useEffect(() => {
+        if(selectuser){
+            setUserName(selectuser.name!);
+            setTicketId(selectuser.ticketid!);
+        }
+    }, [selectuser])
     const resetName = () => {
 
         const config = {
@@ -33,6 +39,7 @@ const PatientInfoEdit = () => {
         }
     }
     return (
+        !selectuser?<div></div>:
         <div className="mx-[230px] mt-[20px] min-h-screen h-full bg-white">
             <div className="flex flex-row items-center pt-[39px] pl-[94px]">
                 <p className="text-[24px] font-bold">

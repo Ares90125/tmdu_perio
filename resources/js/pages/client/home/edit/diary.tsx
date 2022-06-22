@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TypeHeader from "../../../../components/type";
 import DefaultButton from "../../../../components/button";
 import BreshComponent from "../../../../components/breshcomponent";
@@ -11,10 +11,19 @@ const Diary = () => {
     const navigate = useNavigate();
     const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
     const data=useAppSelector((state) => state.data.value[index]);
-    const [index_1, setIndex_1] = useState(Boolean(Number(data.value!.split("|")[0].split(',')[0])));
-    const [index_2, setIndex_2] = useState(Boolean(Number(data.value!.split("|")[0].split(',')[1])));
-    const [index_3, setIndex_3] = useState(Boolean(Number(data.value!.split("|")[0].split(',')[2])));
-    const [time1, settime1] = useState(data.time);
+    const [index_1, setIndex_1] = useState(false);
+    const [index_2, setIndex_2] = useState(false);
+    const [index_3, setIndex_3] = useState(false);
+    const [time1, settime1] = useState('');
+    useEffect(() => {
+        if(data){
+            setIndex_1(Boolean(Number(data.value!.split("|")[0].split(',')[0]))!);
+            setIndex_2(Boolean(Number(data.value!.split("|")[0].split(',')[1]))!);
+            setIndex_3(Boolean(Number(data.value!.split("|")[0].split(',')[2]))!);
+            settime1(data.time!);
+            setTabIndex(Number(data.value!.split("|")[1]));
+        }
+    }, [data])
     function setTime(val:number){
         if(tabindex==val){
             setTabIndex(0);
@@ -43,8 +52,9 @@ const Diary = () => {
 
         }
     }
-    const [tabindex,setTabIndex]=useState(Number(data.value!.split("|")[1]));
+    const [tabindex,setTabIndex]=useState(0);
     return (
+        !data?<></>:
         <div >
             <p className="text-4xl text-mainColor py-8 font-black text-center pb-2">{"記録を編集する"}</p>
             <p className="text-base text-mainColor pt-2 font-light text-center pb-2">{"歯磨きや食事の内容を記録しましょう"}</p>

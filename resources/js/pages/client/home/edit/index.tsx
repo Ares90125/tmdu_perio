@@ -9,13 +9,39 @@ import Diary from "./diary";
 import SetMeal from "./setmeal";
 import BedTime from "./bedtime";
 import Adder from "./add";
-import { useAppSelector } from "../../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import axios, { AxiosResponse } from "axios";
+import {  changedata,changedate } from '../../../.././redux/reducers/dataslice'
 
 const Editer = () => {
+    const dispatch = useAppDispatch();
     const name=useAppSelector((state) => state.authenticater.name);
     const [flag, setFlag]=useState(false);
     const location = useLocation();
     const path=location.pathname.split("/");
+    const date = new Date(localStorage.getItem('date')!.toString());
+    const loaddata = () => {
+        let datestr=date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        try {
+            axios.get(`/api/client/loaddata?date=${datestr}`, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
+                    dispatch(changedata(response.data["data"][0]));
+                } else {
+                }
+            });
+        }
+        catch (err) {
+
+        }
+    }
+    useEffect(() => {
+        loaddata();
+    },[date])
     useEffect(() => {
         if(path.length>4&&path[4]!=""){
             setFlag(true);

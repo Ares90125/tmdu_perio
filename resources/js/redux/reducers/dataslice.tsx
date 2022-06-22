@@ -30,6 +30,7 @@ export const dataslice = createSlice({
   reducers: {
     changedate: (state, action: PayloadAction<Date>) => {
       state.date=action.payload;
+      localStorage.setItem('date',action.payload.toString());
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
     changedata: (state, action: PayloadAction<[]>) => {

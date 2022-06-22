@@ -60,6 +60,7 @@ const Register = () => {
         }
     }
     return (
+        !data?<div></div>:
         <div className="mx-[230px] mt-[20px] min-h-screen h-full bg-white">
             {issuccess&&<div>
                 <div className="flex flex-row items-center pt-[39px] pl-[94px] pb-[71px]">

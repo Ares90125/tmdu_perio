@@ -11,8 +11,7 @@ import { useNavigate } from "react-router-dom";
 const Calender = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const date = useAppSelector((state) => state.data.date);
-
+    const date = localStorage.getItem('date');
     const [value, setValue] = React.useState<Date | null>(new Date());
     const today = new Date();
     var showDate = new Date(today.getFullYear(), today.getMonth(), 1);

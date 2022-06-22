@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 const BedTime = () => {
     const navigate = useNavigate();
     const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
-    const date = useAppSelector((state) => state.data.date);
+    const date = new Date(localStorage.getItem('date')!);
     const data=useAppSelector((state) => state.data.value[index]);
-    const [time1, settime1] = useState(data.time);
+    const [time1, settime1] = useState('');
     const [tabindex, setTabIndex] = useState(2);
     const update = () => {
         ; const config = {
@@ -33,7 +33,9 @@ const BedTime = () => {
         }
     }
     useEffect(() => {
-    },[])
+        if(data)
+          settime1(data.time);
+    },[data])
     function getDate(next:boolean) {
         let newDate = date;
         let month = newDate.getMonth() + 1;
@@ -41,6 +43,7 @@ const BedTime = () => {
         return next?`${month}月${newDate.getDate()-1}日`:`${month}月${newDate.getDate()}日`;
     }
     return (
+        !data?<></>:
         <div >
             <p className="text-4xl text-mainColor py-8 font-black text-center pb-2">{"記録を編集する"}</p>
             <p className="text-base text-mainColor pt-2font-light text-center pb-2">{"就寝時間を編集しましょう"}</p>

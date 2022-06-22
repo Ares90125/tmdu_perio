@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import axios, { AxiosResponse } from 'axios';
 import { Button, Card, CardContent, CardActions, Container, TextareaAutosize, Typography } from '@mui/material';
 import DefaultButton from "../../../../components/button";
@@ -16,10 +16,17 @@ function SetMeal(props: ButtonProps) {
     const navigate = useNavigate();
     const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
     const data=useAppSelector((state) => state.data.value[index]);
-    const [time1, settime1] = useState(data.time);
+    const [time1, settime1] = useState('');
     const [image, setImage] = useState<any | null>(null);
-    const [statetext,setText]=useState(data.value?.split("|")[0]);
-    const [imageurl,setImageurl]=useState(data.value?.split("|")[1]);
+    const [statetext,setText]=useState<any | null>('');
+    const [imageurl,setImageurl]=useState<any | null>(null);
+    useEffect(() => {
+        if(data){
+            settime1(data.time!);
+            setText(data.value?.split("|")[0]);
+            setImageurl(data.value?.split("|")[1]);
+        }
+    }, [data])
     const handleSetImage = (event: ChangeEvent<HTMLInputElement>) => {
         if(event.target.files?.length!=0){
             setImage(event.target.files![0]);
@@ -53,6 +60,7 @@ function SetMeal(props: ButtonProps) {
         }
     }
     return (
+        !data?<></>:
         <div className="w-full overflow-hidden">
             <p className="text-4xl text-mainColor py-8 font-black text-center pb-2">{"記録を編集する"}</p>
             <p className="text-base text-mainColor pt-2 pb-4 font-light text-center">{"歯磨きや食事の内容を記録しましょう"}</p>

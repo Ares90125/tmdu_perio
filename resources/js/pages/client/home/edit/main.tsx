@@ -12,7 +12,7 @@ import { changeDate } from "../../../../redux/reducers/addslice";
 
 const Main = () => {
     const dispatch = useAppDispatch();
-    const date = useAppSelector((state) => state.data.date);
+    const date = new Date(localStorage.getItem('date')!);
     const data=useAppSelector((state) => state.data.value);
     const loaddata = () => {
         let datestr=date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();

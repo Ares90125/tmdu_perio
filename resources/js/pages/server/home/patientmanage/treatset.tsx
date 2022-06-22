@@ -11,8 +11,12 @@ const TreatSet = () => {
     const navigate = useNavigate();
     const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
     const selectuser = useAppSelector((state) => state.user.value)[index];
-    const [selectindex, setSelect] = useState(selectuser.type==null?"1":selectuser.type!.toString());
-    const firstcheck=selectuser.date;
+    const [selectindex, setSelect] = useState('');
+    useEffect(() => {
+        if(selectuser){
+            setSelect(selectuser.type==null?"1":selectuser.type!.toString()!);
+        }
+    })
     const resettreat = () => {
 
         const config = {
@@ -36,6 +40,7 @@ const TreatSet = () => {
         }
     }
     return (
+        !selectuser?<div></div>:
         <div className="mx-[230px] mt-[20px] min-h-screen h-full bg-white">
             <div className="flex flex-row items-center pt-[39px] pl-[94px]">
                 <p className="text-[24px] font-bold">

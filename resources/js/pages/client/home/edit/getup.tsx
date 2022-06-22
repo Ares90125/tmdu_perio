@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TypeHeader from "../../../../components/type";
 import DefaultButton from "../../../../components/button";
 import Timepicker from "../../../../components/timepicker";
@@ -12,7 +12,13 @@ const GetUp = () => {
     const dispatch = useAppDispatch();
     const index=useAppSelector((state) => state.index.value)?Number(localStorage.getItem('index')):useAppSelector((state) => state.index.value);
     const data=useAppSelector((state) => state.data.value[index]);
-    const [time1, settime1] = useState(data.time);
+    const [time1, settime1] = useState('');
+    useEffect(() => {
+        if(data){
+
+            settime1(data.time!);
+        }
+    }, [data])
     const update = () => {
         let date = new Date();
         ; const config = {
@@ -35,6 +41,7 @@ const GetUp = () => {
         }
     }
     return (
+        !data?<></>:
         <div >
             <p className="text-3xl text-mainColor py-4 font-black text-center pb-2">{"記録を編集する"}</p>
             <p className="text-base text-mainColor pt-2 font-light text-center pb-2">{"起床時間を編集しましょう"}</p>
