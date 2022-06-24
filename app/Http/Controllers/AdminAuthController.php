@@ -19,6 +19,10 @@ class AdminAuthController extends Controller
             return response()->json([
                 'success'   =>  false,
                 'message'   =>  trans('auth.user_not_found')
+            ]);
+        }
+        if (!Hash::check($data['password'], $user->password)) {
+            return response()->json([
                 'success'   =>  false,
                 'message'   =>  trans('auth.failed')
             ]);
@@ -26,11 +30,7 @@ class AdminAuthController extends Controller
         $res = $user->toArray();
         // if ($user->userid) {
         //     $res['userid'] = new OfficeResource($user->userid);
-        // }     ]);
-        }
-        if (!Hash::check($data['password'], $user->password)) {
-            return response()->json([
-
+        // }
         return response()->json([
             'success'   =>  true,
             'data'      =>  [
