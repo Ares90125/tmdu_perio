@@ -19,7 +19,7 @@ const Editer = () => {
     const [flag, setFlag]=useState(false);
     const location = useLocation();
     const path=location.pathname.split("/");
-    const date = new Date(localStorage.getItem('date')!.toString());
+    const date =localStorage.getItem('date')?new Date(localStorage.getItem('date')!):new Date();
     const loaddata = () => {
         let datestr=date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
         const config = {

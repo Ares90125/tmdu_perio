@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const BedTime = () => {
     const navigate = useNavigate();
     const index=Number(localStorage.getItem('index'));
-    const date = new Date(localStorage.getItem('date')!);
+    const date =localStorage.getItem('date')?new Date(localStorage.getItem('date')!):new Date();
     const data=useAppSelector((state) => state.data.value[index]);
     const [time1, settime1] = useState('');
     const [tabindex, setTabIndex] = useState(2);
