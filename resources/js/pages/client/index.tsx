@@ -10,7 +10,7 @@ import {  setclient, setname } from '../.././redux/reducers/authentication'
 import {  useAppDispatch } from '../.././redux/hooks'
 import { tr } from 'date-fns/locale';
 const Client = () => {
-    
+
     const dispatch = useAppDispatch();
     const isauth = useAppSelector((state) => state.authenticater.client);
     const pathname = window.location.pathname.split('/')[2];
@@ -29,23 +29,27 @@ const Client = () => {
                     return true;
                 }else{
                     localStorage.removeItem('token');
+                    setFlag(false);
                     return false;
                 }
+            }).catch((error)=>{
+                localStorage.removeItem('token');
+                setFlag(false);
             });
         }
         catch(err){
             return false;
         }
     }
-    const [mounted, setMounted] = useState(false)
     if(pathname!="login"&&!flag){
         if( localStorage.getItem('token')){
             setFlag(true);
+            Me();
             dispatch(setname(localStorage.getItem('username')!));
         }
     }
     useEffect(() =>{
-        setMounted(true)
+
     },[])
     return (
         <Routes >
