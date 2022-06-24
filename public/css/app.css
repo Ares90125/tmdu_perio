@@ -1640,8 +1640,8 @@ body {
 .u-m-auto {
   margin: auto;
 }
-@media and (-webkit-min-device-pixel-ratio:0) {
-    selector {
+@media not all and (-webkit-min-device-pixel-ratio:0), not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance:none) {
         input:after {
             content: attr(placeholder) !important;
         }
@@ -1649,8 +1649,8 @@ body {
         input[value]:not([value=""]) + input:after {
             content: '' !important;
         }
-     }
     }
+}
 .placeholder\:tracking-wider::-moz-placeholder {
   letter-spacing: 0.05em;
 }
