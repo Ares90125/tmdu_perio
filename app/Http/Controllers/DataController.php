@@ -18,6 +18,7 @@ class DataController extends Controller
         // }
     }
     public function me(Request $request){
+        $user = auth()->user();
         return response()->json([
             'success'   =>  true,
             'data'      =>  [

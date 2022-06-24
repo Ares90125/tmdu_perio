@@ -119,10 +119,14 @@ body {
 .u-m-auto {
   margin: auto;
 }
-input:after {
-    content: attr(placeholder) !important;
-}
+@media and (-webkit-min-device-pixel-ratio:0) {
+    selector {
+        input:after {
+            content: attr(placeholder) !important;
+        }
 
-input[value]:not([value=""]) + input:after {
-    content: '' !important;
-}
+        input[value]:not([value=""]) + input:after {
+            content: '' !important;
+        }
+     }
+    }
