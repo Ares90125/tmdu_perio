@@ -1640,16 +1640,11 @@ body {
 .u-m-auto {
   margin: auto;
 }
-input:after {
-    content: attr(placeholder) !important;
-}
-input[value]:not([value=""]) + input:after {
-    content: '' !important;
-}
 @media not all and (-webkit-min-device-pixel-ratio:0), not all and (min-resolution:.001dpcm) {
     @supports (-webkit-appearance:none) {
         input:after {
             content: attr(placeholder) !important;
+            position: absolute;
         }
         input[value]:not([value=""]) + input:after {
             content: '' !important;
