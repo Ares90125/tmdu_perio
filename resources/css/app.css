@@ -119,3 +119,11 @@ body {
 .u-m-auto {
   margin: auto;
 }
+@media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance:none) {
+        input:after {
+            content: attr(placeholder) !important;
+        }
+
+    }
+}
