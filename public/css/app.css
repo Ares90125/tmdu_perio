@@ -685,6 +685,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .ml-\[30px\] {
   margin-left: 30px;
 }
+.mb-\[106px\] {
+  margin-bottom: 106px;
+}
 .inline-block {
   display: inline-block;
 }

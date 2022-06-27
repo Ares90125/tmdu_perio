@@ -10,7 +10,7 @@ const VideoNotify = () => {
     const index=Number(localStorage.getItem('index'));
     const data = useAppSelector((state) => state.notification.value)[index];
     return (
-        <div className="mx-[3px]">
+        <div className="mx-[3px] mb-[106px]">
             <div className="flex justify-center items-center pt-4 pb-2 px-4 relatvice">
                 <p className="text-base text-mainColor  font-semibold text-center">{name+" さん"} </p>
                 <NavLink to={"../"} className={"absolute left-0 ml-[15px]"}>

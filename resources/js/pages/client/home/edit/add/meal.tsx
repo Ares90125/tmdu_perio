@@ -66,6 +66,8 @@ function Meal(props: ButtonProps) {
                 } else {
                     handleClickOpen();
                 }
+            }).catch((error)=>{
+                handleClickOpen();
             });
         }
         catch (err) {
