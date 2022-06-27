@@ -19,7 +19,6 @@ const Record = () => {
     const handleClickOpen = () => {
         setOpen(true);
     };
-
     const handleClose = () => {
         setOpen(false);
     };

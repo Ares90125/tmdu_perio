@@ -83,7 +83,7 @@ class ClientAuthController extends Controller
         ])->update($update);
         $videos=Videos::Where([
             'type'  =>$request["type"]
-        ])->select('value','title')->get();
+        ])->select('value','text','title')->get();
         foreach($videos as $value){
             $breshcout=new Notifications;
             $breshcout['date'] =Carbon::now()->format('Y-m-d');

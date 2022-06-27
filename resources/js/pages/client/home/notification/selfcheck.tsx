@@ -7,8 +7,6 @@ import { useAppSelector } from "../../../../redux/hooks";
 
 const SelfCheck = () => {
     const name=useAppSelector((state) => state.authenticater.name);
-    const [visible, setVisible] = useState(false);
-    const [time1, settime1] = useState("");
     return (
         <div className="mx-[3px]">
             <div className="flex justify-center items-center pt-4 pb-2 px-4 relatvice">

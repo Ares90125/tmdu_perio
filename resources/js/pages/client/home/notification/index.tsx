@@ -5,12 +5,43 @@ import NotificationList from "./notificationlist";
 import BreshNotify from "./breshnotify"
 import SelfCheck from "./selfcheck";
 import Record from "./record";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { changecount, changedata, changepage } from "../../../../redux/reducers/notificationslice";
 import VideoNotify from "./videonotification";
+import axios, { AxiosResponse } from "axios";
 
 const Notification = () => {
+    const dispatch = useAppDispatch();
+    const [tabindex, setTab] = useState(1);
+    const notification = () => {
+        let date = new Date();
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        try {
+            axios.get('/api/client/onlynotification?page='+tabindex, config).then((response: AxiosResponse) => {
+                if (response.data["success"] == true) {
+                    dispatch(changecount(response.data["count"][0]));
+                    dispatch(changedata(response.data["value"][0]["data"]));
+                    dispatch(changepage(response.data["value"][0]["last_page"]));
+
+                } else {
+                    return false;
+                }
+            });
+        }
+        catch (err) {
+            return false;
+        }
+    }
+    useEffect(() => {
+        notification();
+    }, [tabindex])
    return (
     <Routes >
-        <Route  path="/" element={ <NotificationList />}/>
+        <Route  path="/" element={ <NotificationList buttonClick={setTab} index={tabindex} />}/>
         <Route  path="/breshnotify" element={ <BreshNotify />}/>
         <Route  path="/selfcheck" element={ <SelfCheck />}/>
         <Route  path="/record" element={ <Record />}/>
