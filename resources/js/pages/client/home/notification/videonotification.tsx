@@ -28,7 +28,7 @@ const VideoNotify = () => {
             </video>
             <div className="h-[344px] text-mainColor mt-[25px] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)] w-auto rounded-[10px] bg-white px-[20px] pb-[10px] mx-[28px] px-[20px]">
                 <p className="font-black text-[18px] pt-[26px] text-mainColor"> {data.value?.split("|")[0]}</p>
-                <p className="">{data.value?.split("|")[2]}</p>
+                <p className="">{data.value?.split("|")[1]}</p>
                 {/* {
                     Array(3).fill(0).map((element, index) => {
                         return <div key={index} className="w-full text-[13px] font-normal mt-[30px]">
