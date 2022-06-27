@@ -90,7 +90,7 @@ class ClientAuthController extends Controller
             $breshcout['time']= Carbon::now()->format('H:m:s');
             $breshcout['userid']=$request["id"];
             $breshcout["type"]=4;
-            $breshcout["value"]=$value["title"]."|".$value["value"];
+            $breshcout["value"]=$value["title"]."|".$value["text"]."|".$value["value"];
             $breshcout->save();
         }
         return response()->json(['success' => true], 200);

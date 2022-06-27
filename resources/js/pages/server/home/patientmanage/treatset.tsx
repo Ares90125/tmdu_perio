@@ -16,7 +16,7 @@ const TreatSet = () => {
         if(selectuser){
             setSelect(selectuser.type==null?"1":selectuser.type!.toString()!);
         }
-    })
+    },[]);
     const resettreat = () => {
 
         const config = {

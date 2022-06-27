@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string("title");
+            $table->string("text");
             $table->integer("type");
             $table->string("value");
             $table->timestamps();

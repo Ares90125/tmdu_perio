@@ -760,6 +760,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-\[344px\] {
   height: 344px;
 }
+.h-\[195px\] {
+  height: 195px;
+}
 .min-h-full {
   min-height: 100%;
 }

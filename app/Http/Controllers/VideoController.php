@@ -10,7 +10,7 @@ class VideoController extends Controller
     public function loadvideo(Request $request){
         $data=Videos::Where([
             'type'  =>$request["type"]
-        ])->select('value','title',"type")->get();
+        ])->select('value','title','text',"type")->get();
         return response()->json([
             'success'   =>  true,
             'data'      =>  [
