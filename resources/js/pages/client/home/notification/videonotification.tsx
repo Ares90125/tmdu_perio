@@ -9,6 +9,7 @@ import axios, { AxiosResponse } from "axios";
 const VideoNotify = () => {
     const index=Number(localStorage.getItem('index'));
     const data = useAppSelector((state) => state.notification.value)[index];
+    const name=useAppSelector((state) => state.authenticater.name);
     return (
         <div className="mx-[3px] mb-[106px]">
             <div className="flex justify-center items-center pt-4 pb-2 px-4 relatvice">
@@ -26,7 +27,7 @@ const VideoNotify = () => {
             <video  className="h-auto w-full" controls >
                 <source src={data.value?.split("|")[2]} type="video/mp4"/>
             </video>
-            <div className="h-[344px] text-mainColor mt-[25px] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)] w-auto rounded-[10px] bg-white px-[20px] pb-[10px] mx-[28px] px-[20px]">
+            <div className="text-mainColor mt-[25px] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)] w-auto rounded-[10px] bg-white pb-[10px] mx-[28px] px-[20px]">
                 <p className="font-black text-[18px] pt-[26px] text-mainColor"> {data.value?.split("|")[0]}</p>
                 <p className="">{data.value?.split("|")[1]}</p>
                 {/* {

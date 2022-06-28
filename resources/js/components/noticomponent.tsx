@@ -123,7 +123,7 @@ function NotifiComponent(props: ButtonProps) {
                                     <div className="px-[10px] text-[13px] font-normal text-mainColor pt-[8px]">
                                         あなたにオススメの歯周病向けのセルフケア動画です。<br></br>動画を見ながら、しっかりと磨きましょう
                                     </div>
-                                    <div className="my-[10px] relative w-full grid h-[195px]">
+                                    <div className="my-[10px] relative w-full grid">
                                         {/* <video  className="h-auto w-full disabled" controls >
                                             <source src= {props.element.value?.split("|")[1]} type="video/mp4"/>
                                         </video> */}

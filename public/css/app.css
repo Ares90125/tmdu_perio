@@ -655,6 +655,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mt-\[8px\] {
   margin-top: 8px;
 }
+.mb-\[106px\] {
+  margin-bottom: 106px;
+}
 .-mb-px {
   margin-bottom: -1px;
 }
@@ -684,9 +687,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .ml-\[30px\] {
   margin-left: 30px;
-}
-.mb-\[106px\] {
-  margin-bottom: 106px;
 }
 .inline-block {
   display: inline-block;
@@ -759,12 +759,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .h-\[177px\] {
   height: 177px;
-}
-.h-\[344px\] {
-  height: 344px;
-}
-.h-\[195px\] {
-  height: 195px;
 }
 .min-h-full {
   min-height: 100%;
