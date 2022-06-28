@@ -127,7 +127,7 @@ function NotifiComponent(props: ButtonProps) {
                                         {/* <video  className="h-auto w-full disabled" controls >
                                             <source src= {props.element.value?.split("|")[1]} type="video/mp4"/>
                                         </video> */}
-                                        <NavLink to="video" className="absolute place-self-center">
+                                        <NavLink to="video" className="place-self-center">
                                             <DefaultButton text="動画を見る" buttonClick={()=>{dispatch(changeByAmount(props.index));}}></DefaultButton>
                                         </NavLink>
                                     </div>
