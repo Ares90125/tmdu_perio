@@ -11,8 +11,13 @@ import VideoNotify from "./videonotification";
 import axios, { AxiosResponse } from "axios";
 
 const Notification = () => {
+    const index=!Number(localStorage.getItem('tabindex'))?1:Number(localStorage.getItem('tabindex'));
     const dispatch = useAppDispatch();
-    const [tabindex, setTab] = useState(1);
+    const [tabindex, setTab] = useState(Number(index));
+    const setLocal=(index:number)=>{
+        localStorage.setItem('tabindex',index.toString());
+        setTab(index);
+    }
     const notification = () => {
         let date = new Date();
         const config = {
@@ -41,7 +46,7 @@ const Notification = () => {
     }, [tabindex])
    return (
     <Routes >
-        <Route  path="/" element={ <NotificationList buttonClick={setTab} index={tabindex} />}/>
+        <Route  path="/" element={ <NotificationList buttonClick={setLocal} index={tabindex} />}/>
         <Route  path="/breshnotify" element={ <BreshNotify />}/>
         <Route  path="/selfcheck" element={ <SelfCheck />}/>
         <Route  path="/record" element={ <Record />}/>

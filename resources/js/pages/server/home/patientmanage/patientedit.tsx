@@ -61,6 +61,7 @@ const PatientEdit = () => {
     const [navindex, setNavindex] = useState(1);
     const [password, resetPassword] = useState("");
     const [info, setInfo] = useState("");
+    const [startindex, setStart]=useState(1);
     const getUserdata = () => {
         const config = {
             headers: {
@@ -315,11 +316,23 @@ const PatientEdit = () => {
                                 <AdminDefaultButton text="csvDL" buttonClick={() => { }} />
                             </CSVLink>
                         </div>
-                        <div>
+                        <div className="flex flex-row">
                             {
-                                Array(lastpage).fill(1).map((element,index) => {
-                                    return <button className="text-[20px] font-bold mr-[20px]" key={index} onClick={()=>{setNavindex(index+1);}}>{index+1}</button>
+                                lastpage<7?<></>:
+                                <div className={"flex items-center justify-center ml-[20px] w-[32px] h-[32px] rounded-[50%] mr-[20px] "}>
+                                    <button onClick={() => {if(startindex>1)setStart(startindex-1) }} className="text-[14px] mx-[2px] sm:py-2 font-content">{"<<"}</button>
+                                </div>
+                            }
+                            {
+                                Array(lastpage<7?lastpage:5).fill(1).map((element,index) => {
+                                    return <button className="text-[20px] font-bold mr-[20px]" key={index} onClick={()=>{setNavindex(startindex+index);}}>{startindex+index}</button>
                                 })
+                            }
+                            {
+                                lastpage<7?<></>:
+                                <div className={"flex items-center justify-center w-[32px] h-[32px] rounded-[50%] "}>
+                                    <button onClick={() => { if(startindex+5<=lastpage)setStart(startindex+1)}} className="text-[14px] mx-[2px] sm:py-2 font-content">{">>"}</button>
+                                </div>
                             }
                         </div>
                     </div>

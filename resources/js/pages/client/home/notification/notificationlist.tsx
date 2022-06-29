@@ -14,6 +14,7 @@ const NotificationList = (props:NotifyIndex) => {
     const page = useAppSelector((state) => state.notification.page);
     const name=useAppSelector((state) => state.authenticater.name);
     const tabindex = props.index;
+    const [startindex, setStart]=useState(1);
     return (
         <div className="pb-10 mx-[3px]">
             <div className="flex justify-center items-center pt-4 pb-2 px-4 relatvice">
@@ -30,11 +31,23 @@ const NotificationList = (props:NotifyIndex) => {
             <div className="mx-[20px]">
                 <div className=" flex flex-row items-center justify-center">
                     {
-                        Array(page).fill(0).map((element, index) => {
+                        page<5?<></>:
+                        <div className={"flex items-center justify-center ml-[20px] w-[32px] h-[32px] rounded-[50%] "}>
+                            <button onClick={() => {if(startindex>1)setStart(startindex-1) }} className="text-[14px] mx-[2px] sm:py-2 font-content">{"<<"}</button>
+                        </div>
+                    }
+                    {
+                        Array(page<5?page:3).fill(0).map((element, index) => {
                             return <div key={index} className={"flex items-center justify-center ml-[20px] w-[32px] h-[32px] rounded-[50%] " + (tabindex == index + 1 ? "bg-mainColor text-white" : "")}>
-                                <button onClick={() => { props.buttonClick(index + 1) }} className="text-[14px] mx-[2px] sm:py-2 font-content">{index + 1}</button>
+                                <button onClick={() => { props.buttonClick(startindex + index) }} className="text-[14px] mx-[2px] sm:py-2 font-content">{startindex+index}</button>
                             </div>
                         })
+                    }
+                    {
+                        page<5?<></>:
+                        <div className={"flex items-center justify-center ml-[20px] w-[32px] h-[32px] rounded-[50%] "}>
+                            <button onClick={() => { if(startindex+3<=page)setStart(startindex+1)}} className="text-[14px] mx-[2px] sm:py-2 font-content">{">>"}</button>
+                        </div>
                     }
                 </div>
                 <div className="mt-[25px] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)] w-full rounded-[10px] bg-white px-[20px] pb-[10px]">
