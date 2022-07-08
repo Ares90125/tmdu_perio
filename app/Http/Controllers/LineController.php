@@ -99,15 +99,17 @@ class LineController extends Controller
                 'client_secret' => 'f1c8db23ace8553aa78b7d9a0d8c672b',
             ]
         ]);
+        return response()->json(['success' => true,"password"=>$response], 200);
         $response1=Http::post('https://api.line.me/oauth2/v2.1/verify', [
             'form_params' => [
                 'id_token' => $response['id_token'],
                 'client_id' => '1657281804',
             ]
         ]);
-        $update[''] =$request["state"];
+        $update['LineId'] =$response1["sub"];
         $data=Users::Where([
-            'LineId'  => $update["id"],
+            'LineId'  => $request["state"],
         ])->update($update);
+        return view('client');
     }
 }
