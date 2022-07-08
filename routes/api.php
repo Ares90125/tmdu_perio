@@ -19,6 +19,7 @@ use App\Http\Controllers\LineController;
 |
 */
 Route::get('/linelogin', [LineController::class,'getuserid']);
+Route::get('/linetoken', [LineController::class,'linetoken']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
