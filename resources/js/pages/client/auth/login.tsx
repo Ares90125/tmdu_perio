@@ -3,7 +3,7 @@ import { Box, ButtonBase, InputBase } from "@mui/material";
 import DefaultButton from "../../../components/button";
 import axios, { AxiosResponse } from 'axios';
 import {useNavigate } from 'react-router-dom';
-import {  setclient,setname } from '../../.././redux/reducers/authentication'
+import {  setclient,setid,setname } from '../../.././redux/reducers/authentication'
 import {  useAppDispatch } from '../../.././redux/hooks'
 import  setAuthToken from '../../.././redux/utils/setauthtoken'
 import MuiButton from '@mui/material/Button';
@@ -45,7 +45,14 @@ const Login = () => {
                     setAuthToken(response.data["data"]["token"]);
                     dispatch(setclient(true));
                     dispatch(setname(response.data["data"]["username"]));
-                    navigate('/');
+                    dispatch(setid(response.data["data"]["id"]));
+                    if(response.data["data"]["LineId"]=='0')
+                    {
+                        navigate('/client/alignment');
+                    }
+                    else{
+                        navigate('/');
+                    }
                 }else{
                     handleClickOpen();
                 }

@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notification;
 use Carbon\Carbon;
 use App\Models\Videos;
 use App\Models\Notifications;
+use App\Http\Controllers\LineController;
 
 class ClientAuthController extends Controller
 {
@@ -77,10 +78,9 @@ class ClientAuthController extends Controller
     }
     public function resettreat(Request $request)
     {
-        $update["type"]=$request["type"];
-        $data=Users::Where([
+        $user=Users::Where([
             'id'  => $request["id"],
-        ])->update($update);
+        ])->get();
         $videos=Videos::Where([
             'type'  =>$request["type"]
         ])->select('value','text','title')->get();
@@ -92,6 +92,9 @@ class ClientAuthController extends Controller
             $breshcout["type"]=4;
             $breshcout["value"]=$value["title"]."|".$value["text"]."|".$value["value"];
             $breshcout->save();
+        }
+        if($user->LineId!="0"){
+            (new LineController)->pushmessages($user->LineId,"サイトで新しいビデオをチェックしてください");
         }
         return response()->json(['success' => true], 200);
     }
@@ -178,7 +181,9 @@ class ClientAuthController extends Controller
             'success'   =>  true,
             'data'      =>  [
                 'token' =>  $user->createToken('access_token',['client'])->plainTextToken,
-                'username'  =>  $user["name"]
+                'username'  =>  $user["name"],
+                'id'  =>  $user["id"],
+                'LineId'   => $user['LineId']
             ]
         ]);
     }

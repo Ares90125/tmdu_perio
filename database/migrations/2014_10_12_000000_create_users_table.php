@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('name')->nullable();;
             $table->string('midpassword');
             $table->string('password', 255);
-            $table->string('clinic_id')->nullable();;
+            $table->string('clinic_id')->nullable();
+            $table->string('LineId')->nullable()->default('0');
             $table->text("info")->nullable();
             $table->integer("type")->nullable();
             $table->timestamps();

@@ -17,13 +17,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //  $schedule->command('inspire')->everyMinute();
-        $schedule->call(function () {
-            // Log::debug('An informational message.');
-            DB::table('test')->delete();
-        })->everyMinute();
+        $schedule->call('\App\Http\Controllers\LineController@SearchTWMessages')->dailyAt('20:00');
+        $schedule->call('\App\Http\Controllers\LineController@SearchEIMessages')->dailyAt('8:00');
+        $schedule->call('\App\Http\Controllers\LineController@SearchEVMessages')->everyTenMinutes();
     }
-
     /**
      * Register the commands for the application.
      *

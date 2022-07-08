@@ -22,6 +22,7 @@ class Users extends Authenticatable
         "clinic_id",
         "ticketid",
         "midpassword",
+        "LineId",
         "name",
         'password',
     ];
