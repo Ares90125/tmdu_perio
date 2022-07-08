@@ -90,7 +90,6 @@ class LineController extends Controller
     }
     public function getuserid(Request $request){
         $code=$request['code'];
-        return response()->json(['success' => true,"password"=>$code], 200);
         $response = Http::asForm()->post('https://api.line.me/oauth2/v2.1/token', [
                 'grant_type' => 'authorization_code',
                 'code' => $code,
@@ -98,7 +97,7 @@ class LineController extends Controller
                 'client_id' => '1657281804',
                 'client_secret' => 'f1c8db23ace8553aa78b7d9a0d8c672b',
         ]);
-        return response()->json(['success' => true,"password"=>$response], 200);
+        return response()->json(['success' => true,"password"=>$response->getBody()], 200);
         $response1=Http::asForm()->post('https://api.line.me/oauth2/v2.1/verify', [
                 'id_token' => $response['id_token'],
                 'client_id' => '1657281804',
