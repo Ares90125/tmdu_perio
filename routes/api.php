@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\LineController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,8 +18,8 @@ use App\Http\Controllers\LineController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/linelogin', [LineController::class,'getuserid']);
-Route::get('/linetoken', [LineController::class,'linetoken']);
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

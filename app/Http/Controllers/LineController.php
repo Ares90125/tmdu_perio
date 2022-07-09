@@ -94,7 +94,7 @@ class LineController extends Controller
         $response = Http::asForm()->post('https://api.line.me/oauth2/v2.1/token', [
                 'grant_type' => 'authorization_code',
                 'code' => $code,
-                'redirect_uri' => 'http://tmdu-crpe22.doctorbook-dev.jp/api/linelogin',
+                'redirect_uri' => 'http://tmdu-crpe22.doctorbook-dev.jp/linelogin',
                 'client_id' => '1657281804',
                 'client_secret' => 'f1c8db23ace8553aa78b7d9a0d8c672b',
         ]);
