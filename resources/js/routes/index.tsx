@@ -7,6 +7,7 @@ const Router = () => {
     return (
         <div>
             <Routes>
+            <Route path='/linelogin' element={<Navigate to="/client"/>} />
                 <Route path="/admin/*" element={<Admin/>}/>
                 <Route path='/' element={<Navigate to="/client"/>} />
                 <Route path="/client/*" element={<Client/>}/>
