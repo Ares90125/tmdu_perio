@@ -89,25 +89,22 @@ class LineController extends Controller
         $response = $bot->pushMessage($userID, $textMessageBuilder);
     }
     public function getuserid(Request $request){
-        $code=$request['code'];
-        return response()->json(['success' => true,"password"=>$code], 200);
-        // $response = Http::get('https://api.line.me/oauth2/v2.1/token');
-        $response = Http::asForm()->get('https://api.line.me/oauth2/v2.1/token', [
+         $code=$request['code'];
+        //  $response = Http::get('https://api.line.me/oauth2/v2.1/token');
+        $response = Http::asForm()->post('https://api.line.me/oauth2/v2.1/token', [
                 'grant_type' => 'authorization_code',
                 'code' => $code,
-                'redirect_uri' => 'http://tmdu-crpe22.doctorbook-dev.jp/api/linetoken',
+                'redirect_uri' => 'http://tmdu-crpe22.doctorbook-dev.jp/api/linelogin',
                 'client_id' => '1657281804',
                 'client_secret' => 'f1c8db23ace8553aa78b7d9a0d8c672b',
         ]);
 
-        dd($response);
 
-        return response()->json(['success' => true,"password"=>$response], 200);
         $response1=Http::asForm()->post('https://api.line.me/oauth2/v2.1/verify', [
-                'id_token' => $response['id_token'],
+                'id_token' => $response->json($key = null) ['id_token'],
                 'client_id' => '1657281804',
         ]);
-        $update['LineId'] =$response1["sub"];
+        $update['LineId'] =$response1->json($key = null)["sub"];
         $data=Users::Where([
             'LineId'  => $request["state"],
         ])->update($update);
