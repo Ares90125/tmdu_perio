@@ -108,6 +108,6 @@ class LineController extends Controller
         $data=Users::Where([
             'LineId'  => $request["state"],
         ])->update($update);
-        return view('client');
+        redirect('/');
     }
 }
