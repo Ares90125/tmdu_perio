@@ -6,6 +6,12 @@ import TypeHeader from "../../../../components/type";
 import Timepicker from "../../../../components/timepicker";
 import {  useAppSelector } from '../../../.././redux/hooks'
 import { useNavigate } from "react-router-dom";
+import MuiButton from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 interface ButtonProps {
     // text: string;
@@ -14,12 +20,21 @@ interface ButtonProps {
 
 function SetMeal(props: ButtonProps) {
     const navigate = useNavigate();
+    const [open, setOpen] = React.useState(false);
     const index=Number(localStorage.getItem('index'));
     const data=useAppSelector((state) => state.data.value[index]);
     const [time1, settime1] = useState('');
     const [image, setImage] = useState<any | null>(null);
     const [statetext,setText]=useState<any | null>('');
     const [imageurl,setImageurl]=useState<any | null>(null);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+
+      const handleClose = () => {
+        setOpen(false);
+      };
+
     useEffect(() => {
         if(data){
             settime1(data.time!);
@@ -53,6 +68,8 @@ function SetMeal(props: ButtonProps) {
                 } else {
 
                 }
+            }).catch((err)=>{
+                handleClickOpen();
             });
         }
         catch (err) {
@@ -87,6 +104,26 @@ function SetMeal(props: ButtonProps) {
                 <input style={{WebkitAppearance: "none"}} className="flex items-center justify-center focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full mt-4 bg-white" type="time"  value={time1} onChange={(ev) => {settime1(ev.target.value);}} />
             </div>
             <DefaultButton text="記録をする" buttonClick={updatemeal}></DefaultButton>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                 >
+                <DialogTitle id="alert-dialog-title">
+                {"エラー"}
+                </DialogTitle>
+                <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    正常に処理できませんでした。ページを再読み込みして再度お試しください。
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <MuiButton onClick={handleClose} autoFocus>
+                    確認
+                </MuiButton>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };

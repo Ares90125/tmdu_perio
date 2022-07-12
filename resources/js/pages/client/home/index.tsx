@@ -51,7 +51,6 @@ const Home = () => {
     useEffect(() => {
         notification();
     }, [selectindex])
-    
     return (
         <div >
             <div className="pb-20">

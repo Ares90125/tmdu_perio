@@ -66,7 +66,7 @@ const Sleep = () => {
             }
         };
         const body = JSON.stringify({
-            "update": date.getFullYear() + ":" + (date.getMonth() + 1) + ":" + date.getDate()});
+            "date": date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()});
         try {
             axios.post('/api/client/isregister', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
@@ -74,6 +74,8 @@ const Sleep = () => {
                 } else {
 
                 }
+            }).catch((err)=>{
+                handleClickOpen();
             });
         }
         catch (err) {

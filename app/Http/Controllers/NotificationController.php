@@ -142,7 +142,8 @@ class NotificationController extends Controller
         //         substr($user->created_at,0,10)
         //     ]
         // ]);
-        $selfcheckday = Carbon::parse($date)->diffInDays(Carbon::parse(strtotime(substr($user->created_at,0,10))))%7;
+        $selfcheckday = Carbon::parse($date)->diffInDays(Carbon::parse(strtotime(substr($user->created_at,0,10))));
+        // dd($selcheckday);
         if($selfcheckday>6&&(($selfcheckday%7)==6)){
             $isinvitevbreshcount=Notifications::Where([
                 'userid'  => $user->id,
@@ -168,7 +169,7 @@ class NotificationController extends Controller
                 'type' =>"2"
             ])->first();
             if(!$isinvitevbreshcount){
-                if(Carbon::parse($time)->format('H')>=8){
+                if(Carbon::parse($time)->format('H')>=4){
                     $selfcheck=new Notifications;
                     $selfcheck['date'] =$request["date"];
                     $selfcheck['time']="08:00:00";

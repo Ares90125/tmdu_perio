@@ -31,6 +31,7 @@ Route ::group(['prefix'=>'client'],function (){
     Route::post('/login', [ClientAuthController::class,'login']);
     Route::group(["middleware"=>'auth:sanctum'],function(){
         Route::get('/me',[DataController::class,"me"]);
+        Route::post('/resetpass',[ClientAuthController::class,"resetpass"]);
         Route::get('/logout',[DataController::class,"logout"]);
         Route::post('/create',[DataController::class,"create"]);
         Route::post('/createfile',[DataController::class,"createfile"]);

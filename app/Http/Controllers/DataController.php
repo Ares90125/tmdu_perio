@@ -25,6 +25,7 @@ class DataController extends Controller
             ]
         ]);
     }
+
     public function loaddata(Request $request){
         $user = auth()->user();
         $time = strtotime($request["date"]);
@@ -103,7 +104,7 @@ class DataController extends Controller
         $user = auth()->user();
         $isregister=Data::Where([
             'userid'  => $user->id,
-            'date'  => date('Y-m-d',$req["date"]),
+            'date'  => $req["date"],
             'type' =>"1"
         ])->first();
         if($isregister){

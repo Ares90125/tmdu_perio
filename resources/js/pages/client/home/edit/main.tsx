@@ -7,12 +7,13 @@ import DefaultButton from "../../../../components/button";
 import {  useAppDispatch,useAppSelector } from '../../../.././redux/hooks'
 import {  changedata,changedate } from '../../../.././redux/reducers/dataslice'
 import {  changeByAmount } from '../../../.././redux/reducers/indexslice'
-import {BRESH_TIME, BRESH_TOOL, MO_STATUS} from "../../../../redux/type";
+import {BRESH_TIME, SELF, MO_STATUS} from "../../../../redux/type";
 import { changeDate } from "../../../../redux/reducers/addslice";
 
 const Main = () => {
     const dispatch = useAppDispatch();
-    const date =localStorage.getItem('date')?new Date(localStorage.getItem('date')!):new Date();
+    const date1=useAppSelector((state) => state.data.date);
+    const date =localStorage.getItem('date')?new Date(localStorage.getItem('date')!):date1;
     const data=useAppSelector((state) => state.data.value);
     const loaddata = () => {
         let datestr=date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
@@ -158,6 +159,24 @@ const Main = () => {
                                             </NavLink>
                                         </div>
                                     </div>;
+                            case 5:return <div key={index}>
+                            <div className="bg-white rounded-2xl p-4 mt-[22PX] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
+                                <div className="flex flex-row ">
+                                    <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0].substring(0,1)=="0"?v.time.split(":")[0].substring(1):v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
+                                    <p className="basis-1/2 text-center text-mainColor text-xl font-extrabold">セルフ検査</p>
+                                    <p className="basis-1/6"></p>
+                                    {/* <NavLink to="meal" className="basis-1/6">
+                                        <button onClick={()=>{dispatch(changeByAmount(index));}}>
+                                            <p className=" text-center text-btnbgColor text-[15px] underline font-bold">編集</p>
+                                        </button>
+                                    </NavLink> */}
+                                </div>
+                                <div>
+                                    <img src={v.value!.split("|")[1]} className="w-full py-4"></img>
+                                </div>
+                                <p className="basis-1/6 text-mainColor text-[13px] w-full  font-bold px-8 py-2 " style={{overflowWrap:"break-word"}}>{SELF[Number(v.value!.split("|")[0])-1]}</p>
+                            </div>
+                        </div>;
                         }
                     }
                 )

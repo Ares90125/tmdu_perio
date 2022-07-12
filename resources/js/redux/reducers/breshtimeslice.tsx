@@ -30,7 +30,6 @@ export const breshtimeslice = createSlice({
         }
     },
     removeindex: (state, action: PayloadAction<number>) => {
-        state.value.splice(0);
         state.value.splice(action.payload,1);
     }
   },

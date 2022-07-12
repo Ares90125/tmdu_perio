@@ -61,6 +61,8 @@ const BreshNotify = () => {
                 } else {
                     handleClickOpen();
                 }
+            }).catch((err)=>{
+                handleClickOpen();
             });
         }
         catch (err) {
@@ -88,6 +90,8 @@ const BreshNotify = () => {
                     } else {
                         handleClickOpen();
                     }
+                }).catch((err)=>{
+                    handleClickOpen();
                 });
             }
             else {
@@ -99,6 +103,8 @@ const BreshNotify = () => {
                     } else {
                         handleClickOpen();
                     }
+                }).catch((err)=>{
+                    handleClickOpen();
                 });
             }
         }
@@ -145,7 +151,7 @@ const BreshNotify = () => {
                 </button>
                 <input style={{ WebkitAppearance: "none" }} className="flex items-center justify-center h-[43px] mt-[325px] focus:outline-none focus:border-mainColor tracking-[.3em] text-center rounded-lg border border-mainColor text-[26px] text-mainColor font-bold  px-2 w-full bg-white" placeholder={time1==""?"--:--":""} type="time" value={time1} onChange={(ev) => { settime1(ev.target.value); }} />
                 <div className="my-[50px]">
-                    <DefaultButton text="記録をする" buttonClick={create}></DefaultButton>
+                    <DefaultButton text="設定する" buttonClick={create}></DefaultButton>
                     <Dialog
                         open={open}
                         onClose={handleClose}

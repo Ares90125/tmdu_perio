@@ -80,7 +80,12 @@ class ClientAuthController extends Controller
     {
         $user=Users::Where([
             'id'  => $request["id"],
-        ])->get();
+        ])->first();
+        // dd($user);
+        $update["type"]=$request["type"];
+        Users::Where([
+            'id'  => $request["id"],
+        ])->update($update);
         $videos=Videos::Where([
             'type'  =>$request["type"]
         ])->select('value','text','title')->get();
@@ -93,7 +98,7 @@ class ClientAuthController extends Controller
             $breshcout["value"]=$value["title"]."|".$value["text"]."|".$value["value"];
             $breshcout->save();
         }
-        if($user->LineId!="0"){
+        if($user['LineId']!="0"){
             (new LineController)->pushmessages($user->LineId,"サイトで新しいビデオをチェックしてください");
         }
         return response()->json(['success' => true], 200);
@@ -155,6 +160,16 @@ class ClientAuthController extends Controller
             'id'  => $request["id"],
         ])->update($data);
         return response()->json(['success' => true,"password"=>$password], 200);
+    }
+    public function resetpass(Request $request){
+        $user = auth()->user();
+        $password=$request['password'];
+        $data['password'] = Hash::make($password);
+        $data['midpassword']=$password;
+        $data=Users::Where([
+            'id'  => $user["id"],
+        ])->update($data);
+        return response()->json(['success' => true], 200);
     }
     public function login(ChildRequest $request){
         $data=$request->validated();

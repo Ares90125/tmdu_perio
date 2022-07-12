@@ -48,7 +48,7 @@ const Login = () => {
                     dispatch(setid(response.data["data"]["id"]));
                     if(response.data["data"]["LineId"]=='0')
                     {
-                        navigate('/client/alignment');
+                        navigate('/client/resetpass');
                     }
                     else{
                         navigate('/');
@@ -56,7 +56,9 @@ const Login = () => {
                 }else{
                     handleClickOpen();
                 }
-            });
+            }).catch((err)=>{
+                handleClickOpen();
+            });;
         }
         catch(err){
             handleClickOpen();

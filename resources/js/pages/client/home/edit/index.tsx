@@ -16,10 +16,11 @@ import {  changedata,changedate } from '../../../.././redux/reducers/dataslice'
 const Editer = () => {
     const dispatch = useAppDispatch();
     const name=useAppSelector((state) => state.authenticater.name);
+    const date1=useAppSelector((state) => state.data.date);
     const [flag, setFlag]=useState(false);
     const location = useLocation();
     const path=location.pathname.split("/");
-    const date =localStorage.getItem('date')?new Date(localStorage.getItem('date')!):new Date();
+    const date =localStorage.getItem('date')?new Date(localStorage.getItem('date')!):date1;
     const loaddata = () => {
         let datestr=date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
         const config = {
@@ -40,6 +41,7 @@ const Editer = () => {
         }
     }
     useEffect(() => {
+        console.log(date);
         loaddata();
     },[date])
     useEffect(() => {

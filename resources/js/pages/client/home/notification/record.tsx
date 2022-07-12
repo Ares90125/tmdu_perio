@@ -51,6 +51,8 @@ const Record = () => {
                 } else {
                     handleClickOpen();
                 }
+            }).catch((err)=>{
+                handleClickOpen();
             });
         }
         catch (err) {
