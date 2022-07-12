@@ -8,7 +8,7 @@ const Router = () => {
     useEffect(() => {
         if(window.location.hostname.includes('admin-')&& window.location.pathname=='/client')
         {
-            window.location.href=window.location.hostname+'/admin';
+            window.location.href='/admin';
         }
     },[])
     return (
