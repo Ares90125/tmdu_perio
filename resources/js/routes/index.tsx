@@ -8,6 +8,7 @@ const Router = () => {
     useEffect(() => {
         if(window.location.hostname.includes('admin-')&&window.location.pathname=='/')
         {
+            console.log('eere');
             navigate('/admin');
         }
     },[])
