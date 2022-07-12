@@ -6,8 +6,8 @@ import Client from "../pages/client";
 const Router = () => {
     const navigate = useNavigate();
     useEffect(() => {
-        console.log(window.location.hostname);
-        if(window.location.hostname.includes('admin-')&&window.location.pathname=='/')
+        console.log(window.location.pathname);
+        if(window.location.hostname.includes('admin-')&& window.location.pathname=='/')
         {
             console.log('eere');
             navigate('/admin');
