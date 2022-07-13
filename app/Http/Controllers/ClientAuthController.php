@@ -18,7 +18,7 @@ class ClientAuthController extends Controller
 {
     public function loadusers(Request $request){
         $user = auth()->user();
-        $data=Users::select('id',"ticketid","name","midpassword","info","created_at","type","userid")->orderBy('id')->get();
+        $data=Users::select('id',"ticketid","name","midpassword","info","created_at","updated_at","type","userid")->orderBy('id')->get();
         return response()->json([
             'success'   =>  true,
             'data'      =>  [
@@ -35,7 +35,7 @@ class ClientAuthController extends Controller
             $data=Users::select('id',"ticketid","name","midpassword","info","created_at","type","userid")->where("ticketid","like",'%'.$request["ticketid"].'%')->orderBy('id')->get();
         }
         else{
-            $data=Users::select('id',"ticketid","name","midpassword","info","created_at","type","userid")->where("name","like",'%'.$request["name"].'%')->orwhere("ticketid","like",'%'.$request["ticketid"].'%')->orderBy('id')->get();
+            $data=Users::select('id',"ticketid","name","midpassword","info","created_at","updated_at","type","userid")->where("name","like",'%'.$request["name"].'%')->orwhere("ticketid","like",'%'.$request["ticketid"].'%')->orderBy('id')->get();
         }
         return response()->json([
             'success'   =>  true,

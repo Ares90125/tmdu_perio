@@ -60,6 +60,7 @@ const PatientEdit = () => {
     const dispatch = useAppDispatch();
     const [navindex, setNavindex] = useState(1);
     const [password, resetPassword] = useState("");
+    const [ismid, setIsmid] = useState(false);
     const [info, setInfo] = useState("");
     const [startindex, setStart]=useState(1);
     const getUserdata = () => {
@@ -85,6 +86,7 @@ const PatientEdit = () => {
         if(selectuser){
             resetPassword(selectuser.midpass!);
             setInfo(selectuser.info!);
+            setIsmid(selectuser.created_at==selectuser.updated_at);
         }
     }, [selectuser])
     const getAlldata = () => {
@@ -240,7 +242,8 @@ const PatientEdit = () => {
                                 <p className="text-[16px] font-bold text-responseColor tracking-[.25em]">{selectuser.userid}</p>
                             </td>
                         </tr>
-                        <tr>
+                        {selectuser.created_at!=selectuser.updated_at?<></>:
+                            <tr>
                             <td className="text-right">
                                 <p className="text-[16px] font-bold pr-[56px] ">
                                     パスワード
@@ -249,11 +252,12 @@ const PatientEdit = () => {
                             <td>
                                 <p className="text-[16px] font-bold text-responseColor tracking-[.25em]">{password}</p>
                             </td>
-                        </tr>
+                        </tr>}
                     </tbody>
                 </table>
                 <div className="flex flex-row-reverse">
-                    <AdminDefaultButton text="パスワードを再発行する" buttonClick={handleClickOpen} />
+                    {selectuser.created_at!=selectuser.updated_at?<></>:
+                        <AdminDefaultButton text="パスワードを再発行する" buttonClick={handleClickOpen} />}
                     <Dialog
                         open={open}
                         onClose={handleClose}

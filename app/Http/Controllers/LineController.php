@@ -40,7 +40,7 @@ class LineController extends Controller
                 continue;
             }
             $userID = $user->LineId;
-            $selfcheckday = Carbon::parse(now())->diffInDays(Carbon::parse(strtotime(substr($user->created_at,0,10))))%7;
+            $selfcheckday = Carbon::parse(now())->diffInDays(Carbon::parse(strtotime(substr($user->created_at,0,10))));
             if($selfcheckday>6&&(($selfcheckday%7)==0)){
                 $this->pushmessages($userID,"セルフ検査実施日です。忘れずにセルフ検査を行いましょう。");
             }else if($selfcheckday>6&&(($selfcheckday%7)==1)){
