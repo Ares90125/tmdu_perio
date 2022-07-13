@@ -165,7 +165,6 @@ class ClientAuthController extends Controller
         $user = auth()->user();
         $password=$request['password'];
         $data['password'] = Hash::make($password);
-        $data['midpassword']=$password;
         $data=Users::Where([
             'id'  => $user["id"],
         ])->update($data);
@@ -198,7 +197,8 @@ class ClientAuthController extends Controller
                 'token' =>  $user->createToken('access_token',['client'])->plainTextToken,
                 'username'  =>  $user["name"],
                 'id'  =>  $user["id"],
-                'LineId'   => $user['LineId']
+                'LineId'   => $user['LineId'],
+                'midpass'   => $user['midpassword']
             ]
         ]);
     }

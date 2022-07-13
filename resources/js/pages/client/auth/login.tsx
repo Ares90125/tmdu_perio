@@ -48,9 +48,14 @@ const Login = () => {
                     dispatch(setid(response.data["data"]["id"]));
                     if(response.data["data"]["LineId"]=='0')
                     {
-                        navigate('/client/resetpass');
+                        if(response.data["data"]["midpass"]!=pass){
+                            navigate('/client/alignment');
+                        }else{
+                            navigate('/client/resetpass');
+                        }
                     }
                     else{
+                        localStorage.setItem('lineid','1');
                         navigate('/');
                     }
                 }else{
@@ -58,7 +63,7 @@ const Login = () => {
                 }
             }).catch((err)=>{
                 handleClickOpen();
-            });;
+            });
         }
         catch(err){
             handleClickOpen();

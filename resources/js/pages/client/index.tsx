@@ -15,6 +15,7 @@ const Client = () => {
     const isauth = useAppSelector((state) => state.authenticater.client);
     const pathname = window.location.pathname.split('/')[2];
     const [flag,setFlag]=useState(false);
+    const [line,setLine]=useState(false);
     const navigate = useNavigate();
     const Me=()=>{
         const config={
@@ -46,6 +47,9 @@ const Client = () => {
             setFlag(true);
             Me();
             dispatch(setname(localStorage.getItem('username')!));
+            if( localStorage.getItem('lineid')){
+                setLine(true);
+            }
         }
     }
     useEffect(() =>{
@@ -55,13 +59,20 @@ const Client = () => {
         <Routes >
             <Route path='/' element={<Navigate to="/client/home"/>} />
             <Route path='/login' element={<Login/> }/>
-            {flag &&
+            {flag && line&&
                 <>
                     <Route path='/resetpass' element={<ResetPass/>} />
                     <Route path='/alignment' element={<Alignemnt/>} />
                     <Route path='/home' element={<Navigate to="/client/home/register/bresh"/>} />
                     <Route path='/home/register' element={<Navigate to="/client/home/register/bresh"/>} />
                     <Route path='/home/*' element={<Home/>} />
+                </>
+            }
+             {flag && !line&&
+                <>
+                    <Route path='/resetpass' element={<ResetPass/>} />
+                    <Route path='/alignment' element={<Alignemnt/>} />
+                    <Route path='/*' element={<Navigate to="/client/alignment"/>} />
                 </>
             }
              {!flag &&

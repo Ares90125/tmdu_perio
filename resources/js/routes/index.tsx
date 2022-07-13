@@ -11,6 +11,9 @@ const Router = () => {
             window.location.href='/admin';
         }
     },[])
+    if(window.location.pathname=='/linelogin'){
+        localStorage.setItem('lineid','1');
+    }
     return (
         <div>
             <Routes>
