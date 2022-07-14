@@ -242,7 +242,18 @@ const PatientEdit = () => {
                                 <p className="text-[16px] font-bold text-responseColor tracking-[.25em]">{selectuser.userid}</p>
                             </td>
                         </tr>
-                        {selectuser.created_at!=selectuser.updated_at?<></>:
+                        {selectuser.created_at!=selectuser.updated_at?
+                            <tr>
+                                <td className="text-right">
+                                    <p className="text-[16px] font-bold pr-[56px] ">
+                                        パスワード
+                                    </p>
+                                </td>
+                                <td>
+                                    <p className="text-[16px] font-bold text-responseColor tracking-[.25em] line-through">123456789</p>
+                                </td>
+                            </tr>
+                            :
                             <tr>
                             <td className="text-right">
                                 <p className="text-[16px] font-bold pr-[56px] ">
