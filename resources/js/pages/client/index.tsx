@@ -42,7 +42,7 @@ const Client = () => {
             return false;
         }
     }
-    if( localStorage.getItem('lineid')){
+    if(!line&&localStorage.getItem('lineid')){
         setLine(true);
     }
     if(pathname!="login"&&!flag){
