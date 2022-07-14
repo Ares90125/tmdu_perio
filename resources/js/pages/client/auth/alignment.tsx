@@ -9,7 +9,7 @@ export interface IUser {
 const Alignemnt = () => {
     const id = useAppSelector((state) => state.authenticater.id);
     const LineLogin=()=>{
-        window.location.href=LINELOGIN+id+"&bot_prompt={normal}&scope=openid&&nonce=09876xyz";
+        window.location.href=LINELOGIN+id+"&bot_prompt=normal&scope=openid&&nonce=09876xyz";
     }
     return (
         <div className="">
