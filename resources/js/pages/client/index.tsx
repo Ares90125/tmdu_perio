@@ -44,12 +44,12 @@ const Client = () => {
     }
     if(pathname!="login"&&!flag){
         if( localStorage.getItem('token')){
-            setFlag(true);
-            Me();
-            dispatch(setname(localStorage.getItem('username')!));
             if( localStorage.getItem('lineid')){
                 setLine(true);
             }
+            setFlag(true);
+            Me();
+            dispatch(setname(localStorage.getItem('username')!));
         }
     }
     useEffect(() =>{
