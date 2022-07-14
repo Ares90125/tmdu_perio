@@ -61,8 +61,6 @@ const Client = () => {
             <Route path='/login' element={<Login/> }/>
             {flag && line&&
                 <>
-                    <Route path='/resetpass' element={<ResetPass/>} />
-                    <Route path='/alignment' element={<Alignemnt/>} />
                     <Route path='/home' element={<Navigate to="/client/home/register/bresh"/>} />
                     <Route path='/home/register' element={<Navigate to="/client/home/register/bresh"/>} />
                     <Route path='/home/*' element={<Home/>} />
