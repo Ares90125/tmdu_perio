@@ -28,6 +28,14 @@ const NotificationList = (props:NotifyIndex) => {
             <div className="text-xl bg-btnbgColor h-0.5">
             </div>
             <p className="text-4xl text-mainColor py-8 font-black text-center pb-[15px]">{"お知らせ"}</p>
+            {
+            data.length==0?
+            <div className="mx-[20px]">
+                <div className=" flex flex-row items-center justify-center">
+                    <p className="text-[14px] mx-[2px] sm:py-2 font-content">お知らせがないです</p>
+                </div>
+            </div>
+            :
             <div className="mx-[20px]">
                 <div className=" flex flex-row items-center justify-center">
                     {
@@ -60,7 +68,7 @@ const NotificationList = (props:NotifyIndex) => {
                         })
                     }
                 </div>
-            </div>
+            </div>}
         </div>
     );
 };
