@@ -42,11 +42,11 @@ const Client = () => {
             return false;
         }
     }
+    if( localStorage.getItem('lineid')){
+        setLine(true);
+    }
     if(pathname!="login"&&!flag){
         if( localStorage.getItem('token')){
-            if( localStorage.getItem('lineid')){
-                setLine(true);
-            }
             setFlag(true);
             Me();
             dispatch(setname(localStorage.getItem('username')!));
