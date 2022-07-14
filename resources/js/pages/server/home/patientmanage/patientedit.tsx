@@ -250,7 +250,7 @@ const PatientEdit = () => {
                                     </p>
                                 </td>
                                 <td>
-                                    <p className="text-[16px] font-bold text-responseColor tracking-[.25em] line-through">123456789</p>
+                                    <p className="text-[16px] font-bold text-responseColor tracking-[.25em] line-through">{password}</p>
                                 </td>
                             </tr>
                             :
