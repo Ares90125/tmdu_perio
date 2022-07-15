@@ -18,7 +18,7 @@ class ClientAuthController extends Controller
 {
     public function loadusers(Request $request){
         $user = auth()->user();
-        $data=Users::select('id',"ticketid","name","midpassword","info","created_at","updated_at","type","userid")->orderBy('id')->get();
+        $data=Users::select('id',"ticketid","name","midpassword","info","created_at","change","type","userid")->orderBy('id')->get();
         return response()->json([
             'success'   =>  true,
             'data'      =>  [
@@ -156,6 +156,7 @@ class ClientAuthController extends Controller
         $password=(string)rand(10000000,99999999);
         $data['password'] = Hash::make($password);
         $data['midpassword']=$password;
+        $data['change'] = 0;
         $data=Users::Where([
             'id'  => $request["id"],
         ])->update($data);
@@ -165,6 +166,7 @@ class ClientAuthController extends Controller
         $user = auth()->user();
         $password=$request['password'];
         $data['password'] = Hash::make($password);
+        $data['change'] = 1;
         $data=Users::Where([
             'id'  => $user["id"],
         ])->update($data);

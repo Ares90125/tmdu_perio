@@ -13,7 +13,7 @@ interface UserState {
   type:number|null,
   userid:string,
   created_at:string,
-  updated_at:string
+  change:number
 }
 interface UsersState{
     value:Array<UserState>
@@ -46,7 +46,7 @@ export const userslice = createSlice({
                 "info":action.payload[i]["info"],
                 "userid":action.payload[i]["userid"],
                 "created_at":action.payload[i]["created_at"],
-                "updated_at":action.payload[i]["updated_at"],
+                "change":action.payload[i]["change"],
                 "date":getStringValue(action.payload[i]["created_at"]).split("T")[0]
             });
         }
