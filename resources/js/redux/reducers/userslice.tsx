@@ -22,6 +22,11 @@ interface Program{
     index:number;
     value:number;
 }
+interface Password{
+    index:number,
+    value:string,
+    change:number
+}
 // Define the initial state using that type
 const initialState: UsersState = {
   value:new Array<UserState>()
@@ -32,6 +37,10 @@ export const userslice = createSlice({
   reducers: {
     changeprogram:(state, action: PayloadAction<Program>)=>{
         state.value[action.payload.index].type=action.payload.value;
+    },
+    changeuser:(state, action: PayloadAction<Password>)=>{
+        state.value[action.payload.index].midpass=action.payload.value;
+        state.value[action.payload.index].change=action.payload.change;
     },
     changeusers: (state, action: PayloadAction<[]>) => {
         let array=new Array<UserState>();
@@ -56,6 +65,6 @@ export const userslice = createSlice({
 function getStringValue(value: any): string {
     return value.toString();
 }
-export const { changeusers, changeprogram} = userslice.actions
+export const { changeusers,changeuser, changeprogram} = userslice.actions
 
 export default userslice.reducer

@@ -13,6 +13,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { changeuser } from "../../../../redux/reducers/userslice";
 
 const PatientEdit = () => {
     interface DataState {
@@ -61,6 +62,7 @@ const PatientEdit = () => {
     const [navindex, setNavindex] = useState(1);
     const [password, resetPassword] = useState("");
     const [info, setInfo] = useState("");
+    const [change, setChange] = useState(0);
     const [startindex, setStart]=useState(1);
     const getUserdata = () => {
         const config = {
@@ -85,6 +87,7 @@ const PatientEdit = () => {
         if(selectuser){
             resetPassword(selectuser.midpass!);
             setInfo(selectuser.info!);
+            setChange(selectuser.change!);
         }
     }, [selectuser])
     const getAlldata = () => {
@@ -166,6 +169,8 @@ const PatientEdit = () => {
             axios.post('/api/admin/clientresetpass', body, config).then((response: AxiosResponse) => {
                 if (response.data["success"] == true) {
                     resetPassword(response.data["password"]);
+                    setChange(0);
+                    // dispatch(changeuser({index:index,value:response.data["data"]['password'].toString(),change:0}));
                 } else {
 
                 }
@@ -176,7 +181,6 @@ const PatientEdit = () => {
         }
     }
     const resetInfo = () => {
-
         const config = {
             headers: {
                 'Content-Type': 'application/json'
@@ -240,7 +244,7 @@ const PatientEdit = () => {
                                 <p className="text-[16px] font-bold text-responseColor tracking-[.25em]">{selectuser.userid}</p>
                             </td>
                         </tr>
-                        {selectuser.change==1?
+                        {change==1?
                             <tr>
                                 <td className="text-right">
                                     <p className="text-[16px] font-bold pr-[56px] ">
