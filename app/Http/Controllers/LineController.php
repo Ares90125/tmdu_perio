@@ -83,8 +83,8 @@ class LineController extends Controller
         DB::table('test')->delete();
     }
     public function pushmessages($userID, $message){
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($this->channel_access_token);
-        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $this->channel_secret]);
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('LINE_TOKEN'));
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('LINE_SECRET')]);
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
         $response = $bot->pushMessage($userID, $textMessageBuilder);
     }
