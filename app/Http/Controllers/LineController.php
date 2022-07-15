@@ -106,7 +106,7 @@ class LineController extends Controller
         ]);
         $update['LineId'] =$response1->json($key = null)["sub"];
         $data=Users::Where([
-            'LineId'  => $request["state"],
+            'id'  => $request["state"],
         ])->update($update);
         return view('client');
     }
