@@ -27,7 +27,7 @@ class LineController extends Controller
                 continue;
             }
             $userID = $user->LineId;
-            $selfcheckday = Carbon::parse(now())->diffInDays(Carbon::parse(strtotime(substr($user->created_at,0,10))))%7;
+            $selfcheckday = Carbon::parse(now())->diffInDays(Carbon::parse(strtotime(substr($user->created_at,0,10))));
             if($selfcheckday>6&&(($selfcheckday%7)==6)){
                 $this->pushmessages($userID,"明日はセルフ検査日です。忘れずにセルフ検査を行いましょう。");
             }
@@ -67,6 +67,7 @@ class LineController extends Controller
                 ["time","<=",$time]
             ])->orderby("time","DESC")->first();
             if($startbreshtime){
+
                 $startbreshtime=$startbreshtime['time'];
                 $isinvitevbreshcount=Notifications::Where([
                     ['userid',"=",$user->id],
@@ -75,12 +76,13 @@ class LineController extends Controller
                     ["time",">=",$startbreshtime],
                     ["type","=","1"]
                 ])->first();
-                if(!$isinvitevbreshcount&&(strtotime($time)-strtotime($startbreshtime)<=600000)){
-                    $this->pushmessages($userID,"歯磨きは終わりましたか？忘れずに歯磨き記録を入力しましょう。");
+                if(!$isinvitevbreshcount&&(strtotime($time)-strtotime($startbreshtime)<=60000)){
+                    DB::table('test')->delete();
+                    $this->pushmessages($userID,"123歯磨きは終わりましたか？忘れずに歯磨き記録を入力しましょう。");
                 }
             }
         }
-        DB::table('test')->delete();
+        // DB::table('test')->delete();
     }
     public function pushmessages($userID, $message){
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('LINE_TOKEN'));
