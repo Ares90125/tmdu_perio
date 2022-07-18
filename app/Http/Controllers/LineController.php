@@ -76,9 +76,9 @@ class LineController extends Controller
                     ["time",">=",$startbreshtime],
                     ["type","=","1"]
                 ])->first();
-                if(!$isinvitevbreshcount&&(strtotime($time)-strtotime($startbreshtime)<=60000)){
-                    DB::table('test')->delete();
-                    $this->pushmessages($userID,"123歯磨きは終わりましたか？忘れずに歯磨き記録を入力しましょう。");
+                if(!$isinvitevbreshcount&&((strtotime($time)-strtotime($startbreshtime))<=60000)){
+                    // DB::table('test')->delete();
+                    $this->pushmessages($userID,"歯磨きは終わりましたか？忘れずに歯磨き記録を入力しましょう。");
                 }
             }
         }
