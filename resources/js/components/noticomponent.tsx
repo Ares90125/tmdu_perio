@@ -64,7 +64,7 @@ function NotifiComponent(props: ButtonProps) {
                                 <p className=" text-dateColor text-[10px] ">
                                     {props.element.date.replace("-", ".") + " " + props.element.time.substring(0, 5)}
                                 </p>
-                                <p className="text-mainColor text-[13px] pt-[5px] text-start">
+                                <p className="text-mainColor text-[13px] pt-[5px] text-justify">
                                     歯磨きは終わりましたか？忘れずに歯磨き記録を入力しましょう。
                                 </p>
                             </button>
@@ -76,14 +76,14 @@ function NotifiComponent(props: ButtonProps) {
                                 <p className=" text-dateColor text-[10px] ">
                                     {props.element.date.replace("-", ".") + " " + props.element.time.substring(0, 5)}
                                 </p>
-                                <p className="text-mainColor text-[13px] pt-[5px]">
+                                <p className="text-mainColor text-[13px] pt-[5px] text-justify">
                                     {
                                         renderSwitch(props.element.value!)
                                     }
                                 </p>
                             </button>
                             <div className={((visible||(props.element.value=="3")) ? "h-0 opacity-0 invisible" : "h-auto opacity-100 visible")}>
-                                <div className="px-[10px] text-[13px] font-normal text-mainColor pt-[8px] text-start">
+                                <div className="px-[10px] text-[13px] font-normal text-mainColor pt-[8px] text-justify">
                                     定期的なセルフ検査は重要です。食事２時間後に検査しましょう試薬はあらかじめ室温に戻しておきましょうこちらのリンクから、セルフ検査をしましょう。
                                 </div>
                                 <div className="my-[10px]">
@@ -101,7 +101,7 @@ function NotifiComponent(props: ButtonProps) {
                                 <p className=" text-dateColor text-[10px] ">
                                     {props.element.date.replace("-", ".") + " " + props.element.time.substring(0, 5)}
                                 </p>
-                                <p className="text-mainColor text-[13px] pt-[5px] text-start">
+                                <p className="text-mainColor text-[13px] pt-[5px] text-justify">
                                     {"昨日のあなたの歯磨き回数は" + props.element.value + "回でした。"}
                                 </p>
                             </button>
@@ -110,17 +110,17 @@ function NotifiComponent(props: ButtonProps) {
                         </div>
                         case 4: return <div key={props.index} className="w-full">
                             <button className="w-full flex flex-col items-start font-black pt-[10px]" onClick={() => { setVisible(!visible);if(props.element.visited!=1){invited(props.element.id);}}}>
-                                <p className=" text-dateColor text-[10px] text-start">
+                                <p className=" text-dateColor text-[10px] text-justify">
                                     {props.element.date.replace("-", ".") + " " + props.element.time.substring(0, 5)}
                                 </p>
-                                <p className="text-mainColor text-[13px] pt-[5px] text-start">
+                                <p className="text-mainColor text-[13px] pt-[5px] text-justify">
                                     {props.element.value?.split("|")[0]}
                                 </p>
                             </button>
                             {
                                 visible?<div></div>:
                                 <div className={(visible ? "h-0 opacity-0 invisible" : "h-auto opacity-100 visible")}>
-                                    <div className="px-[10px] text-[13px] font-normal text-mainColor pt-[8px] text-start">
+                                    <div className="px-[10px] text-[13px] font-normal text-mainColor pt-[8px] text-justify">
                                         あなたにオススメの歯周病向けのセルフケア動画です。<br></br>動画を見ながら、しっかりと磨きましょう
                                     </div>
                                     <div className="my-[10px] relative w-full grid">

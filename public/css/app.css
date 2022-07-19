@@ -1328,6 +1328,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-right {
   text-align: right;
 }
+.text-justify {
+  text-align: justify;
+}
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
