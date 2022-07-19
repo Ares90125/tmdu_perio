@@ -30,7 +30,13 @@ const Login = () => {
         setUserId(e.target.value);
     };
     useEffect(() => {
+        if(localStorage.getItem('lineId')&&localStorage.getItem('token'))
+       {
+        navigate('/');
+       }
+       else{
         localStorage.clear();
+       }
     }, [])
     const logIn=(id:string,pass:string)=>{
 
