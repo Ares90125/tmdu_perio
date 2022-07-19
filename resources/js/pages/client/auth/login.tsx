@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, ButtonBase, InputBase } from "@mui/material";
 import DefaultButton from "../../../components/button";
 import axios, { AxiosResponse } from 'axios';
@@ -29,6 +29,9 @@ const Login = () => {
     const handleChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
         setUserId(e.target.value);
     };
+    useEffect(() => {
+        localStorage.clear();
+    }, [])
     const logIn=(id:string,pass:string)=>{
 
         const config={
