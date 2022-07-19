@@ -727,6 +727,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-auto {
   height: auto;
 }
+.h-\[152px\] {
+  height: 152px;
+}
 .h-36 {
   height: 9rem;
 }
@@ -991,6 +994,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(227 240 239 / var(--tw-bg-opacity));
 }
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
 .bg-adminbgColor {
   --tw-bg-opacity: 1;
   background-color: rgb(248 248 248 / var(--tw-bg-opacity));
@@ -1002,10 +1009,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-mainColor {
   --tw-bg-opacity: 1;
   background-color: rgb(16 100 100 / var(--tw-bg-opacity));
-}
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 .bg-recordColor {
   --tw-bg-opacity: 1;
