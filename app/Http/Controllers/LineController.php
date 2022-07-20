@@ -61,7 +61,7 @@ class LineController extends Controller
                 continue;
             }
             $userID = $user->LineId;
-            $time=date('H:m:s');
+            $time=date('H:i:s');
             $startbreshtime=Breshtimes::where([
                 ['userid',"=",$user->id],
                 ["time","<=",$time]
