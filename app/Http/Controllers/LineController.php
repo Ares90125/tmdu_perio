@@ -29,7 +29,7 @@ class LineController extends Controller
             $userID = $user->LineId;
             $selfcheckday = Carbon::parse(now())->diffInDays(Carbon::parse(strtotime(substr($user->created_at,0,10))));
             if($selfcheckday>6&&(($selfcheckday%7)==6)){
-                $this->pushmessages($userID,"明日はセルフ検査日です。忘れずにセルフ検査を行いましょう。");
+                $this->pushmessages($userID,"明日はセルフ検査日です。忘れずにセルフ検査を行いましょう。\nhttp://tmdu-crpe22.doctorbook-dev.jp/client/home/email/");
             }
         }
     }
