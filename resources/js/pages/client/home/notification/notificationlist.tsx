@@ -46,7 +46,7 @@ const NotificationList = (props:NotifyIndex) => {
                     }
                     {
                         Array(page<5?page:3).fill(0).map((element, index) => {
-                            return <div key={index} className={"flex items-center justify-center ml-[20px] w-[32px] h-[32px] rounded-[50%] " + (tabindex == index + 1 ? "bg-mainColor text-white" : "")}>
+                            return <div key={index} className={"flex items-center justify-center ml-[20px] w-[32px] h-[32px] rounded-[50%] " + (tabindex == startindex+index? "bg-mainColor text-white" : "")}>
                                 <button onClick={() => { props.buttonClick(startindex + index) }} className="text-[14px] mx-[2px] sm:py-2 font-content">{startindex+index}</button>
                             </div>
                         })
