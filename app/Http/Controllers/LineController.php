@@ -44,7 +44,7 @@ class LineController extends Controller
             if($selfcheckday>6&&(($selfcheckday%7)==0)){
                 $this->pushmessages($userID,"セルフ検査実施日です。忘れずにセルフ検査を行いましょう。\nhttp://tmdu-crpe22.doctorbook-dev.jp/client/home/email/");
             }else if($selfcheckday>6&&(($selfcheckday%7)==1)){
-                $this->pushmessages($userID,"昨日はセルフ検査を忘れてしまいましたか？忘れてしまった場合は、今日は忘れずに行いましょう。検査をして結果を記録していない場合は、検査結果を記録しましょう。");
+                $this->pushmessages($userID,"昨日はセルフ検査を忘れてしまいましたか？忘れてしまった場合は、今日は忘れずに行いましょう。検査をして結果を記録していない場合は、検査結果を記録しましょう。\nhttp://tmdu-crpe22.doctorbook-dev.jp/client/home/email/");
             }
             $count=Data::Where([
                 'userid'  => $user->id,
