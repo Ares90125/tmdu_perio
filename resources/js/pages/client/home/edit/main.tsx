@@ -36,7 +36,7 @@ const Main = () => {
     }
     useEffect(() => {
         loaddata();
-    },[date])
+    },[date1])
     var weekday = ["日", "月", "火", "水", "木", "金", "土"];
     let day=new Date();
     function changeDay(val:Boolean){

@@ -43,7 +43,7 @@ const Editer = () => {
     useEffect(() => {
         console.log(date);
         loaddata();
-    },[date])
+    },[date1])
     useEffect(() => {
         if(path.length>4&&path[4]!=""){
             setFlag(true);
