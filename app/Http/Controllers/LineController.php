@@ -51,7 +51,7 @@ class LineController extends Controller
                 'date'  => date('Y-m-d', strtotime('-1 day')),
                 "type"  => 2,
             ])->count();
-            $this->pushmessages($userID,"昨日のあなたの歯磨き回数は".$count."回でした。");
+            $this->pushmessages($userID,"昨日のあなたの歯磨き回数は".$count."回でした。\nhttp://tmdu-crpe22.doctorbook-dev.jp/client/home/email/");
         }
     }
     public function SearchEVMessages(){
