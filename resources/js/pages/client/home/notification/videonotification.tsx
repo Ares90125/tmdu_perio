@@ -25,7 +25,7 @@ const VideoNotify = () => {
                 <p className="text-4xl text-mainColor py-8 font-black text-center pb-2">{"オススメ動画"}</p>
             </div>
             <video  className="h-auto w-full" controls preload="metadata" >
-                <source src={data.value?.split("|")[2]+'#t=0.001'} type="video/mp4"/>
+                <source src={data.value?.split("|")[2]+'#t=0.01'} type="video/mp4"/>
             </video>
             <div className="text-mainColor mt-[25px] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)] w-auto rounded-[10px] bg-white pb-[10px] mx-[28px] px-[20px]">
                 <p className="font-black text-[18px] pt-[26px] text-mainColor"> {data.value?.split("|")[0]}</p>
