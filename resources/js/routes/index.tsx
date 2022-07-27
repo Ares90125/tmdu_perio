@@ -6,7 +6,7 @@ import Client from "../pages/client";
 const Router = () => {
     const navigate = useNavigate();
     useEffect(() => {
-        if(window.location.hostname.includes('admin-')&& window.location.pathname=='/client')
+        if(window.location.hostname.includes('admin')&& window.location.pathname=='/client')
         {
             window.location.href='/admin';
         }
