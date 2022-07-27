@@ -24,5 +24,11 @@ class AdminSeeder extends Seeder
             'clinic_id'=>1
         ]);
         $user->save();
+        $user->fill([
+            'userid' => 'admin-tmdu',
+            'password' => Hash::make('admin-tmdu'),
+            'clinic_id'=>1
+        ]);
+        $user->save();
     }
 }
