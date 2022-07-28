@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Adminuser;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 class AdminSeeder extends Seeder
 {
@@ -17,18 +18,15 @@ class AdminSeeder extends Seeder
     public function run()
     {
         $i = 1;
-        $user = new Adminuser;
-        $user->fill([
+        DB::table('adminuser')->insert([
             'userid' => 'admin',
             'password' => Hash::make('admin'),
             'clinic_id'=>1
         ]);
-        $user->save();
-        $user->fill([
+        DB::table('adminuser')->insert([
             'userid' => 'admin-tmdu',
             'password' => Hash::make('admin-tmdu'),
             'clinic_id'=>1
         ]);
-        $user->save();
     }
 }
