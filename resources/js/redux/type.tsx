@@ -28,4 +28,4 @@ export const SELF=[
     "陰性",
     "わからない"
 ]
-export const LINELOGIN='https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1657281804&redirect_uri=http://http://tmdu-crpe22.jp/linelogin&state='
+export const LINELOGIN='https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1657281804&redirect_uri=http://tmdu-crpe22.jp/linelogin&state='
