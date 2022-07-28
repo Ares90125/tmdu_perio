@@ -107,7 +107,8 @@ class NotificationController extends Controller
         $time=$request["time"];
         $startbreshtime=Breshtimes::where([
             ['userid',"=",$user->id],
-            ["time","<=",$time]
+            ["time","<=",$time],
+            ['updated_at','<=',Carbon::now()]
         ])->orderby("time","DESC")->first();
         if($startbreshtime){
             $startbreshtime=$startbreshtime['time'];
