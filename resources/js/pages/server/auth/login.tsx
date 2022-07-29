@@ -59,7 +59,7 @@ const Login = () => {
         if(localStorage.getItem('token'))
        {
         console.log('a');
-        navigate('/');
+        navigate('/admin');
        }
        else{
         localStorage.clear();
