@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { Box, ButtonBase, InputBase } from "@mui/material";
 import AdminDefaultButton from "../../../components/adminbutton";
@@ -15,6 +15,15 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const Login = () => {
+    useEffect(() => {
+        if(localStorage.getItem('token'))
+       {
+        navigate('/');
+       }
+       else{
+        localStorage.clear();
+       }
+    }, []);
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
         setOpen(true);
