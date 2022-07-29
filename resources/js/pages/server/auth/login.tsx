@@ -15,15 +15,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const Login = () => {
-    useEffect(() => {
-        if(localStorage.getItem('token'))
-       {
-        navigate('/');
-       }
-       else{
-        localStorage.clear();
-       }
-    }, []);
+
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
         setOpen(true);
@@ -63,6 +55,16 @@ const Login = () => {
             handleClickOpen();
         }
     }
+    useEffect(() => {
+        if(localStorage.getItem('token'))
+       {
+        console.log('a');
+        navigate('/');
+       }
+       else{
+        localStorage.clear();
+       }
+    }, []);
     return (
         <div className="bg-white min-h-full  w-full">
             <p className="text-9xl text-teal-700 pt-44 font-semibold text-center pb-32">PERIO</p>
