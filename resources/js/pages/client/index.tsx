@@ -16,6 +16,7 @@ const Client = () => {
     const pathname = window.location.pathname.split('/')[2];
     const [flag,setFlag]=useState(false);
     const [line,setLine]=useState(false);
+    const [change,setChange]=useState(false);
     const navigate = useNavigate();
     const Me=()=>{
         const config={
@@ -45,6 +46,9 @@ const Client = () => {
     if(!line&&localStorage.getItem('lineid')){
         setLine(true);
     }
+    if(!change&&localStorage.getItem('change')){
+        setChange(true);
+    }
     if(pathname!="login"&&!flag){
         if( localStorage.getItem('token')){
             setFlag(true);
@@ -64,6 +68,11 @@ const Client = () => {
                     <Route path='/home' element={<Navigate to="/client/home/register/bresh"/>} />
                     <Route path='/home/register' element={<Navigate to="/client/home/register/bresh"/>} />
                     <Route path='/home/*' element={<Home/>} />
+                </>
+            }
+            {flag && !line&&!change&&
+                <>
+                    <Route path='/*' element={<Navigate to="/client/resetpass"/>} />
                 </>
             }
              {flag && !line&&

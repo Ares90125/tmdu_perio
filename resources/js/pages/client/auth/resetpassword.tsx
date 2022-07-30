@@ -37,6 +37,7 @@ const ResetPass = () => {
         try{
             axios.post('/api/client/resetpass',body,config).then((response:AxiosResponse)=>{
                 if(response.data["success"]==true){
+                    localStorage.setItem('change','1');
                         navigate('/client/alignment');
                 }else{
                     handleClickOpen();

@@ -62,6 +62,9 @@ const Login = () => {
                         }else{
                             navigate('/client/resetpass');
                         }
+                        if(response.data["data"]["change"]==1){
+                            localStorage.setItem('change','1');
+                        }
                     }
                     else{
                         localStorage.setItem('lineid','1');

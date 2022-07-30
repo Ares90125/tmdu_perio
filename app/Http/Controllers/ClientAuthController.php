@@ -200,7 +200,8 @@ class ClientAuthController extends Controller
                 'username'  =>  $user["name"],
                 'id'  =>  $user["id"],
                 'LineId'   => $user['LineId'],
-                'midpass'   => $user['midpassword']
+                'midpass'   => $user['midpassword'],
+                'change'   => $user['change']
             ]
         ]);
     }
