@@ -92,7 +92,7 @@ class ClientAuthController extends Controller
         foreach($videos as $value){
             $breshcout=new Notifications;
             $breshcout['date'] =Carbon::now()->format('Y-m-d');
-            $breshcout['time']= Carbon::now()->format('H:m:s');
+            $breshcout['time']= Carbon::now()->format('H:i:s');
             $breshcout['userid']=$request["id"];
             $breshcout["type"]=4;
             $breshcout["value"]=$value["title"]."|".$value["text"]."|".$value["value"];
