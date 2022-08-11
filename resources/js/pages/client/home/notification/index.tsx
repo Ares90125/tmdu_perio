@@ -47,7 +47,7 @@ const Notification = () => {
    return (
     <Routes >
         <Route  path="/" element={ <NotificationList buttonClick={setLocal} index={tabindex} />}/>
-        <Route  path="/breshnotify" element={ <BreshNotify />}/>
+        {/* <Route  path="/breshnotify" element={ <BreshNotify />}/> */}
         <Route  path="/selfcheck" element={ <SelfCheck />}/>
         <Route  path="/record" element={ <Record />}/>
         <Route  path="/video" element={ <VideoNotify />}/>

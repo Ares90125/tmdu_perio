@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route ::group(['prefix'=>'client'],function (){
     Route::post('/login', [ClientAuthController::class,'login']);
     Route::group(["middleware"=>'auth:sanctum'],function(){
+        Route::post('/bresh',[ClientAuthController::class,"bresh"]);
         Route::get('/me',[DataController::class,"me"]);
         Route::post('/resetpass',[ClientAuthController::class,"resetpass"]);
         Route::get('/logout',[DataController::class,"logout"]);

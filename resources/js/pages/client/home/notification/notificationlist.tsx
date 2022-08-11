@@ -19,11 +19,11 @@ const NotificationList = (props:NotifyIndex) => {
         <div className="pb-10 mx-[3px]">
             <div className="flex justify-center items-center pt-4 pb-2 px-4 relatvice">
                 <p className="text-base text-mainColor  font-semibold text-center">{name+" さん"} </p>
-                <NavLink to="breshnotify" className="absolute right-0 mr-[15px]" >
+                {/* <NavLink to="/" className="absolute right-0 mr-[15px]" >
                     <div className="bg-mainColor text-white rounded-md px-[9px] py-[8px]">
                         <p className="text-[12px] text-bold">通知設定</p>
                     </div>
-                </NavLink>
+                </NavLink> */}
             </div>
             <div className="text-xl bg-btnbgColor h-0.5">
             </div>
@@ -32,7 +32,7 @@ const NotificationList = (props:NotifyIndex) => {
             data.length==0?
             <div className="mx-[20px]">
                 <div className=" flex flex-row items-center justify-center">
-                    <p className="text-[14px] mx-[2px] sm:py-2 font-content">お知らせがないです</p>
+                    <p className="text-[14px] mx-[2px] sm:py-2 font-content">{ data.length==0?'お知らせはありません':'お知らせがないです'}</p>
                 </div>
             </div>
             :

@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call('\App\Http\Controllers\LineController@SearchTWMessages')->dailyAt('20:00');
         $schedule->call('\App\Http\Controllers\LineController@SearchEIMessages')->dailyAt('8:00');
-        $schedule->call('\App\Http\Controllers\LineController@SearchEVMessages')->everyMinute();
+        // $schedule->call('\App\Http\Controllers\LineController@SearchEVMessages')->everyMinute();
     }
     /**
      * Register the commands for the application.

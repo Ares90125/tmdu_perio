@@ -5,6 +5,7 @@ import Alignemnt from './auth/alignment';
 import Login from './auth/login';
 import ResetPass from './auth/resetpassword';
 import Home from './home';
+import Bresh from './home/bresh';
 import axios, { AxiosResponse } from 'axios';
 import {  setclient, setname } from '../.././redux/reducers/authentication'
 import {  useAppDispatch } from '../.././redux/hooks'
@@ -17,6 +18,7 @@ const Client = () => {
     const [flag,setFlag]=useState(false);
     const [line,setLine]=useState(false);
     const [change,setChange]=useState(false);
+    const [value,setValue]=useState(false);
     const navigate = useNavigate();
     const Me=()=>{
         const config={
@@ -49,6 +51,9 @@ const Client = () => {
     if(!change&&localStorage.getItem('change')){
         setChange(true);
     }
+    if(!value&&localStorage.getItem('value')){
+        setValue(true);
+    }
     if(pathname!="login"&&!flag){
         if( localStorage.getItem('token')){
             setFlag(true);
@@ -64,9 +69,13 @@ const Client = () => {
             <Route path='/' element={<Navigate to="/client/home"/>} />
             <Route path='/login' element={<Login/> }/>
             {flag && line&&
-                <>
-                    <Route path='/home' element={<Navigate to="/client/home/register/bresh"/>} />
-                    <Route path='/home/register' element={<Navigate to="/client/home/register/bresh"/>} />
+                <>  { !value &&
+                        <>
+                            <Route path='/home/*' element={<Bresh/>} />
+                        </>
+                    }
+                    <Route path='/home' element={<Navigate to="/client/home/register/meal"/>} />
+                    <Route path='/home/register' element={<Navigate to="/client/home/register/meal"/>} />
                     <Route path='/home/*' element={<Home/>} />
                 </>
             }

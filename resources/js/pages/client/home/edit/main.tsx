@@ -109,26 +109,26 @@ const Main = () => {
                                             <p className="basis-1/6 text-mainColor text-[13px]  font-bold px-8 pt-2">{MO_STATUS[Number(v.value!)-1]}</p>
                                         </div>
                                     </div>;
-                            case 2:return <div key={index}>
-                                        <div className="bg-white rounded-2xl p-4 mt-[22PX] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
-                                            <div className="flex flex-row ">
-                                                <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0].substring(0,1)=="0"?v.time.split(":")[0].substring(1):v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
-                                                <p className="basis-1/2 text-center text-mainColor text-xl font-extrabold">歯みがき記録</p>
-                                                <p className="basis-1/6"></p>
-                                                <NavLink to="diary" className="basis-1/6">
-                                                    <button onClick={()=>{dispatch(changeByAmount(index));}}>
-                                                        <p className=" text-center text-btnbgColor text-[15px] underline font-bold">編集</p>
-                                                    </button>
-                                                </NavLink>
-                                            </div>
-                                            <div className="flex  flex-row items-cneter justify-around mt-4">
-                                                <ToolButton size="w-16 h-24"  text={BRESH_TIME[Number(v.value!.split("|")[1])-1]} className={Number(v.value!.split("|")[1])==0?"bg-white text-btnbgColor":"bg-btnbgColor text-white"} path={Number(v.value!.split("|")[1])==0?"comb_none.svg":"comb.svg"}/>
-                                                <ToolButton size="w-16 h-24"  text="" className={(Number(v.value!.split("|")[0].split(',')[0]))==1?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={(Number(v.value!.split("|")[0].split(',')[0]))==1?"bresh.svg":"bresh-none.svg"}/>
-                                                <ToolButton size="w-16 h-24"  text="" className={(Number(v.value!.split("|")[0].split(',')[1]))==1?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={(Number(v.value!.split("|")[0].split(',')[1]))==1?"material.svg":"material-none.svg"}/>
-                                                <ToolButton size="w-16 h-24"  text="" className={(Number(v.value!.split("|")[0].split(',')[2]))==1?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={(Number(v.value!.split("|")[0].split(',')[2]))==1?"flox.svg":"flox-none.svg"}/>
-                                            </div>
-                                        </div>
-                                    </div>;
+                            // case 2:return <div key={index}>
+                            //             <div className="bg-white rounded-2xl p-4 mt-[22PX] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
+                            //                 <div className="flex flex-row ">
+                            //                     <p className="basis-1/6 text-center text-btnbgColor text-xl">{v.time.split(":")[0].substring(0,1)=="0"?v.time.split(":")[0].substring(1):v.time.split(":")[0]}:{v.time.split(":")[1]}</p>
+                            //                     <p className="basis-1/2 text-center text-mainColor text-xl font-extrabold">歯みがき記録</p>
+                            //                     <p className="basis-1/6"></p>
+                            //                     <NavLink to="diary" className="basis-1/6">
+                            //                         <button onClick={()=>{dispatch(changeByAmount(index));}}>
+                            //                             <p className=" text-center text-btnbgColor text-[15px] underline font-bold">編集</p>
+                            //                         </button>
+                            //                     </NavLink>
+                            //                 </div>
+                            //                 <div className="flex  flex-row items-cneter justify-around mt-4">
+                            //                     <ToolButton size="w-16 h-24"  text={BRESH_TIME[Number(v.value!.split("|")[1])-1]} className={Number(v.value!.split("|")[1])==0?"bg-white text-btnbgColor":"bg-btnbgColor text-white"} path={Number(v.value!.split("|")[1])==0?"comb_none.svg":"comb.svg"}/>
+                            //                     <ToolButton size="w-16 h-24"  text="" className={(Number(v.value!.split("|")[0].split(',')[0]))==1?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={(Number(v.value!.split("|")[0].split(',')[0]))==1?"bresh.svg":"bresh-none.svg"}/>
+                            //                     <ToolButton size="w-16 h-24"  text="" className={(Number(v.value!.split("|")[0].split(',')[1]))==1?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={(Number(v.value!.split("|")[0].split(',')[1]))==1?"material.svg":"material-none.svg"}/>
+                            //                     <ToolButton size="w-16 h-24"  text="" className={(Number(v.value!.split("|")[0].split(',')[2]))==1?"bg-btnbgColor text-white":"bg-white text-mainColor shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]"} path={(Number(v.value!.split("|")[0].split(',')[2]))==1?"flox.svg":"flox-none.svg"}/>
+                            //                 </div>
+                            //             </div>
+                            //         </div>;
                             case 3:return <div key={index}>
                                         <div className="bg-white rounded-2xl p-4 mt-[22PX] shadow-[-1px_-1px_4px_4px_rgba(0,0,0,0.03)]">
                                             <div className="flex flex-row ">
@@ -182,7 +182,7 @@ const Main = () => {
                 )
             }
             </div>
-          {  data.length!=0 && <NavLink to="add/bresh" className="basis-1/6"><DefaultButton text="記録をする" buttonClick={() => { dispatch(changeDate(date));}}></DefaultButton> </NavLink>}
+          {  data.length!=0 && <NavLink to="add/meal" className="basis-1/6"><DefaultButton text="記録をする" buttonClick={() => { dispatch(changeDate(date));}}></DefaultButton> </NavLink>}
         </div>
     );
 };

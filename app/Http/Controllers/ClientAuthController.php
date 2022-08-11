@@ -18,7 +18,20 @@ class ClientAuthController extends Controller
 {
     public function loadusers(Request $request){
         $user = auth()->user();
-        $data=Users::select('id',"ticketid","name","midpassword","info","created_at","change","type","userid")->orderBy('id')->get();
+        $data=Users::select('id',"ticketid","name","midpassword","info","created_at","change","type","userid","value")->orderBy('id')->get();
+        return response()->json([
+            'success'   =>  true,
+            'data'      =>  [
+                $data
+            ]
+        ]);
+    }
+    public function bresh(Request $request){
+        $user = auth()->user();
+        $data=Users::where('id',$user->id)
+        ->update([
+            'value'=>$request['value']
+        ]);
         return response()->json([
             'success'   =>  true,
             'data'      =>  [
@@ -201,7 +214,8 @@ class ClientAuthController extends Controller
                 'id'  =>  $user["id"],
                 'LineId'   => $user['LineId'],
                 'midpass'   => $user['midpassword'],
-                'change'   => $user['change']
+                'change'   => $user['change'],
+                'value'   => $user['value']
             ]
         ]);
     }
