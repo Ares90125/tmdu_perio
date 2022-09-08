@@ -13,8 +13,7 @@ interface UserState {
   type:number|null,
   userid:string,
   created_at:string,
-  change:number,
-  value:String|null
+  change:number
 }
 interface UsersState{
     value:Array<UserState>
@@ -54,7 +53,6 @@ export const userslice = createSlice({
                 "name":action.payload[i]["name"],
                 "midpass":action.payload[i]["midpassword"],
                 "info":action.payload[i]["info"],
-                "value":action.payload[i]["value"],
                 "userid":action.payload[i]["userid"],
                 "created_at":action.payload[i]["created_at"],
                 "change":action.payload[i]["change"],

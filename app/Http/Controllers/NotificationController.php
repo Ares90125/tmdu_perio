@@ -105,38 +105,38 @@ class NotificationController extends Controller
         $user = auth()->user();
         $date = strtotime($request["date"]);
         $time=$request["time"];
-        // $startbreshtime=Breshtimes::where([
-        //     ['userid',"=",$user->id],
-        //     ["time","<=",$time],
-        //     ['updated_at','<=',Carbon::now()]
-        // ])->orderby("time","DESC")->first();
-        // if($startbreshtime){
-        //     $startbreshtime=$startbreshtime['time'];
-        //     $isinvitevbreshcount=Notifications::Where([
-        //         ['userid',"=",$user->id],
-        //         ['date' ,"=", date('Y-m-d',$date)],
-        //         ["time","<=",$time],
-        //         ["time",">=",$startbreshtime],
-        //         ["type","=","1"]
-        //     ])->first();
-        //     if(!$isinvitevbreshcount){
-        //         $currentbresh=Data::Where([
-        //             ['userid',"=",$user->id],
-        //             ['date' ,"=", date('Y-m-d',$date)],
-        //             ["time","<=",$time],
-        //             ["time",">=",$startbreshtime],
-        //             ["type","=",1]
-        //         ])->first();
-        //         if(!$currentbresh){
-        //             $breshnoti=new Notifications;
-        //             $breshnoti['date'] =$request["date"];
-        //             $breshnoti['time']=$startbreshtime;
-        //             $breshnoti['userid']=$user->id;
-        //             $breshnoti["type"]=1;
-        //             $breshnoti->save();
-        //         }
-        //     }
-        // }
+        $startbreshtime=Breshtimes::where([
+            ['userid',"=",$user->id],
+            ["time","<=",$time],
+            ['updated_at','<=',Carbon::now()]
+        ])->orderby("time","DESC")->first();
+        if($startbreshtime){
+            $startbreshtime=$startbreshtime['time'];
+            $isinvitevbreshcount=Notifications::Where([
+                ['userid',"=",$user->id],
+                ['date' ,"=", date('Y-m-d',$date)],
+                ["time","<=",$time],
+                ["time",">=",$startbreshtime],
+                ["type","=","1"]
+            ])->first();
+            if(!$isinvitevbreshcount){
+                $currentbresh=Data::Where([
+                    ['userid',"=",$user->id],
+                    ['date' ,"=", date('Y-m-d',$date)],
+                    ["time","<=",$time],
+                    ["time",">=",$startbreshtime],
+                    ["type","=",1]
+                ])->first();
+                if(!$currentbresh){
+                    $breshnoti=new Notifications;
+                    $breshnoti['date'] =$request["date"];
+                    $breshnoti['time']=$startbreshtime;
+                    $breshnoti['userid']=$user->id;
+                    $breshnoti["type"]=1;
+                    $breshnoti->save();
+                }
+            }
+        }
         // return response()->json([
         //     'success'   =>  true,
         //     'value' =>[
