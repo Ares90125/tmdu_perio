@@ -7,7 +7,7 @@ const Router = () => {
     const navigate = useNavigate();
     useEffect(() => {
         console.log(window.location.hostname,"sdfdf",window.location.pathname);
-        if(window.location.hostname.includes('admin.')&& window.location.pathname.includes('/client'))
+        if(window.location.hostname.includes('admin-')&& window.location.pathname.includes('/client'))
         {
             window.location.href='/admin';
         }
